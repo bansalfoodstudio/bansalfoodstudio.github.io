@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — Bansal Food Studio</title>
+  <style>
+    :root{--accent:#b2322a;--muted:#666;--maxw:1100px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:#faf8f6;color:#222}
+    header{padding:14px 16px;border-bottom:1px solid #eee;background:#fff}
+    .header-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:12px}
+    .logo img{height:56px}
+    nav{margin-left:auto;display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    main{max-width:var(--maxw);margin:22px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:1fr 400px;gap:28px}
+    .card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    h2{font-family:Georgia,serif;margin:0 0 10px}
+    p.lead{color:var(--muted);margin:0 0 14px}
+    .contact-info p{margin:6px 0;color:var(--muted)}
+    form label{display:block;font-weight:600;margin-top:10px}
+    input[type="text"],input[type="email"],textarea{
+      width:100%;padding:10px;border:1px solid #e6e6e6;border-radius:6px;margin-top:6px;font-size:14px;
+    }
+    textarea{min-height:120px;resize:vertical}
+    button{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:0;margin-top:12px;cursor:pointer}
+    .mapwrap{height:320px;border-radius:10px;overflow:hidden}
+    footer{padding:18px;text-align:center;color:#777;border-top:1px solid #f0f0f0;background:#fff;margin-top:36px}
+    @media(max-width:980px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo" style="display:flex;align-items:center;gap:12px">
+      <img src="images/logo.png" alt="logo">
+      <div style="font-family:Georgia,serif;color:var(--accent)">Bansal Food Studio</div>
+    </div>
+    <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <!-- left column -->
+    <div>
+      <div class="card">
+        <h2>Contact Us</h2>
+        <p class="lead">हमसे जुड़ने के लिए नीचे दिए विवरण का उपयोग करें या संदेश भेजें।</p>
+
+        <form id="contactForm" onsubmit="return fakeSubmit(event)">
+          <label for="name">नाम</label>
+          <input id="name" name="name" type="text" placeholder="आपका नाम" required>
+          <label for="email">ई-मेल</label>
+          <input id="email" name="email" type="email" placeholder="aap@example.com" required>
+          <label for="message">संदेश</label>
+          <textarea id="message" name="message" placeholder="अपना संदेश लिखें" required></textarea>
+          <button type="submit">संदेश भेजें</button>
+        </form>
+      </div>
+
+      <div style="height:18px"></div>
+
+      <div class="card">
+        <h3 style="margin-top:0">हमारा पता</h3>
+        <p class="contact-info">
+          <strong>Address:</strong><br>
+          Chawla Complex, Gangoh Road, Nanauta, Saharanpur<br><br>
+          <strong>Phone:</strong> ‪+91-7599032032‬<br>
+          <strong>Email:</strong> banslfoodstudio@gmail.com
+        </p>
+      </div>
+    </div>
+
+    <!-- right column -->
+    <div>
+      <div class="card">
+        <h3 style="margin-top:0">Location Map</h3>
+        <div class="mapwrap">
+          <!-- सटीक Google Map embed -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.727155320768!2d77.4182916!3d29.6893824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ebf2b7be2b36b%3A0x8b4cfbe77ca92c45!2sBansal%20Food%20Studio%2C%20Chawla%20Complex%2C%20Gangoh%20Rd%2C%20Nanauta%2C%20Saharanpur%2C%20Uttar%20Pradesh%20247652!5e0!3m2!1sen!2sin!4v1731433000000!5m2!1sen!2sin"
+            width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © <span id="yr"></span> Bansal Food Studio • Phone: +91-7599032032 • Email: banslfoodstudio@gmail.com
+</footer>
+
+<script>
+function fakeSubmit(e){
+  e.preventDefault();
+  alert('धन्यवाद — आपका संदेश प्राप्त हुआ (यह demo form है)');
+  document.getElementById('contactForm').reset();
+  return false;
+}
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
