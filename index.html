@@ -1,27 +1,118 @@
-<header style="background: linear-gradient(90deg,#c93b36,#b2322a); color:#fff;">
-  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:14px 16px;">
-    <!-- logo -->
-    <div style="flex:0 0 auto;">
-      <img src="logo.png" alt="Bansal Food Studio Logo"
-           style="height:78px;max-height:78px;width:auto;display:block;border-radius:8px;">
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bansal Food Studio</title>
+  <style>
+    :root{
+      --accent:#b2322a;
+      --muted:#666;
+      --card-bg:#fff;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, "Segoe UI", Arial, sans-serif;background:#faf8f6;color:#222}
+    header{padding:18px 16px;border-bottom:1px solid #eee;background:#fff}
+    .header-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:16px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{height:72px;width:auto;border-radius:8px}
+    .logo h1{margin:0;font-family:Georgia,serif;color:var(--accent);font-size:1.25rem}
+    nav{margin-left:auto;display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a.cta{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px}
+
+    /* hero / intro */
+    .hero{max-width:var(--maxw);margin:28px auto;padding:18px;display:block}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+    .card{background:var(--card-bg);border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    .card img{width:100%;height:220px;object-fit:cover;display:block}
+    .card .bd{padding:12px}
+    .card h3{margin:0 0 8px;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+
+    /* about */
+    .about{max-width:var(--maxw);margin:26px auto;padding:0 18px 40px;color:var(--muted);line-height:1.6}
+
+    footer{padding:18px;text-align:center;color:#777;border-top:1px solid #f0f0f0;background:#fff;margin-top:36px}
+
+    @media(max-width:980px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:700px){
+      .header-inner{flex-direction:column;align-items:flex-start}
+      nav{margin-left:0}
+      .cards{grid-template-columns:1fr}
+      .card img{height:180px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <img src="images/logo.png" alt="Bansal Food Studio Logo">
+      <h1>Bansal Food Studio</h1>
     </div>
 
-    <!-- name + tag -->
-    <div style="flex:1 1 auto;text-align:left;">
-      <div style="font-family:Georgia,serif;font-size:28px;line-height:1;color:#fff;margin-bottom:4px;">
-        Bansal Food Studio
-      </div>
-      <div style="font-size:13px;color:rgba(255,230,224,0.95);">
-        Dil Aur Pet Dono Khush
-      </div>
-    </div>
-
-    <!-- optional small nav on right -->
-    <nav style="flex:0 0 auto;">
-      <a href="index.html" style="color:#fff;text-decoration:none;margin:0 8px;font-weight:600;">Home</a>
-      <a href="menu.html"  style="color:#fff;text-decoration:none;margin:0 8px;font-weight:600;">Menu</a>
-      <a href="contact.html" style="color:#fff;text-decoration:none;margin:0 8px;font-weight:600;">Contact</a>
-      <a href="contact.html" style="color:#fff;text-decoration:none;margin:0 8px;font-weight:600;">Book A Table</a>
+    <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Contact</a>
+      <a href="#reserve" class="cta">Reserve</a>
     </nav>
   </div>
 </header>
+
+<main>
+  <section class="hero">
+    <div style="max-width:var(--maxw);margin:0 auto;display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding:12px">
+      <div style="flex:1;min-width:260px">
+        <h2 style="font-family:Georgia,serif;margin:0 0 10px;font-size:1.6rem;color:#222">स्वाद जो याद रह जाए</h2>
+        <p style="margin:0 0 14px;color:var(--muted)">हम स्थानीय सामग्री और पारंपरिक विधि को एक आधुनिक शब्द देते हैं — हर डिश को ध्यान और प्यार से परोसा जाता है।</p>
+        <p><a href="menu.html" style="background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700">मेनू देखें</a></p>
+      </div>
+
+      <div style="flex:1;min-width:260px;display:flex;gap:12px;flex-direction:column">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <img src="images/dish-1.jpg" alt="Dish 1" style="width:100%;height:120px;object-fit:cover;border-radius:8px">
+          <img src="images/dish-2.jpg" alt="Dish 2" style="width:100%;height:120px;object-fit:cover;border-radius:8px">
+        </div>
+        <div>
+          <img src="images/dish-3.jpg" alt="Dish 3" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+        </div>
+      </div>
+    </div>
+
+    <div class="cards" style="max-width:var(--maxw);margin:18px auto;padding:0 18px">
+      <div class="card">
+        <img src="images/dish-1.jpg" alt="Starters">
+        <div class="bd"><h3>Starters</h3><p>चटपटे आरम्भ — ताज़ा और तेज स्वाद।</p></div>
+      </div>
+      <div class="card">
+        <img src="images/dish-2.jpg" alt="Main Course">
+        <div class="bd"><h3>Main Course</h3><p>पारंपरिक और आधुनिक व्यंजन।</p></div>
+      </div>
+      <div class="card">
+        <img src="images/dish-3.jpg" alt="Dessert">
+        <div class="bd"><h3>Dessert</h3><p>मिठास भरे समापन।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div style="max-width:var(--maxw);margin:0 auto;padding:0 18px">
+      <h3 style="margin-top:0">About</h3>
+      <p>हमारे शेफ़ ताज़ी सामग्री और मौसमी स्वाद के साथ रसोई बनाते हैं। यदि आप विशेष अवसर मनाना चाहते हैं या बुकिंग करनी है, तो Contact पेज पर जाएँ।</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="yr"></span> Bansal Food Studio • Address • Phone
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
