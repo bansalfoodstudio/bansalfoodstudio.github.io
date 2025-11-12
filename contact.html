@@ -52,23 +52,23 @@
     <div>
       <div class="card">
         <h2>Contact Us</h2>
-        <p class="lead">हमसे जुड़ने के लिए नीचे दिए विवरण का उपयोग करें या संदेश भेजें।</p>
+        <p class="lead">Leave a Comment</p>
 
         <form id="contactForm" onsubmit="return fakeSubmit(event)">
-          <label for="name">नाम</label>
-          <input id="name" name="name" type="text" placeholder="आपका नाम" required>
-          <label for="email">ई-मेल</label>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your Name" required>
+          <label for="email">email</label>
           <input id="email" name="email" type="email" placeholder="aap@example.com" required>
-          <label for="message">संदेश</label>
-          <textarea id="message" name="message" placeholder="अपना संदेश लिखें" required></textarea>
-          <button type="submit">संदेश भेजें</button>
+          <label for="message">message</label>
+          <textarea id="message" name="message" placeholder="Write your message" required></textarea>
+          <button type="submit">Submit</button>
         </form>
       </div>
 
       <div style="height:18px"></div>
 
       <div class="card">
-        <h3 style="margin-top:0">हमारा पता</h3>
+        <h3 style="margin-top:0">Address</h3>
         <p class="contact-info">
           <strong>Address:</strong><br>
           Chawla Complex, Gangoh Road, Nanauta, Saharanpur<br><br>
@@ -83,7 +83,7 @@
       <div class="card">
         <h3 style="margin-top:0">Location Map</h3>
         <div class="mapwrap">
-          <!-- सटीक Google Map embed -->
+          <!--  Google Map embed -->
           <<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3465.171936577802!2d77.41895057461778!3d29.714778434116706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e9b84540cf2a1%3A0x2b396afbbe2172b4!2sBansal%20Food%20Studio!5e0!3m2!1sen!2sin!4v1762957657772!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>>
         </div>
       </div>
@@ -98,7 +98,7 @@
 <script>
 function fakeSubmit(e){
   e.preventDefault();
-  alert('धन्यवाद — आपका संदेश प्राप्त हुआ (यह demo form है)');
+  alert('Thanks);
   document.getElementById('contactForm').reset();
   return false;
 }
