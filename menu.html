@@ -2,403 +2,320 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Menu — Bansal Food Studio</title>
+
+  <meta name="description" content="Explore the menu of Bansal Food Studio — Indian, South Indian, Chinese and Continental dishes served fresh in Nanauta." />
+  <meta property="og:title" content="Menu — Bansal Food Studio" />
+  <meta property="og:description" content="Indian, South Indian, Chinese & Continental — freshly prepared every day." />
+  <meta property="og:image" content="https://bansalfoodstudio.github.io/images/menu-indian.jpg" />
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{
       --accent:#b2322a;
-      --accent-dark:#8a1f1f;
-      --muted:#6f6f6f;
+      --muted:#6b6b6b;
       --bg:#faf8f6;
-      --card:#ffffff;
+      --card:#fff;
       --maxw:1100px;
-      --icon-size:140px;
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
-    header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:50}
-    .header-inner{max-width:var(--maxw);margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px}
-    .brand img{height:52px;border-radius:8px}
-    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--accent)}
-    nav{margin-left:auto;display:flex;gap:12px}
-    nav a{padding:8px 12px;border-radius:8px;background:#fff1ea;color:#6a2a25;text-decoration:none;font-weight:600;border:1px solid rgba(0,0,0,0.05)}
-    nav a.cta{background:var(--accent);color:#fff}
-    .title{max-width:var(--maxw);margin:22px auto 8px;padding:0 16px;font-family:'Playfair Display',serif;font-size:2rem}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
 
-    .section{max-width:var(--maxw);margin:28px auto;padding:0 16px}
-    .section h2{font-family:'Playfair Display',serif;color:var(--accent);font-size:1.6rem;border-left:4px solid var(--accent);padding-left:10px;margin-bottom:8px}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
 
-    /* icon holder */
-    .icon-wrap{display:flex;justify-content:center;align-items:center;margin:10px 0 18px}
-    .icon-box{
-      width:var(--icon-size);height:var(--icon-size);border-radius:18px;
-      display:flex;justify-content:center;align-items:center;background:linear-gradient(180deg, rgba(178,50,42,0.07), rgba(178,50,42,0.03));
-      box-shadow:0 8px 22px rgba(0,0,0,0.06);
+    /* header */
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
+    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;border-radius:8px}
+    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent)}
+    .tagline{font-size:0.95rem;color:var(--muted)}
+
+    .nav-desktop{display:flex;gap:10px}
+    .nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 12px;border-radius:8px;font-weight:600}
+    .nav-cta{background:var(--accent);color:#fff;padding:9px 12px;border-radius:8px;font-weight:700}
+
+    .hamburger{display:none;border:0;background:transparent;padding:8px}
+    @media(max-width:900px){ .nav-desktop{display:none} .hamburger{display:block} }
+
+    /* page header */
+    .page-head{padding:22px 0;text-align:center}
+    .page-head h2{font-family:'Playfair Display',serif;margin:0;font-size:1.6rem;color:var(--accent)}
+    .page-head p{color:var(--muted);margin:8px 0 0}
+
+    /* sections grid */
+    .menu-sections{display:grid;gap:22px;padding:18px 0 40px}
+    .section {
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      gap:18px;
+      align-items:start;
+      background:var(--card);
+      padding:12px;
+      border-radius:12px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
     }
-    .icon-box svg{width:76%;height:76%;display:block}
+    .section img{width:100%;height:220px;object-fit:cover;border-radius:10px}
+    .section .content{padding:6px 2px}
+    .section h3{margin:0 0 8px;font-family:'Playfair Display',serif;color:var(--accent);font-size:1.15rem}
+    .section p.desc{color:var(--muted);margin:0 0 12px}
 
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .item{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;justify-content:space-between;align-items:center}
-    .item-name{font-weight:600;margin:0;font-size:1rem}
-    .item-price{font-weight:700;color:var(--accent)}
-    footer{padding:22px;text-align:center;color:#666;border-top:1px solid #f0f0f0;background:#fff;margin-top:30px}
+    /* dish list */
+    .dish-list{display:flex;flex-direction:column;gap:8px}
+    .dish {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:8px 10px;
+      border-radius:8px;
+      align-items:flex-start;
+    }
+    .dish .left { max-width:70%; }
+    .dish .left strong { display:block; font-weight:700; margin-bottom:4px; }
+    .dish .left small { color:var(--muted) }
+    .dish .price { font-weight:700; color:var(--accent); white-space:nowrap; }
 
-    @media(max-width:900px){ .grid{grid-template-columns:1fr} nav{display:none} .brand{text-align:center} }
+    /* responsive */
+    @media(max-width:980px){
+      .section{grid-template-columns:1fr;align-items:stretch}
+      .section img{height:200px}
+    }
+
+    footer{padding:20px;text-align:center;color:#666;background:#fff;border-top:1px solid #eee;margin-top:22px}
+
+    /* social icons small */
+    .social-row{display:flex;justify-content:center;gap:18px;margin:20px 0}
+    .social-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center}
   </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="brand" style="display:flex;align-items:center;gap:12px">
-      <img src="images/logo.png" alt="Bansal Food Studio logo">
-      <h1>Bansal Food Studio</h1>
+<header class="site-header">
+  <div class="inner container">
+    <div class="brand">
+      <img src="images/logo.png" alt="logo">
+      <div>
+        <h1>Bansal Food Studio</h1>
+        <div class="tagline">Dil Aur Pet Dono Khush</div>
+      </div>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="contact.html">Contact</a>
-      <a href="contact.html#book" class="cta">Book a Table</a>
+
+    <nav class="nav-desktop">
+      <a class="nav-btn" href="index.html">Home</a>
+      <a class="nav-btn nav-active" href="menu.html">Menu</a>
+      <a class="nav-btn" href="about.html">About Us</a>
+      <a class="nav-btn" href="contact.html">Contact</a>
+      <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
     </nav>
+
+    <button class="hamburger" id="hambtn" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6a2a25" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" style="display:none;">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn nav-active" href="menu.html">Menu</a>
+    <a class="nav-btn" href="about.html">About Us</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+    <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
   </div>
 </header>
 
-<h2 class="title">Our Menu</h2>
+<main class="container">
+  <header class="page-head">
+    <h2>Our Menu</h2>
+    <p>Indian, South Indian, Chinese & Continental — freshly prepared and served with care.</p>
+  </header>
 
-<!-- Helper: a functionally repeated block pattern below for each section:
-     icon (filled SVG) centered, then grid items. -->
+  <section class="menu-sections">
 
-<!-- ================= INDIAN ================= -->
-<section class="section" id="indian">
-  <h2>Indian</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- Filled bowl / curry icon (Indian) -->
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <rect x="6" y="36" width="52" height="10" rx="4" fill="var(--accent)"></rect>
-        <path d="M10 36c0-9 11-18 22-18s22 9 22 18" fill="var(--accent)"></path>
-        <circle cx="26" cy="28" r="3.2" fill="#fff" opacity="0.12"></circle>
-      </svg>
+    <!-- 1. Indian -->
+    <div class="section" id="indian">
+      <img src="images/menu-indian.jpg" alt="Indian cuisine">
+      <div class="content">
+        <h3>Indian</h3>
+        <p class="desc">Rich traditional curries, dals and chef specials. Cooked with real spices and slow-simmered gravies.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Dal Maharani</strong><small>Slow-cooked spiced dal with butter tempering</small></div><div class="price">₹150</div></div>
+          <div class="dish"><div class="left"><strong>Paneer Butter Masala</strong><small>Rich tomato-based paneer curry</small></div><div class="price">₹220</div></div>
+          <div class="dish"><div class="left"><strong>Shahi Paneer</strong><small>Paneer in creamy cashew gravy</small></div><div class="price">₹240</div></div>
+          <div class="dish"><div class="left"><strong>Mix Veg Masala</strong><small>Seasonal vegetables in chef's spices</small></div><div class="price">₹160</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Paneer Punjabi</p><span class="item-price">₹199</span></div>
-    <div class="item"><p class="item-name">Matar Paneer</p><span class="item-price">₹199</span></div>
-    <div class="item"><p class="item-name">Paneer Do Pyaza</p><span class="item-price">₹209</span></div>
-    <div class="item"><p class="item-name">Kadhai Paneer</p><span class="item-price">₹209</span></div>
-    <div class="item"><p class="item-name">Paneer Lababdar</p><span class="item-price">₹209</span></div>
-    <div class="item"><p class="item-name">Shahi Paneer</p><span class="item-price">₹229</span></div>
-    <div class="item"><p class="item-name">Paneer Pasanda</p><span class="item-price">₹229</span></div>
-    <div class="item"><p class="item-name">Malai Kofta</p><span class="item-price">₹229</span></div>
-
-    <div class="item"><p class="item-name">Dal Handi (Bansal Spl.)</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Dal Tadka</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Dal Maharani</p><span class="item-price">₹159</span></div>
-    <div class="item"><p class="item-name">Dal Bhukhara</p><span class="item-price">₹169</span></div>
-    <div class="item"><p class="item-name">Dal Makhni</p><span class="item-price">₹179</span></div>
-
-    <div class="item"><p class="item-name">Jeera Aloo</p><span class="item-price">₹119</span></div>
-    <div class="item"><p class="item-name">Aloo Gobi Adarki</p><span class="item-price">₹139</span></div>
-    <div class="item"><p class="item-name">Dum Aloo</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Veg Kofta</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Chana Masala</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Mix Veg</p><span class="item-price">₹159</span></div>
-    <div class="item"><p class="item-name">Mushroom Masala</p><span class="item-price">₹179</span></div>
-    <div class="item"><p class="item-name">Mushroom Do Pyaza</p><span class="item-price">₹199</span></div>
-
-    <div class="item"><p class="item-name">Tawa Roti</p><span class="item-price">₹10</span></div>
-    <div class="item"><p class="item-name">Tawa Roti Butter</p><span class="item-price">₹15</span></div>
-    <div class="item"><p class="item-name">Aloo Pyaz Paratha</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Onion Paratha</p><span class="item-price">₹60</span></div>
-    <div class="item"><p class="item-name">Mix Paratha</p><span class="item-price">₹60</span></div>
-
-    <div class="item"><p class="item-name">Aloo Pyaz Pakoda</p><span class="item-price">₹60</span></div>
-    <div class="item"><p class="item-name">Mix Pakoda</p><span class="item-price">₹70</span></div>
-    <div class="item"><p class="item-name">Paneer Pakoda</p><span class="item-price">₹80</span></div>
-  </div>
-</section>
-
-<!-- =============== RICE ================ -->
-<section class="section" id="rice">
-  <h2>Rice</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- Rice bowl icon -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <ellipse cx="32" cy="28" rx="24" ry="12" fill="var(--accent)"/>
-        <path d="M9 28c0 9 14 18 23 18s23-9 23-18" fill="var(--accent)"/>
-        <circle cx="26" cy="24" r="2.2" fill="#fff" opacity="0.12"/>
-      </svg>
+    <!-- 2. Rice -->
+    <div class="section" id="rice">
+      <img src="images/menu-rice.jpg" alt="Rice dishes">
+      <div class="content">
+        <h3>Rice</h3>
+        <p class="desc">Biryani, jeera rice and steam rice options — perfect with our gravies.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Veg Biryani</strong><small>Fragrant basmati with mixed vegetables</small></div><div class="price">₹180</div></div>
+          <div class="dish"><div class="left"><strong>Jeera Rice</strong><small>Lightly tempered basmati</small></div><div class="price">₹90</div></div>
+          <div class="dish"><div class="left"><strong>Steam Rice</strong><small>Plain steamed basmati</small></div><div class="price">₹70</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Steam Rice</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Jeera Rice</p><span class="item-price">₹45</span></div>
-    <div class="item"><p class="item-name">Lemon Rice</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Veg Pulao</p><span class="item-price">₹80</span></div>
-  </div>
-</section>
-
-<!-- =============== DAHI & RAITA ================ -->
-<section class="section" id="raita">
-  <h2>Dahi & Raita</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- Jar / bottle icon to represent raita/dahi -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <rect x="18" y="14" width="28" height="36" rx="6" fill="var(--accent)"/>
-        <circle cx="32" cy="28" r="2.6" fill="#fff" opacity="0.13"/>
-      </svg>
+    <!-- 3. Raita -->
+    <div class="section" id="raita">
+      <img src="images/menu-raita.jpg" alt="Raita">
+      <div class="content">
+        <h3>Raita</h3>
+        <p class="desc">Cool, simple yogurt-based sides that pair perfectly with spicy mains.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Boondi Raita</strong><small>Classic sweet-salty boondi in seasoned curd</small></div><div class="price">₹50</div></div>
+          <div class="dish"><div class="left"><strong>Cucumber Raita</strong><small>Fresh cucumber, roasted cumin</small></div><div class="price">₹50</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Plain Dahi</p><span class="item-price">₹30</span></div>
-    <div class="item"><p class="item-name">Pineapple Raita</p><span class="item-price">₹50</span></div>
-    <div class="item"><p class="item-name">Mix Raita</p><span class="item-price">₹60</span></div>
-  </div>
-</section>
-
-<!-- =============== SALAD ================ -->
-<section class="section" id="salad">
-  <h2>Salad</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- simple leaf / salad bowl -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <ellipse cx="32" cy="34" rx="22" ry="10" fill="var(--accent)"/>
-        <path d="M18 34c6-8 28-8 34 0" fill="#fff" opacity="0.10"/>
-      </svg>
+    <!-- 4. South Indian -->
+    <div class="section" id="south-indian">
+      <img src="images/menu-south-indian.jpg" alt="South Indian">
+      <div class="content">
+        <h3>South Indian</h3>
+        <p class="desc">Dosas, idlis and comforting south-style gravies — light and flavourful.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Plain Dosa</strong><small>Crispy dosa served with sambar & chutney</small></div><div class="price">₹80</div></div>
+          <div class="dish"><div class="left"><strong>Masala Dosa</strong><small>Potato masala stuffed dosa</small></div><div class="price">₹120</div></div>
+          <div class="dish"><div class="left"><strong>Idli (2 pcs)</strong><small>Soft idlis with sambar</small></div><div class="price">₹60</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Onion Salad</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Cucumber Salad</p><span class="item-price">₹30</span></div>
-    <div class="item"><p class="item-name">Green Salad</p><span class="item-price">₹60</span></div>
-  </div>
-</section>
-
-<!-- =============== SOUTH INDIAN ================ -->
-<section class="section" id="southindian">
-  <h2>South Indian</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- dosa/pancake style -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <path d="M8 40c12-18 44-18 48 0" fill="var(--accent)"/>
-        <rect x="10" y="40" width="44" height="10" rx="5" fill="var(--accent)"/>
-      </svg>
+    <!-- 5. Continental -->
+    <div class="section" id="continental">
+      <img src="images/menu-continental.jpg" alt="Continental">
+      <div class="content">
+        <h3>Continental</h3>
+        <p class="desc">Burgers, pasta and plated mains with a continental touch and local flavors.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Margherita Pizza</strong><small>Classic cheese & basil</small></div><div class="price">₹250</div></div>
+          <div class="dish"><div class="left"><strong>Spaghetti Aglio Olio</strong><small>Simple garlic and olive oil pasta</small></div><div class="price">₹180</div></div>
+          <div class="dish"><div class="left"><strong>Veg Burger</strong><small>Grilled patty with fresh toppings</small></div><div class="price">₹140</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Plain Dosa</p><span class="item-price">₹120</span></div>
-    <div class="item"><p class="item-name">Masala Dosa</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Paneer Dosa</p><span class="item-price">₹169</span></div>
-  </div>
-</section>
-
-<!-- =============== CONTINENTAL (Burger / Pizza / Pasta) ================ -->
-<section class="section" id="continental">
-  <h2>Continental</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- fork + spaghetti / pasta bowl style -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <rect x="28" y="8" width="6" height="20" rx="2" fill="var(--accent)"></rect>
-        <path d="M12 36c6-12 34-12 40 0v6H12v-6z" fill="var(--accent)"></path>
-      </svg>
+    <!-- 6. Chinese -->
+    <div class="section" id="chinese">
+      <img src="images/menu-chinese.jpg" alt="Chinese">
+      <div class="content">
+        <h3>Chinese</h3>
+        <p class="desc">Wok-tossed favorites — noodles, fried rice and saucy mains.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Veg Fried Rice</strong><small>Stir-fried rice with veggies</small></div><div class="price">₹140</div></div>
+          <div class="dish"><div class="left"><strong>Chilli Paneer</strong><small>Spicy Indo-Chinese starter</small></div><div class="price">₹200</div></div>
+          <div class="dish"><div class="left"><strong>Veg Noodles</strong><small>Wok-tossed noodles with sauce</small></div><div class="price">₹140</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Burger</p><span class="item-price">₹49</span></div>
-    <div class="item"><p class="item-name">Cheese Burger</p><span class="item-price">₹59</span></div>
-
-    <div class="item"><p class="item-name">Margaretta Pizza</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Capsicum Pizza</p><span class="item-price">₹179</span></div>
-    <div class="item"><p class="item-name">Onion Pizza</p><span class="item-price">₹179</span></div>
-    <div class="item"><p class="item-name">Cheese Corn Pizza</p><span class="item-price">₹179</span></div>
-    <div class="item"><p class="item-name">Paneer Pizza</p><span class="item-price">₹189</span></div>
-
-    <div class="item"><p class="item-name">White Sauce Pasta</p><span class="item-price">₹159</span></div>
-    <div class="item"><p class="item-name">Red Sauce Pasta</p><span class="item-price">₹149</span></div>
-    <div class="item"><p class="item-name">Pink Sauce Pasta</p><span class="item-price">₹199</span></div>
-  </div>
-</section>
-
-<!-- =============== CHINESE ================ -->
-<section class="section" id="chinese">
-  <h2>Chinese</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- noodles bowl -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <ellipse cx="32" cy="24" rx="22" ry="8" fill="var(--accent)"/>
-        <path d="M10 24c0 9 12 16 22 16s22-7 22-16" fill="var(--accent)"/>
-        <rect x="27" y="10" width="2" height="12" rx="1" fill="#fff" opacity="0.12"/>
-        <rect x="35" y="10" width="2" height="12" rx="1" fill="#fff" opacity="0.12"/>
-      </svg>
+    <!-- 7. Chatpata -->
+    <div class="section" id="chatpata">
+      <img src="images/menu-chatpata.jpg" alt="Chatpata">
+      <div class="content">
+        <h3>Chatpata</h3>
+        <p class="desc">Tangy, spicy and street-style treats to excite your taste buds.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Pani Puri Chaat</strong><small>Classic tangy pani puri</small></div><div class="price">₹60</div></div>
+          <div class="dish"><div class="left"><strong>Aloo Tikki Chaat</strong><small>Spiced potato patties with chutneys</small></div><div class="price">₹90</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Veg Noodles</p><span class="item-price">₹90</span></div>
-    <div class="item"><p class="item-name">Hakka Noodles</p><span class="item-price">₹110</span></div>
-    <div class="item"><p class="item-name">Chili Garlic Noodles</p><span class="item-price">₹120</span></div>
-    <div class="item"><p class="item-name">Singapuri Noodles</p><span class="item-price">₹120</span></div>
-    <div class="item"><p class="item-name">Cheese Noodles</p><span class="item-price">₹150</span></div>
-
-    <div class="item"><p class="item-name">Veg Steamed Momos</p><span class="item-price">₹100</span></div>
-    <div class="item"><p class="item-name">Veg Fried Momos</p><span class="item-price">₹120</span></div>
-    <div class="item"><p class="item-name">Paneer Steamed Momos</p><span class="item-price">₹150</span></div>
-    <div class="item"><p class="item-name">Paneer Fried Momos</p><span class="item-price">₹170</span></div>
-    <div class="item"><p class="item-name">Kurkure Veg Momos</p><span class="item-price">₹150</span></div>
-    <div class="item"><p class="item-name">Kurkure Paneer Momos</p><span class="item-price">₹170</span></div>
-
-    <div class="item"><p class="item-name">Cheese Chili (Dry & Gravy)</p><span class="item-price">₹170</span></div>
-    <div class="item"><p class="item-name">Manchurian (Dry & Gravy)</p><span class="item-price">₹170</span></div>
-    <div class="item"><p class="item-name">Mushroom Chili Dry</p><span class="item-price">₹170</span></div>
-    <div class="item"><p class="item-name">Mushroom Chili Gravy</p><span class="item-price">₹190</span></div>
-    <div class="item"><p class="item-name">Fried Rice</p><span class="item-price">₹80</span></div>
-    <div class="item"><p class="item-name">Plain Maggi</p><span class="item-price">₹50</span></div>
-    <div class="item"><p class="item-name">Veg Maggi</p><span class="item-price">₹70</span></div>
-    <div class="item"><p class="item-name">Masala Maggi</p><span class="item-price">₹80</span></div>
-
-    <div class="item"><p class="item-name">Veg Manchow</p><span class="item-price">₹50</span></div>
-    <div class="item"><p class="item-name">Cream of Tomato</p><span class="item-price">₹50</span></div>
-    <div class="item"><p class="item-name">Lung Fung</p><span class="item-price">₹70</span></div>
-    <div class="item"><p class="item-name">Hot & Sour</p><span class="item-price">₹50</span></div>
-    <div class="item"><p class="item-name">Lemon Coriander</p><span class="item-price">₹40</span></div>
-  </div>
-</section>
-
-<!-- ================ Chatpata Swad ================ -->
-<section class="section" id="chatpata">
-  <h2>Chatpata Swad</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- chili icon -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <path d="M44 14c6 8 4 20-3 28-7 8-18 10-26 4 0 0 6-10 9-14 3-4 10-13 20-18z" fill="var(--accent)"/>
-        <rect x="38" y="10" width="8" height="4" rx="2" fill="var(--accent)"/>
-      </svg>
+    <!-- 8. Snacks -->
+    <div class="section" id="snacks">
+      <img src="images/menu-snacks.jpg" alt="Snacks">
+      <div class="content">
+        <h3>Snacks</h3>
+        <p class="desc">Quick bites and fried favorites — ideal with chai.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>French Fries</strong><small>Crispy salted fries</small></div><div class="price">₹80</div></div>
+          <div class="dish"><div class="left"><strong>Samosa (2 pcs)</strong><small>Spiced potato pastry</small></div><div class="price">₹70</div></div>
+          <div class="dish"><div class="left"><strong>Paneer Pakora</strong><small>Deep-fried spiced paneer</small></div><div class="price">₹120</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Peanut Masala</p><span class="item-price">₹79</span></div>
-    <div class="item"><p class="item-name">Chana Chaat</p><span class="item-price">₹99</span></div>
-    <div class="item"><p class="item-name">Chilli Paneer</p><span class="item-price">₹169</span></div>
-    <div class="item"><p class="item-name">Mushroom Duplex</p><span class="item-price">₹249</span></div>
-    <div class="item"><p class="item-name">Crispy Corns</p><span class="item-price">₹199</span></div>
-    <div class="item"><p class="item-name">Veg Bullet</p><span class="item-price">₹199</span></div>
-  </div>
-</section>
-
-<!-- ================ Snacks ================ -->
-<section class="section" id="snacks">
-  <h2>Snacks</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- fries icon -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <rect x="22" y="12" width="6" height="26" rx="3" fill="var(--accent)"/>
-        <rect x="30" y="10" width="6" height="28" rx="3" fill="var(--accent)"/>
-        <rect x="38" y="14" width="6" height="24" rx="3" fill="var(--accent)"/>
-        <path d="M20 40c0 6 24 12 24 0" fill="var(--accent)"/>
-      </svg>
+    <!-- 9. Drinks -->
+    <div class="section" id="drinks">
+      <img src="images/menu-drinks.jpg" alt="Drinks">
+      <div class="content">
+        <h3>Drinks</h3>
+        <p class="desc">Refreshing beverages to complement your meal.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Cold Coffee</strong><small>Chilled coffee with milk & ice</small></div><div class="price">₹90</div></div>
+          <div class="dish"><div class="left"><strong>Lemon Soda</strong><small>Fresh lemon with soda</small></div><div class="price">₹50</div></div>
+          <div class="dish"><div class="left"><strong>Fresh Lime</strong><small>Sweet or salty</small></div><div class="price">₹40</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Chili Potato</p><span class="item-price">₹130</span></div>
-    <div class="item"><p class="item-name">Chili Honey Potato</p><span class="item-price">₹140</span></div>
-    <div class="item"><p class="item-name">French Fries</p><span class="item-price">₹90</span></div>
-    <div class="item"><p class="item-name">Parry Parry Fries</p><span class="item-price">₹90</span></div>
-    <div class="item"><p class="item-name">Veg Spring Roll</p><span class="item-price">₹120</span></div>
-    <div class="item"><p class="item-name">Kurkure Spring Roll</p><span class="item-price">₹140</span></div>
-  </div>
-</section>
-
-<!-- ================ Drinks ================ -->
-<section class="section" id="drinks">
-  <h2>Drinks</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- cup / cold drink icon -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <path d="M18 12h28l-4 36a6 6 0 0 1-6 6H28a6 6 0 0 1-6-6z" fill="var(--accent)"/>
-        <rect x="30" y="8" width="4" height="8" rx="2" fill="#fff" opacity="0.15"/>
-      </svg>
+    <!-- 10. Chai -->
+    <div class="section" id="chai">
+      <img src="images/menu-chai.jpg" alt="Chai">
+      <div class="content">
+        <h3>Chai</h3>
+        <p class="desc">Hot, fresh masala tea — the perfect companion to snacks.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Masala Chai</strong><small>Classic spiced tea</small></div><div class="price">₹30</div></div>
+          <div class="dish"><div class="left"><strong>Adrak Chai</strong><small>Ginger-infused tea</small></div><div class="price">₹30</div></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Sweet Lassi</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Namkeen Lassi</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Lemon Soda Sweet</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Lemon Soda Salty</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Lemon Soda Mix</p><span class="item-price">₹40</span></div>
-    <div class="item"><p class="item-name">Cold Drinks</p><span class="item-price">MRP</span></div>
-    <div class="item"><p class="item-name">Water (with Straw)</p><span class="item-price">₹30</span></div>
-    <div class="item"><p class="item-name">Water (Pani)</p><span class="item-price">MRP</span></div>
-  </div>
-</section>
-
-<!-- ================ Chai & Coffee ================ -->
-<section class="section" id="chai">
-  <h2>Chai & Coffee</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- cup icon -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <rect x="14" y="18" width="30" height="18" rx="6" fill="var(--accent)"/>
-        <path d="M44 20a6 6 0 0 1 0 12" fill="var(--accent)"/>
-      </svg>
+    <!-- 11. Shakes -->
+    <div class="section" id="shakes">
+      <img src="images/menu-shakes.jpg" alt="Shakes">
+      <div class="content">
+        <h3>Shakes</h3>
+        <p class="desc">Thick and creamy shakes for a sweet finish.</p>
+        <div class="dish-list">
+          <div class="dish"><div class="left"><strong>Chocolate Shake</strong><small>Rich chocolate with milk</small></div><div class="price">₹120</div></div>
+          <div class="dish"><div class="left"><strong>Mango Shake</strong><small>Seasonal mango pulp & milk</small></div><div class="price">₹120</div></div>
+          <div class="dish"><div class="left"><strong>Vanilla Shake</strong><small>Classic creamy vanilla</small></div><div class="price">₹120</div></div>
+        </div>
+      </div>
     </div>
+
+  </section>
+
+  <!-- social icons (small) -->
+  <div class="social-row">
+    <a class="social-circle" href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" style="background:#fff1ea;border:1px solid #f1c7bd" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" fill="#6a2a25" opacity="0.10"/><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="#6a2a25" stroke-width="1.2"/><circle cx="12" cy="12" r="3" stroke="#6a2a25" stroke-width="1.2"/></svg>
+    </a>
+    <a class="social-circle" href="https://www.facebook.com/share/1AQm2nmwZy/" style="background:#e8f0ff;border:1px solid #cdd9ff" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#2b4ea1" opacity="0.10"/><path d="M15 8.5h1.8V6.2H15c-1.6 0-2.2.9-2.2 2.2V9.8H11v2.2h1.8V18h2.2v-6h1.6l.3-2.2H15V8.5z" fill="#2b4ea1"/></svg>
+    </a>
+    <a class="social-circle" href="https://g.page/r/CbRyIb77ajkrEBE/review" style="background:#fff3cd;border:1px solid #f5d98b" target="_blank" rel="noopener noreferrer" aria-label="Google Reviews">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7z" fill="#b85a00" opacity="0.10"/><path d="M12 11.3a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8z" stroke="#b85a00" stroke-width="1.3"/></svg>
+    </a>
   </div>
 
-  <div class="grid">
-    <div class="item"><p class="item-name">Masala Tea</p><span class="item-price">₹20</span></div>
-    <div class="item"><p class="item-name">Ginger Tea</p><span class="item-price">₹30</span></div>
-    <div class="item"><p class="item-name">Green Tea</p><span class="item-price">₹50</span></div>
-    <div class="item"><p class="item-name">Hot Coffee</p><span class="item-price">₹50</span></div>
-    <div class="item"><p class="item-name">Cold Coffee</p><span class="item-price">₹100</span></div>
-  </div>
-</section>
-
-<!-- ================ Shakes ================ -->
-<section class="section" id="shakes">
-  <h2>Shakes</h2>
-  <div class="icon-wrap">
-    <div class="icon-box" aria-hidden="true">
-      <!-- ice-cream / shake -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <circle cx="32" cy="20" r="10" fill="var(--accent)"/>
-        <rect x="26" y="30" width="12" height="18" rx="4" fill="var(--accent)"/>
-      </svg>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div class="item"><p class="item-name">KitKat Shake</p><span class="item-price">₹130</span></div>
-    <div class="item"><p class="item-name">Oreo Shake</p><span class="item-price">₹130</span></div>
-    <div class="item"><p class="item-name">Chocolate Shake</p><span class="item-price">₹130</span></div>
-    <div class="item"><p class="item-name">Vanilla Shake</p><span class="item-price">₹110</span></div>
-    <div class="item"><p class="item-name">Strawberry Shake</p><span class="item-price">₹140</span></div>
-    <div class="item"><p class="item-name">Butter Scotch Shake</p><span class="item-price">₹140</span></div>
-  </div>
-</section>
+</main>
 
 <footer>
-  © <span id="yr"></span> Bansal Food Studio
+  © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta • +91-7599032032
 </footer>
 
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // mobile menu toggle
+  const btn = document.getElementById('hambtn');
+  const menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => {
+    const shown = menu.style.display === 'flex';
+    menu.style.display = shown ? 'none' : 'flex';
+  });
+</script>
+
 </body>
 </html>
