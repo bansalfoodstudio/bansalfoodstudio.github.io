@@ -17,11 +17,13 @@
       --gap:16px;
       --gold:#cfa76e;
     }
+
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
 
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
+
     .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
 
     /* HEADER */
@@ -75,6 +77,24 @@
     @media(max-width:900px){
       .nav-desktop{display:none}
       .hamburger{display:block}
+    }
+
+    /* SOCIAL ICON ANIMATION */
+    .social-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.20);
     }
   </style>
 </head>
@@ -160,37 +180,54 @@
   </article>
 </section>
 
-<!-- SOCIAL BUTTONS -->
-<section style="text-align:center; margin:25px 0; padding:20px 0;">
-  <h3 style="font-family:'Playfair Display',serif; color:#b2322a; margin-bottom:14px;">
-    Connect With Us
-  </h3>
-
-  <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
+<!-- ===== BIG SOCIAL ICONS ===== -->
+<section style="text-align:center; margin:28px 0; padding:12px 0;">
+  <div style="display:flex;justify-content:center;gap:22px;flex-wrap:wrap;">
 
     <!-- Instagram -->
     <a href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ=="
        target="_blank" rel="noopener noreferrer"
-       style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:#fff1ea;color:#6a2a25;border:1px solid #f1c7bd;font-weight:700;">
-      Instagram
+       class="social-icon"
+       style="background:#fff1ea;border:1px solid #f1c7bd;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="3" width="18" height="18" rx="5" fill="#6a2a25" opacity="0.10"></rect>
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z"
+              stroke="#6a2a25" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="3.5" stroke="#6a2a25" stroke-width="1.5"/>
+        <circle cx="18.2" cy="5.8" r="0.9" fill="#6a2a25"/>
+      </svg>
     </a>
 
     <!-- Facebook -->
     <a href="https://www.facebook.com/share/1AQm2nmwZy/"
        target="_blank" rel="noopener noreferrer"
-       style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:#e8f0ff;color:#2b4ea1;border:1px solid #cdd9ff;font-weight:700;">
-      Facebook
+       class="social-icon"
+       style="background:#e8f0ff;border:1px solid #cdd9ff;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="#2b4ea1" opacity="0.10"></rect>
+        <path d="M15 8.5h1.8V6.2H15c-1.6 0-2.2.9-2.2 2.2V9.8H11v2.2h1.8V18h2.2v-6h1.6l.3-2.2H15V8.5z"
+              fill="#2b4ea1"/>
+      </svg>
     </a>
 
     <!-- Google Reviews -->
     <a href="https://g.page/r/CbRyIb77ajkrEBE/review"
        target="_blank" rel="noopener noreferrer"
-       style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:#fff3cd;color:#b85a00;border:1px solid #f5d98b;font-weight:700;">
-      Google Reviews
+       class="social-icon"
+       style="background:#fff3cd;border:1px solid #f5d98b;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7z"
+              fill="#b85a00" opacity="0.10"/>
+        <path d="M12 11.3a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8z"
+              stroke="#b85a00" stroke-width="1.3"/>
+        <path d="M12 2.6c-3.7 0-6.6 2.9-6.6 6.4 0 4.6 6.6 11.4 6.6 11.4S18.6 13.6 18.6 9c0-3.5-2.9-6.4-6.6-6.4z"
+              stroke="#b85a00" stroke-width="1.1"/>
+      </svg>
     </a>
 
   </div>
 </section>
+<!-- ===== END SOCIAL ICONS ===== -->
 
 <footer>
   © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta • +91-7599032032
