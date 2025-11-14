@@ -4,21 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Bansal Food Studio</title>
-  <meta name="description" content="Contact Bansal Food Studio — bookings, feedback & enquiries. Chawla Complex, Gangoh Road, Nanauta, Saharanpur.">
-  <link rel="canonical" href="https://bansalfoodstudio.github.io/contact.html">
+  <meta name="description" content="Contact Bansal Food Studio — bookings, feedback & enquiries.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      --accent:#b2322a;
-      --muted:#666;
-      --bg:#faf8f6;
-      --card:#fff;
-      --radius:12px;
-      --footer-bg:#111;
+      --accent:#b2322a; --muted:#666; --bg:#faf8f6; --card:#fff; --radius:12px; --footer-bg:#111;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:#222;-webkit-font-smoothing:antialiased}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:#222}
     a{text-decoration:none;color:inherit}
     .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
@@ -34,50 +27,37 @@
     .nav-btn{background:#fff1ea;padding:8px 12px;border-radius:8px;color:#6a2a25;font-weight:600}
     .nav-cta{background:var(--accent);padding:8px 12px;border-radius:8px;color:#fff;font-weight:700}
 
-    /* Page head */
     .page-head{padding:20px 0 8px}
     .page-head h2{margin:0;font-family:'Playfair Display';font-size:1.6rem;color:var(--accent)}
     .page-head p{color:var(--muted);margin-top:6px}
 
-    /* Card / Form */
     .card{background:var(--card);border-radius:var(--radius);box-shadow:0 8px 20px rgba(0,0,0,0.06);padding:18px;margin-bottom:18px}
     label{display:block;font-weight:600;margin-bottom:6px;color:#333}
-    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;font-size:1rem}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;font-size:1rem}
     button{background:var(--accent);color:#fff;border:0;padding:12px 14px;border-radius:8px;font-weight:700;cursor:pointer}
 
-    /* Map */
     .map-card{padding:0;overflow:hidden;border-radius:var(--radius)}
 
-    /* Footer */
     footer{background:var(--footer-bg);color:#fff;padding:20px 0;margin-top:14px}
     .footer-inner{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:12px}
     .contact-info{line-height:1.45}
-    .socials{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:12px}
-    /* large circular buttons */
+
+    .social-inline{display:flex;gap:18px;justify-content:center;margin-top:16px;margin-bottom:6px}
     .social-circle{width:64px;height:64px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fff0f0;border:1px solid rgba(0,0,0,0.04);cursor:pointer}
     .social-circle svg{width:28px;height:28px;display:block;fill:var(--accent)}
-    /* center social block under form */
-    .social-inline{display:flex;gap:18px;justify-content:center;margin-top:16px;margin-bottom:6px}
 
-    /* WhatsApp float */
     .whatsapp-float{position:fixed;right:18px;bottom:18px;width:64px;height:64px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;z-index:9999;box-shadow:0 6px 18px rgba(0,0,0,0.18)}
     .whatsapp-float svg{width:34px;height:34px;fill:#fff}
 
-    /* success message */
     .success{display:none;padding:12px;border-radius:8px;background:#e6ffed;color:#0a5d2a;margin-bottom:16px}
 
-    /* responsive columns */
     .row{display:flex;flex-direction:column;gap:12px}
     @media(min-width:760px){.row{flex-direction:row}.col{flex:1}}
-
-    @media(min-width:900px){
-      .footer-inner{flex-direction:row;justify-content:space-between;align-items:center}
-    }
+    @media(min-width:900px){.footer-inner{flex-direction:row;justify-content:space-between;align-items:center}}
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="inner container">
     <div class="brand">
@@ -104,17 +84,13 @@
     <p>For bookings, orders, feedback and enquiries. We'll reply as soon as possible.</p>
   </div>
 
-  <!-- success message -->
   <div id="successMsg" class="success">Thank you — your message was sent. We'll reply soon.</div>
 
-  <!-- contact form card -->
   <section class="card" aria-labelledby="contact-heading">
     <h3 id="contact-heading" style="margin:0 0 12px 0;font-family:'Playfair Display';color:var(--accent)">Send a Message</h3>
 
     <form id="contactForm" method="POST" action="https://formspree.io/f/mzzydgog">
-      <!-- After submit, Formspree will redirect to _next URL (using query param success) -->
       <input type="hidden" name="_next" value="https://bansalfoodstudio.github.io/contact.html?success=1">
-
       <div class="row">
         <div class="col">
           <label for="name">Name</label>
@@ -128,7 +104,6 @@
 
       <div style="margin-top:10px">
         <label for="phone">Phone</label>
-        <!-- removed default number; left empty placeholder -->
         <input id="phone" name="phone" type="text" placeholder="">
       </div>
 
@@ -141,72 +116,78 @@
         <button type="submit">Send Message</button>
         <button type="reset" style="background:#e9e9e9;color:#333;border:0;padding:10px 12px;border-radius:8px;cursor:pointer">Reset</button>
       </div>
-
-      <!-- centered large social buttons (as requested under the form) -->
-      <div class="social-inline" aria-hidden="false" style="margin-top:18px">
-        <a class="social-circle" href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" target="_blank" rel="noopener" title="Instagram">
-          <!-- instagram svg (accent color) -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 4.5A4.5 4.5 0 1 0 16.5 11 4.5 4.5 0 0 0 12 6.5zm6-1a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/></svg>
-        </a>
-
-        <a class="social-circle" href="https://www.facebook.com/share/1AQm2nmwZy/" target="_blank" rel="noopener" title="Facebook">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.5V12h2.5V9.3c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.3.2 2.3.2v2.6h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
-        </a>
-
-        <a class="social-circle" href="https://g.page/r/CbRyIb77ajkrEBE/review" target="_blank" rel="noopener" title="Google Reviews">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0a12 12 0 0 0-4 23.3v-7.1H6V12h2V9.3c0-2 1.2-3.2 3.1-3.2.9 0 1.9.2 1.9.2v2.1h-1c-1 0-1.4.7-1.4 1.4V12h2.5l-.4 4.2H12v7A12 12 0 0 0 12 0z"/></svg>
-        </a>
-      </div>
     </form>
   </section>
 
-  <!-- map card (Option B: stable search-based embed) -->
+  <!-- MAP: keep map visible, social buttons below map -->
   <section class="map-card card" aria-label="Location">
     <iframe
       src="https://www.google.com/maps?q=Bansal+Food+Studio+Nanauta&z=17&output=embed"
       width="100%" height="420" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
-    <p style="color:#444;margin-top:12px">
-      <strong>Address:</strong> Chawla Complex, Gangoh Road, Nanauta, Saharanpur<br>
-      <strong>Phone:</strong> <a href="tel:+917599032032">7599032032</a> · <strong>Email:</strong> <a href="mailto:banslfoodstudio@gmail.com">banslfoodstudio@gmail.com</a>
-    </p>
+
+    <!-- social buttons placed here FIXED below the map (as requested) -->
+    <div style="padding:18px 12px 6px;">
+      <div style="text-align:center;color:#444;font-weight:600;margin-bottom:8px">Connect with us</div>
+
+      <div class="social-inline" role="navigation" aria-label="Social links">
+        <!-- Instagram -->
+        <a class="social-circle" href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" target="_blank" rel="noopener" title="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 4.5A4.5 4.5 0 1 0 16.5 11 4.5 4.5 0 0 0 12 6.5zm6-1a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a class="social-circle" href="https://www.facebook.com/share/1AQm2nmwZy/" target="_blank" rel="noopener" title="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.5V12h2.5V9.3c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.3.2 2.3.2v2.6h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/>
+          </svg>
+        </a>
+
+        <!-- Google Reviews -->
+        <a class="social-circle" href="https://g.page/r/CbRyIb77ajkrEBE/review" target="_blank" rel="noopener" title="Google Reviews">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.5 2 2 6.5 2 12c0 2.8 1.1 5.4 3 7.3V22l3-1.6c1 .3 2 .5 3 .5 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </section>
+
 </main>
 
-<!-- footer -->
 <footer>
-  <div class="footer-inner">
+  <div class="footer-inner container">
     <div class="contact-info">
       <strong>Bansal Food Studio</strong><br>
       Chawla Complex, Gangoh Road, Nanauta<br>
       Phone: <a href="tel:+917599032032" style="color:#fff">7599032032</a>
     </div>
 
-    <div>
-      <div class="socials" aria-label="Social links">
-        <a class="social-circle" href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" target="_blank" rel="noopener" title="Instagram">
+    <div style="text-align:center">
+      <div class="social-inline" aria-label="Social links footer">
+        <a class="social-circle" href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" target="_blank" rel="noopener" title="Instagram (footer)">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 4.5A4.5 4.5 0 1 0 16.5 11 4.5 4.5 0 0 0 12 6.5zm6-1a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/></svg>
         </a>
 
-        <a class="social-circle" href="https://www.facebook.com/share/1AQm2nmwZy/" target="_blank" rel="noopener" title="Facebook">
+        <a class="social-circle" href="https://www.facebook.com/share/1AQm2nmwZy/" target="_blank" rel="noopener" title="Facebook (footer)">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.5V12h2.5V9.3c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.3.2 2.3.2v2.6h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
         </a>
 
-        <a class="social-circle" href="https://g.page/r/CbRyIb77ajkrEBE/review" target="_blank" rel="noopener" title="Google Reviews">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0a12 12 0 0 0-4 23.3v-7.1H6V12h2V9.3c0-2 1.2-3.2 3.1-3.2.9 0 1.9.2 1.9.2v2.1h-1c-1 0-1.4.7-1.4 1.4V12h2.5l-.4 4.2H12v7A12 12 0 0 0 12 0z"/></svg>
+        <a class="social-circle" href="https://g.page/r/CbRyIb77ajkrEBE/review" target="_blank" rel="noopener" title="Google Reviews (footer)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.5 2 2 6.5 2 12c0 2.8 1.1 5.4 3 7.3V22l3-1.6c1 .3 2 .5 3 .5 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
         </a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- WhatsApp floating -->
 <a class="whatsapp-float" href="https://wa.me/917599032032?text=Hi%20Bansal%20Food%20Studio%2C%20I%20want%20to%20make%20an%20enquiry." target="_blank" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.8 5.6 2.2 8L.3 31.7l7.9-2.2C10.4 30.4 13.2 31 16 31c8.6 0 15.6-7 15.6-15.6C31.6 7.4 24.6.4 16 .4z" fill="#fff"/></svg>
 </a>
 
 <script>
-  // Show success message if redirected with ?success=1
   (function(){
     try{
       const params = new URLSearchParams(window.location.search);
