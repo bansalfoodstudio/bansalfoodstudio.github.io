@@ -1,108 +1,196 @@
 <!doctype html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Contact — Bansal Food Studio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us — Bansal Food Studio | Nanauta</title>
+
+  <meta name="description" content="Contact Bansal Food Studio for bookings, orders, feedback and enquiry. Located at Chawla Complex, Gangoh Road, Nanauta.">
+  <meta name="keywords" content="Contact Bansal Food Studio, Nanauta restaurant contact, food studio contact, book a table Nanauta">
+  <link rel="canonical" href="https://bansalfoodstudio.github.io/contact.html" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root{--accent:#b2322a;--muted:#666;--maxw:1100px}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:#faf8f6;color:#222}
-    header{padding:14px 16px;border-bottom:1px solid #eee;background:#fff}
-    .header-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:12px}
-    .logo img{height:56px}
-    nav{margin-left:auto;display:flex;gap:12px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600}
-    main{max-width:var(--maxw);margin:22px auto;padding:0 16px}
-    .grid{display:grid;grid-template-columns:1fr 400px;gap:28px}
-    .card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
-    h2{font-family:Georgia,serif;margin:0 0 10px}
-    p.lead{color:var(--muted);margin:0 0 14px}
-    .contact-info p{margin:6px 0;color:var(--muted)}
-    form label{display:block;font-weight:600;margin-top:10px}
-    input[type="text"],input[type="email"],textarea{
-      width:100%;padding:10px;border:1px solid #e6e6e6;border-radius:6px;margin-top:6px;font-size:14px;
+    :root{
+      --accent:#b2322a;
+      --muted:#666;
+      --bg:#faf8f6;
+      --card:#fff;
+      --radius:12px;
     }
-    textarea{min-height:120px;resize:vertical}
-    button{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:0;margin-top:12px;cursor:pointer}
-    .mapwrap{height:320px;border-radius:10px;overflow:hidden}
-    footer{padding:18px;text-align:center;color:#777;border-top:1px solid #f0f0f0;background:#fff;margin-top:36px}
-    @media(max-width:980px){.grid{grid-template-columns:1fr}}
+    body{margin:0;font-family:Inter,Arial;background:var(--bg);color:#222;}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+    /* HEADER */
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:999}
+    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;}
+
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{height:52px;width:52px;border-radius:8px;object-fit:contain}
+    .brand h1{margin:0;font-size:1.2rem;font-family:'Playfair Display',serif;color:var(--accent)}
+    .tagline{font-size:0.85rem;color:var(--muted)}
+
+    .nav{display:flex;gap:10px;align-items:center}
+    .nav-btn{background:#fff1ea;padding:8px 12px;border-radius:8px;color:#6a2a25;font-weight:600}
+    .nav-cta{background:var(--accent);padding:8px 12px;border-radius:8px;color:#fff;font-weight:700}
+
+    /* PAGE HEAD */
+    .page-head{text-align:left;padding:20px 0 10px}
+    .page-head h2{margin:0;font-size:1.8rem;font-family:'Playfair Display',serif;color:var(--accent)}
+    .page-head p{margin-top:6px;color:var(--muted)}
+
+    /* FORM CARD */
+    .form-card{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:0 8px 20px rgba(0,0,0,0.06);
+      padding:22px;
+      margin-bottom:30px;
+    }
+    form{display:flex;flex-direction:column;gap:14px}
+    label{font-weight:600;color:#444}
+    input,textarea{
+      width:100%;padding:10px;
+      border-radius:8px;border:1px solid #ddd;
+      font-size:1rem;font-family:Inter;
+    }
+    button{
+      background:var(--accent);
+      color:white;border:0;
+      padding:12px 16px;border-radius:8px;
+      font-weight:700;font-size:1rem;
+      cursor:pointer;
+    }
+
+    /* MAP */
+    .map-card{
+      background:#fff;border-radius:var(--radius);
+      box-shadow:0 8px 20px rgba(0,0,0,0.06);
+      overflow:hidden;
+      margin-bottom:30px;
+    }
+    iframe{width:100%;border:0}
+
+    /* FOOTER */
+    footer{background:#fff;border-top:1px solid #eee;padding:20px 0;margin-top:20px}
+    .footer-inner{display:flex;flex-direction:column;gap:10px}
+    .socials{display:flex;gap:12px}
+    .socials a{display:flex;align-items:center;justify-content:center;
+      width:45px;height:45px;border-radius:8px;background:#111;}
+
+    @media(min-width:900px){
+      .footer-inner{flex-direction:row;justify-content:space-between;align-items:center}
+    }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="logo" style="display:flex;align-items:center;gap:12px">
-      <img src="images/logo.png" alt="logo">
-      <div style="font-family:Georgia,serif;color:var(--accent)">Bansal Food Studio</div>
+<!-- HEADER -->
+<header class="site-header">
+  <div class="inner container">
+    <div class="brand">
+      <img src="images/logo.png" alt="Logo">
+      <div>
+        <h1>Bansal Food Studio</h1>
+        <div class="tagline">Dil Aur Pet Dono Khush</div>
+      </div>
     </div>
-    <nav aria-label="Main">
-      <a href="index.html">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="contact.html">Contact</a>
+
+    <nav class="nav">
+      <a class="nav-btn" href="index.html">Home</a>
+      <a class="nav-btn" href="menu.html">Menu</a>
+      <a class="nav-btn" href="about.html">About Us</a>
+      <a class="nav-btn nav-active" href="contact.html">Contact</a>
+      <a class="nav-cta" href="#reserve">Book a Table</a>
     </nav>
   </div>
 </header>
 
-<main>
-  <div class="grid">
-    <!-- left column -->
-    <div>
-      <div class="card">
-        <h2>Contact Us</h2>
-        <p class="lead">Leave a Comment</p>
+<!-- MAIN -->
+<main class="container">
 
-        <form id="contactForm" onsubmit="return fakeSubmit(event)">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" placeholder="Your Name" required>
-          <label for="email">email</label>
-          <input id="email" name="email" type="email" placeholder="aap@example.com" required>
-          <label for="message">message</label>
-          <textarea id="message" name="message" placeholder="Write your message" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div style="height:18px"></div>
-
-      <div class="card">
-        <h3 style="margin-top:0">Address</h3>
-        <p class="contact-info">
-          <strong>Address:</strong><br>
-          Chawla Complex, Gangoh Road, Nanauta, Saharanpur<br><br>
-          <strong>Phone:</strong> ‪+91-7599032032‬<br>
-          <strong>Email:</strong> bansalfoodstudio@gmail.com
-        </p>
-      </div>
-    </div>
-
-    <!-- right column -->
-    <div>
-      <div class="card">
-        <h3 style="margin-top:0">Location Map</h3>
-        <div class="mapwrap">
-          <!--  Google Map embed -->
-          <<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3465.171936577802!2d77.41895057461778!3d29.714778434116706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e9b84540cf2a1%3A0x2b396afbbe2172b4!2sBansal%20Food%20Studio!5e0!3m2!1sen!2sin!4v1762957657772!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>>
-        </div>
-      </div>
-    </div>
+  <div class="page-head">
+    <h2>Contact Us</h2>
+    <p>For bookings, feedback, suggestions or enquiries — we respond quickly.</p>
   </div>
+
+  <!-- CONTACT FORM -->
+  <div class="form-card">
+    <h3 style="font-family:'Playfair Display',serif;color:var(--accent);margin-top:0;">
+      Send us a Message
+    </h3>
+
+    <form action="https://formspree.io/f/mzzydgog" method="POST">
+      <div>
+        <label>Your Name</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div>
+        <label>Phone</label>
+        <input type="text" name="phone">
+      </div>
+
+      <div>
+        <label>Your Message</label>
+        <textarea name="message" rows="5" required></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <!-- LOCATION & MAP -->
+  <div class="map-card">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.480926587561!2d77.4180206!3d29.695759699999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390eb425f5c1e5a3%3A0x9ffc7ca9e9f3b051!2sBansal%20Food%20Studio!5e0!3m2!1sen!2sin!4v1707215678900!5m2!1sen!2sin" 
+      height="350" allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+
+  <p style="color:#666;margin-bottom:40px;">
+    <strong>Address:</strong> Chawla Complex, Gangoh Road, Nanauta, Saharanpur<br>
+    <strong>Phone:</strong> <a href="tel:+917599032032">7599032032</a><br>
+    <strong>Email:</strong> <a href="mailto:banslfoodstudio@gmail.com">banslfoodstudio@gmail.com</a>
+  </p>
+
 </main>
 
+<!-- FOOTER -->
 <footer>
-  © <span id="yr"></span> Bansal Food Studio • Phone: +91-7599032032 • Email: bansalfoodstudio@gmail.com
+  <div class="footer-inner container">
+
+    <div>
+      <strong>Bansal Food Studio</strong><br>
+      Chawla Complex, Gangoh Road, Nanauta, Saharanpur<br>
+      Phone: 7599032032
+    </div>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" target="_blank">
+        <img src="images/instagram-white.png" width="24">
+      </a>
+      <a href="https://www.facebook.com/share/1AQm2nmwZy/" target="_blank">
+        <img src="images/facebook-white.png" width="24">
+      </a>
+      <a href="https://g.page/r/CbRyIb77ajkrEBE/review" target="_blank">
+        <img src="images/google-white.png" width="24">
+      </a>
+    </div>
+
+  </div>
 </footer>
 
-<script>
-function fakeSubmit(e){
-  e.preventDefault();
-  alert('Thanks);
-  document.getElementById('contactForm').reset();
-  return false;
-}
-document.getElementById('yr').textContent=new Date().getFullYear();
-</script>
 </body>
 </html>
