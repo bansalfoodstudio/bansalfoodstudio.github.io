@@ -2,189 +2,289 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>About Us — Bansal Food Studio</title>
-
-  <!-- SEO Meta -->
-  <meta name="description" content="Learn the story behind Bansal Food Studio — Nanauta’s trusted multi-cuisine family restaurant focused on fresh food, clean cooking and honest flavors." />
-  <meta name="keywords" content="Bansal Food Studio, about Bansal Food Studio, Nanauta restaurant, best food in Nanauta, family restaurant Nanauta" />
-
-  <!-- Social Preview -->
-  <meta property="og:title" content="About — Bansal Food Studio" />
-  <meta property="og:description" content="Real food, clean cooking, honest flavors. Discover our story." />
-  <meta property="og:image" content="https://bansalfoodstudio.github.io/images/logo.png" />
-  <meta property="og:type" content="website" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us — Bansal Food Studio | Nanauta</title>
+  <meta name="description" content="Bansal Food Studio, Nanauta — multi-cuisine restaurant serving Indian, South Indian, Chinese & Continental food. Clean kitchen, experienced chefs, family-friendly dining." />
+  <meta name="keywords" content="Bansal Food Studio, Nanauta restaurant, Indian food, Continental, South Indian, Chinese, Nanauta Saharanpur" />
+  <link rel="canonical" href="https://bansalfoodstudio.github.io/about.html" />
   <style>
+    /* --- Simple responsive styles: customize colors/fonts as needed --- */
     :root{
-      --accent:#b2322a;
+      --accent:#b24f5a;     /* main accent color */
+      --accent-dark:#8f3943;
       --muted:#6b6b6b;
-      --bg:#faf8f6;
-      --card:#ffffff;
-      --maxw:1100px;
-      --gold:#cfa76e;
+      --bg:#fff;
+      --card:#fff;
+      --radius:12px;
+      --max:1100px;
+      --fw-sans: "Helvetica Neue", Arial, sans-serif;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
-
-    /* HEADER */
-    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
-    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
-
+    html,body{margin:0;padding:0;font-family:var(--fw-sans);background:#fbfbfb;color:#222;line-height:1.5}
+    .container{max-width:var(--max);margin:0 auto;padding:18px;}
+    header{background:linear-gradient(180deg,#fff,#fff);border-bottom:1px solid #eee;position:sticky;top:0;z-index:20}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--max);margin:0 auto;padding:14px 18px}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:64px;border-radius:8px}
-    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent)}
-    .tagline{font-family:'Dancing Script',cursive;font-size:1.05rem;color:var(--gold);margin-top:-4px}
-
-    .nav-desktop{display:flex;gap:12px}
-    .nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 12px;border-radius:8px;font-weight:600}
-    .nav-cta{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;font-weight:700}
-    .nav-active{background:#ffe4d6;color:#b2322a;font-weight:700}
-
-    .hamburger{display:none;background:transparent;border:0;padding:8px;width:44px;height:44px}
-    .hamburger svg{width:22px;height:22px}
-
-    .mobile-menu{display:none;flex-direction:column;gap:10px;padding:14px;background:#fff;border-top:1px solid #eee}
-
-    @media(max-width:900px){
-      .nav-desktop{display:none}
-      .hamburger{display:block}
+    .brand img{width:56px;height:56px;border-radius:50%}
+    .site-title{font-size:18px;font-weight:700;color:var(--accent-dark);margin:0}
+    .tagline{font-size:12px;color:var(--muted);margin:0}
+    nav a{margin-left:12px;text-decoration:none;color:#444;padding:8px 12px;border-radius:10px;font-weight:600}
+    nav a.cta{background:var(--accent);color:#fff}
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr;align-items:center;gap:16px;padding:28px 18px;background:#fdf6f6;border-bottom:1px solid #f0e7e7}
+    .hero-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .hero-title{flex:1}
+    .hero-title h1{margin:0;font-size:34px;color:var(--accent-dark);letter-spacing:0.5px}
+    .hero-title p{margin:8px 0 0;font-size:18px;color:#333;font-weight:600}
+    .hero-img{width:220px;height:120px;border-radius:10px;overflow:hidden;flex:0 0 220px}
+    .hero-img img{width:100%;height:100%;object-fit:cover}
+    /* sections */
+    section{padding:28px 18px;background:transparent}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    h2{margin:0 0 10px;font-size:20px;color:var(--accent-dark)}
+    p.lead{color:#444;margin:0 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .feature{background:#fff;border-radius:10px;padding:12px;flex:1;min-width:160px;box-shadow:0 4px 10px rgba(0,0,0,0.03)}
+    .feature h4{margin:0 0 6px;font-size:15px;color:var(--accent-dark)}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+    /* icons row */
+    .social-row{display:flex;gap:18px;align-items:center}
+    .social-btn{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:#fff;border:1px solid #eee;box-shadow:0 4px 12px rgba(0,0,0,0.04)}
+    .social-btn svg{width:26px;height:26px;display:block}
+    /* footer */
+    footer{margin-top:28px;padding:18px;background:#fff;border-top:1px solid #eee}
+    .footer-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+    .contact-small{color:#444}
+    .contact-small strong{color:var(--accent-dark)}
+    /* WhatsApp floating */
+    .whatsap-btn{position:fixed;right:18px;bottom:18px;background:#25d366;border-radius:60px;padding:14px;box-shadow:0 12px 30px rgba(0,0,0,0.18);z-index:100}
+    .whatsap-btn img{width:30px;height:30px;display:block}
+    /* responsive */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .hero-title h1{font-size:26px}
+      .hero-img{width:160px;height:110px}
     }
-
-    /* ABOUT CONTENT */
-    .about-wrap{
-      background:#fff;
-      padding:28px;
-      margin:26px auto;
-      border-radius:14px;
-      box-shadow:0 10px 28px rgba(0,0,0,0.06);
-    }
-
-    .eyebrow{
-      color:var(--muted);
-      text-transform:uppercase;
-      font-size:0.9rem;
-      font-weight:700;
-      letter-spacing:0.7px;
-      margin-bottom:6px;
-    }
-
-    h2{
-      font-family:'Playfair Display',serif;
-      font-size:1.9rem;
-      margin:6px 0 14px;
-      color:var(--accent);
-      line-height:1.3;
-    }
-
-    p{
-      color:#444;
-      font-size:1rem;
-      line-height:1.65;
-      margin:14px 0;
-    }
-
-    .callout{
-      margin-top:18px;
-      padding:14px;
-      border-radius:10px;
-      background:linear-gradient(90deg, rgba(178,50,42,0.08), rgba(178,50,42,0.03));
-      color:#5a5a5a;
-      font-weight:600;
-    }
-
-    @media(max-width:760px){
-      .about-wrap{padding:18px}
-      h2{font-size:1.5rem}
-    }
-
-    /* FOOTER */
-    footer{text-align:center;color:#666;padding:20px;margin-top:34px;background:#fff;border-top:1px solid #eee}
   </style>
-</head>
 
+  <!-- JSON-LD Organization for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Bansal Food Studio",
+    "url": "https://bansalfoodstudio.github.io/",
+    "logo": "https://bansalfoodstudio.github.io/images/logo.png",
+    "telephone": "+917599032032",
+    "description": "Bansal Food Studio - multi-cuisine restaurant in Nanauta offering Indian, South Indian, Chinese and Continental cuisines.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Chawla Complex, Gangoh Road",
+      "addressLocality": "Nanauta",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+</head>
 <body>
 
-<header class="site-header">
-  <div class="inner container">
+<header>
+  <div class="nav-inner">
     <div class="brand">
-      <img src="images/logo.png" alt="logo">
+      <a href="index.html"><img src="images/logo.png" alt="Bansal Food Studio logo"></a>
       <div>
-        <h1>Bansal Food Studio</h1>
-        <div class="tagline">Dil Aur Pet Dono Khush</div>
+        <p class="site-title">Bansal Food Studio</p>
+        <p class="tagline">Dil Aur Pet Dono Khush</p>
       </div>
     </div>
 
-    <nav class="nav-desktop">
-      <a class="nav-btn" href="index.html">Home</a>
-      <a class="nav-btn" href="menu.html">Menu</a>
-      <a class="nav-btn nav-active" href="about.html">About Us</a>
-      <a class="nav-btn" href="contact.html">Contact</a>
-      <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html" style="background:rgba(178,79,90,0.08);color:var(--accent-dark);border-radius:8px;padding:8px 10px">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="book.html" class="cta">Book a Table</a>
     </nav>
-
-    <button class="hamburger" id="hambtn">
-      <svg fill="none" stroke="#6a2a25" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M3 6h18M3 12h18M3 18h18"/>
-      </svg>
-    </button>
-  </div>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a class="nav-btn" href="index.html">Home</a>
-    <a class="nav-btn" href="menu.html">Menu</a>
-    <a class="nav-btn nav-active" href="about.html">About Us</a>
-    <a class="nav-btn" href="contact.html">Contact</a>
-    <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
   </div>
 </header>
 
 <main>
+  <div class="hero">
+    <div class="hero-inner container">
+      <div class="hero-title">
+        <h1>Bansal Food Studio</h1>
+        <p>Delightful, honest food — Indian, South Indian, Chinese & Continental</p>
+      </div>
 
-  <section class="about-wrap container">
-
-    <div class="eyebrow">Our Story</div>
-
-    <h2>We started with one belief: truly good food doesn’t need shortcuts — just purity, skill and sincerity.</h2>
-
-    <p>
-      At Bansal Food Studio, we prepare food the same way we prefer it for ourselves — fresh, clean, and full of real, satisfying flavor. Every dish is made using quality ingredients, real spices, and honest cooking methods that bring out authentic taste without unnecessary shortcuts.
-    </p>
-
-    <p>
-      Our kitchen follows strict hygiene and safety standards. From preparation to plating, everything is handled with care, discipline and responsibility. A clean kitchen is not just a rule — it is a daily commitment.
-    </p>
-
-    <p>
-      Great food isn’t accidental. It comes from patience, consistency and the belief that customers deserve nothing less than the best. Every plate is checked for freshness, taste and balance before it reaches your table.
-    </p>
-
-    <div class="callout">
-      Our promise is simple — we serve food we would proudly eat at home.
+      <div class="hero-img card">
+        <!-- Replace with your hero image -->
+        <img src="images/about-hero.jpg" alt="Bansal Food Studio dining">
+      </div>
     </div>
+  </div>
 
-  </section>
+  <div class="container">
+    <!-- Our Story -->
+    <section class="card" id="our-story" aria-labelledby="our-story-title">
+      <h2 id="our-story-title">Our Story — How Bansal Food Studio Began</h2>
+      <p class="lead">Bansal Food Studio started from a simple dream: to create a welcoming place in Nanauta where families and travellers can enjoy consistently good food from multiple cuisines. Our philosophy—<strong>"Dil Aur Pet Dono Khush"</strong>—guides every decision we make: fresh ingredients, balanced flavors, and warm service.</p>
+    </section>
 
+    <br>
+
+    <!-- Nanauta -->
+    <section class="card" id="nanauta" aria-labelledby="nanauta-title">
+      <h2 id="nanauta-title">Why Nanauta?</h2>
+      <div class="grid">
+        <div>
+          <p class="lead">Nanauta's friendly community and growing food culture inspired us. Located at <strong>Chawla Complex, Gangoh Road</strong>, we wanted to bring a clean, family-friendly dining option that serves local favorites along with a selection of continental and global dishes.</p>
+          <ul>
+            <li>Easy access from main road and local neighborhoods</li>
+            <li>Comfortable seating for families and groups</li>
+            <li>Clean, quick service with takeaway & delivery</li>
+          </ul>
+        </div>
+        <div>
+          <img src="images/nanauta-street.jpg" alt="Nanauta street and location" style="width:100%;height:160px;object-fit:cover;border-radius:8px">
+        </div>
+      </div>
+    </section>
+
+    <br>
+
+    <!-- Our Chefs -->
+    <section class="card" id="our-chefs" aria-labelledby="our-chefs-title">
+      <h2 id="our-chefs-title">Our Chefs — Passion & Skill</h2>
+      <p class="lead">Our kitchen team brings years of experience across regional and international cuisines. They focus on:</p>
+
+      <div class="features" style="margin-top:12px">
+        <div class="feature">
+          <h4>Quality Ingredients</h4>
+          <p>Fresh, seasonal produce with strict quality checks.</p>
+        </div>
+        <div class="feature">
+          <h4>Consistent Taste</h4>
+          <p>Standardized recipes so your favorite dishes taste the same every visit.</p>
+        </div>
+        <div class="feature">
+          <h4>Modern Presentation</h4>
+          <p>Plating and textures that delight both eyes and palate.</p>
+        </div>
+        <div class="feature">
+          <h4>Hygiene First</h4>
+          <p>Gloves, clean surfaces, and safe cooking practices always in place.</p>
+        </div>
+      </div>
+    </section>
+
+    <br>
+
+    <!-- Our Kitchen -->
+    <section class="card" id="kitchen" aria-labelledby="kitchen-title">
+      <h2 id="kitchen-title">Our Kitchen – Clean, Safe & Quality-Assured</h2>
+      <p class="lead">We follow strict food-safety and hygiene procedures:</p>
+      <ul>
+        <li>Daily fresh supplies, proper storage and inventory routines</li>
+        <li>Filtered water for food preparation</li>
+        <li>Dedicated cleaning schedules, staff training and PPE</li>
+        <li>Safe cooking oil and temperature controls for frying/baking</li>
+      </ul>
+      <div style="margin-top:12px">
+        <img src="images/kitchen.jpg" alt="Kitchen hygiene" style="width:100%;height:180px;object-fit:cover;border-radius:8px">
+      </div>
+    </section>
+
+    <br>
+
+    <!-- What makes us special -->
+    <section class="card" id="special" aria-labelledby="special-title">
+      <h2 id="special-title">What Makes Us Special</h2>
+      <div class="grid">
+        <div>
+          <h3 style="margin-top:0;color:var(--accent-dark)">Fresh & Honest Food</h3>
+          <p>We prepare meals from fresh ingredients and keep our menu pocket-friendly.</p>
+        </div>
+        <div>
+          <h3 style="margin-top:0;color:var(--accent-dark)">Family Friendly</h3>
+          <p>Comfortable space for kids and elders—easy parking, quick service.</p>
+        </div>
+        <div>
+          <h3 style="margin-top:0;color:var(--accent-dark)">Quick Takeaway</h3>
+          <p>Order to go or request delivery — we make it easy.</p>
+        </div>
+        <div>
+          <h3 style="margin-top:0;color:var(--accent-dark)">Multi-Cuisine Choices</h3>
+          <p>From local favorites to continental delights — flavors for everyone.</p>
+        </div>
+      </div>
+    </section>
+
+    <br>
+
+    <!-- Social + Contact quick -->
+    <section class="card" id="connect" aria-labelledby="connect-title">
+      <h2 id="connect-title">Connect With Us</h2>
+      <p class="lead">Follow Bansal Food Studio and send us feedback or questions. We love hearing from guests!</p>
+
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <!-- Instagram -->
+        <a class="social-btn" href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" target="_blank" rel="noopener" aria-label="Instagram">
+          <!-- Instagram SVG -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="#8b5b7b" stroke-width="1.6" fill="none"/>
+            <path d="M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" stroke="#8b5b7b" stroke-width="1.6" fill="none"/>
+            <circle cx="17.5" cy="6.5" r="0.9" fill="#8b5b7b"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a class="social-btn" href="https://www.facebook.com/share/1AQm2nmwZy/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 3h3v4h-3v14h-4V7H9V3h3V1.8C12 0.8 12.6 0 14.6 0H17v3h-2.2C14 3 14 3 15 3z" fill="#3b5998"/>
+          </svg>
+        </a>
+
+        <!-- Google reviews -->
+        <a class="social-btn" href="https://g.page/r/CbRyIb77ajkrEBE/review" target="_blank" rel="noopener" aria-label="Google Reviews">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2a9 9 0 100 18 9 9 0 000-18zm3.2 7.5l-.9 4.4-1.5-1.4-2.8 2.9L8 14l1.7-6.2 2.5 2.1 2.9-2.4z" fill="#DB4437"/>
+          </svg>
+        </a>
+      </div>
+
+      <div style="margin-top:14px;color:var(--muted)">
+        <div><strong>Phone:</strong> <a href="tel:+917599032032">7599032032</a></div>
+        <div><strong>Email:</strong> <a href="mailto:banslfoodstudio@gmail.com">banslfoodstudio@gmail.com</a></div>
+      </div>
+    </section>
+
+  </div> <!-- container -->
 </main>
 
+<!-- Floating WhatsApp -->
+<a class="whatsap-btn" href="https://wa.me/917599032032" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="images/whatsapp-icon.png" alt="WhatsApp">
+</a>
+
 <footer>
-  © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta • +91-7599032032
+  <div class="footer-inner">
+    <div class="contact-small">
+      <strong>Bansal Food Studio</strong><br>
+      Chawla Complex, Gangoh Road, Nanauta, Saharanpur<br>
+      Phone: <a href="tel:+917599032032">7599032032</a> • Email: <a href="mailto:banslfoodstudio@gmail.com">banslfoodstudio@gmail.com</a>
+    </div>
+
+    <div>
+      <small style="color:#777">© <span id="year"></span> Bansal Food Studio — All rights reserved</small>
+    </div>
+  </div>
 </footer>
 
 <script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  const btn = document.getElementById('hambtn');
-  const menu = document.getElementById('mobileMenu');
-  btn.addEventListener('click', () => {
-    menu.style.display = (menu.style.display === 'flex' ? 'none' : 'flex');
-  });
+  // set year
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
