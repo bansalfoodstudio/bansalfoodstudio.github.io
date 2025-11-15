@@ -2,6 +2,273 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Contact — Bansal Food Studio</title>
+  <meta name="description" content="Contact Bansal Food Studio — address, phone, map, WhatsApp and contact form for queries & bookings." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#b2322a;
+      --muted:#666;
+      --bg:#faf8f6;
+      --card:#fff;
+      --maxw:1100px;
+      --radius:12px;
+      --gap:14px;
+      --gold:#cfa76e;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+
+    /* Header */
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
+    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;gap:10px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:64px;width:64px;border-radius:8px;object-fit:cover}
+    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent)}
+    .tagline{font-family:'Dancing Script',cursive;font-size:1.05rem;color:var(--gold);margin-top:-4px}
+
+    .nav-desktop{display:flex;gap:12px;align-items:center}
+    .nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 10px;border-radius:8px;font-weight:600;font-size:0.95rem}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;font-weight:700;font-size:0.95rem}
+
+    .hamburger{display:none;border:0;background:transparent;padding:8px}
+    .hamburger svg{display:block}
+    .mobile-menu{display:none;flex-direction:column;padding:12px;gap:8px;background:#fff;border-top:1px solid #eee}
+
+    @media(max-width:900px){
+      .nav-desktop{display:none}
+      .hamburger{display:block}
+    }
+
+    /* Page layout */
+    main{padding:18px 0}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 16px;
+    }
+    @media(min-width:900px){
+      .grid{grid-template-columns:1fr 420px;align-items:start}
+    }
+
+    /* Card */
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,0.06)}
+    h2{font-family:'Playfair Display',serif;color:var(--accent);margin:0 0 10px}
+    p.lead{color:var(--muted);margin:0 0 12px}
+
+    /* Form */
+    form{display:flex;flex-direction:column;gap:12px}
+    label{font-size:0.95rem;color:#333}
+    input[type="text"], input[type="email"], textarea{
+      width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6;font-size:0.95rem;background:#fff;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .form-row{display:flex;gap:12px}
+    .form-row .col{flex:1}
+
+    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn:active{transform:translateY(1px)}
+
+    /* Map */
+    .map-wrap iframe{width:100%;height:320px;border:0;border-radius:10px;display:block}
+
+    /* Contact info & socials */
+    .info{display:flex;flex-direction:column;gap:12px}
+    .info .row{display:flex;gap:10px;align-items:center}
+    .info .row svg{width:22px;height:22px;flex-shrink:0}
+    .socials{display:flex;gap:10px;margin-top:6px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;background:#111;color:#fff}
+    .socials a svg{width:18px;height:18px;fill:#fff}
+
+    footer{padding:18px 12px;background:#fff;border-top:1px solid #eee;margin-top:18px;text-align:center;color:#666}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="inner container">
+    <div class="brand">
+      <img src="images/logo.png" alt="Bansal Food Studio logo">
+      <div>
+        <h1>Bansal Food Studio</h1>
+        <div class="tagline">Dil Aur Pet Dono Khush</div>
+      </div>
+    </div>
+
+    <nav class="nav-desktop" aria-label="Main navigation">
+      <a class="nav-btn" href="index.html">Home</a>
+      <a class="nav-btn" href="menu.html">Menu</a>
+      <a class="nav-btn" href="about.html">About Us</a>
+      <a class="nav-btn nav-active" href="contact.html">Contact</a>
+      <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
+    </nav>
+
+    <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6a2a25" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu container" id="mobileMenu" style="display:none">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="menu.html">Menu</a>
+    <a class="nav-btn" href="about.html">About Us</a>
+    <a class="nav-btn nav-active" href="contact.html">Contact</a>
+    <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+
+    <!-- Left: Contact form + map -->
+    <section class="card">
+      <h2>Get in touch</h2>
+      <p class="lead">Send us a message for enquiries, orders or table reservations. We'll get back to you shortly.</p>
+
+      <!-- FormSpree form -->
+      <form action="https://formspree.io/f/mzzydgog" method="POST" id="contactForm">
+        <div class="form-row">
+          <div class="col">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="col">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="text" placeholder="7599032032" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message / booking details here..." required></textarea>
+        </div>
+
+        <!-- optional: set subject visible to you -->
+        <input type="hidden" name="_subject" value="New contact from website">
+        <!-- redirect to thank-you (optional), leave commented if not needed -->
+        <!-- <input type="hidden" name="_next" value="https://bansalfoodstudio.github.io/thanks.html"> -->
+
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid #f0f0f0">
+
+      <h3 style="margin:0 0 8px">Find us on map</h3>
+      <div class="map-wrap" aria-hidden="false">
+        <!-- Confirmed iframe (you approved this) -->
+        <iframe 
+          src="https://www.google.com/maps?q=Bansal+Food+Studio+Nanauta&z=17&output=embed" 
+          width="100%" 
+          height="320" 
+          style="border:0;border-radius:10px;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Right: Contact info + socials -->
+    <aside class="card">
+      <h2>Contact Info</h2>
+      <p class="lead">Reach us directly or message on WhatsApp.</p>
+
+      <div class="info">
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.6V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V15" stroke="#6b6b6b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <strong>Address</strong><br>
+            Chawla Complex, Gangoh Road, Nanauta, Saharanpur
+          </div>
+        </div>
+
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.12 1.03.36 2.03.72 3a2 2 0 0 1-.45 2.11L8.91 11.09a14 14 0 0 0 5.9 5.9l1.56-1.56a2 2 0 0 1 2.11-.45c.97.36 1.97.6 3 .72a2 2 0 0 1 1.72 2z" stroke="#6b6b6b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <strong>Phone</strong><br>
+            <a href="tel:+917599032032">+91-75990-32032</a>
+          </div>
+        </div>
+
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16v16H4z" stroke="#6b6b6b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <strong>Email</strong><br>
+            <a href="mailto:bansalfoodstudio@gmail.com">bansalfoodstudio@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin:14px 0;border:none;border-top:1px solid #f0f0f0">
+
+      <h3 style="margin:0 0 6px">Follow / Message</h3>
+      <div class="socials" role="navigation" aria-label="social links">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" target="_blank" rel="noopener" title="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.1A3.9 3.9 0 1 0 15.9 12 3.9 3.9 0 0 0 12 8.1zM18.5 6.6a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z" fill="#fff"/></svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/1AQm2nmwZy/" target="_blank" rel="noopener" title="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2.1V9.3c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.6h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z" fill="#fff"/></svg>
+        </a>
+
+        <!-- Google Reviews -->
+        <a href="https://g.page/r/CbRyIb77ajkrEBE/review" target="_blank" rel="noopener" title="Google Reviews">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.35 11.1c.03.32.05.63.05.95 0 5.03-3.42 8.6-8.64 8.6-1.72 0-3.26-.5-4.34-1.36-.2-.13-.2-.4-.05-.55l1.4-1.4c.12-.12.32-.15.48-.06 1.08.7 2.56 1.1 3.92 1.1 3.5 0 6.04-2.25 6.04-5.84 0-.4-.04-.79-.12-1.16H12v-2.2h9.35zM12 2c1.8 0 3.33.6 4.45 1.5l-2.03 2.03C13.9 5.1 12.99 5 12 5c-3.5 0-6 2.3-6 5.5 0 1.2.4 2.3 1.1 3.2l-1.68 1.68C4.3 14.4 3 13 3 11.5 3 7.4 7 4 12 4z" fill="#fff"/></svg>
+        </a>
+
+        <!-- WhatsApp (inline) -->
+        <a href="https://wa.me/917599032032?text=Hello%20Bansal%20Food%20Studio" target="_blank" rel="noopener" title="WhatsApp">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.199.297-.768.967-.942 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.173.198-.298.298-.497.099-.198.05-.372-.025-.52-.074-.148-.672-1.612-.922-2.2-.242-.579-.487-.5-.672-.51l-.573-.01c-.199 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487  .709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.695.247-1.29.173-1.414-.074-.123-.273-.198-.57-.347zM12 .5C5.648.5.5 5.648.5 12c0 2.116.553 4.084 1.604 5.8L.5 23.5l5.92-1.553A11.48 11.48 0 0 0 12 23.5C18.352 23.5 23.5 18.352 23.5 12S18.352.5 12 .5z" fill="#fff"/></svg>
+        </a>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer>
+  © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta • +91-7599032032
+</footer>
+
+<script>
+  // set year
+  (function(){try{document.getElementById('yr').textContent=new Date().getFullYear()}catch(e){} })();
+
+  // mobile menu toggle
+  (function(){
+    const btn=document.getElementById('hambtn');
+    const menu=document.getElementById('mobileMenu');
+    if(!btn||!menu) return;
+    btn.addEventListener('click',()=>{
+      const shown = menu.style.display === 'flex';
+      menu.style.display = shown ? 'none' : 'flex';
+      btn.setAttribute('aria-expanded', String(!shown));
+    });
+  })();
+
+  // optional: show simple success message after form submit (Formspree returns success page by default)
+  // you can customize using Formspree _next hidden field to redirect to a custom thank-you page.
+</script>
+
+</body>
+</html><!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Menu — Bansal Food Studio | Nanauta</title>
 
@@ -500,7 +767,7 @@
   <div style="max-width:1100px;margin:0 auto;">
     <div style="font-weight:700;color:#222">Bansal Food Studio</div>
     <div style="color:#666;margin:6px 0">Chawla Complex, Gangoh Rd, Nanauta, Saharanpur</div>
-    <div style="color:#666;margin-bottom:8px">Phone: <a href="tel:+917599032032">7599032032</a> · Email: <a href="mailto:bansalfoodstudio@gmail.com">banslfoodstudio@gmail.com</a></div>
+    <div style="color:#666;margin-bottom:8px">Phone: <a href="tel:+917599032032">7599032032</a> · Email: <a href="mailto:bansalfoodstudio@gmail.com">bansalfoodstudio@gmail.com</a></div>
     <div style="color:#777">© <span id="yr"></span> Bansal Food Studio</div>
   </div>
 </footer>
