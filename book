@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Book a Table — Bansal Food Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--accent:#b2322a;--muted:#6b6b6b;--bg:#faf8f6;--card:#fff;--maxw:980px;--radius:12px}
+  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222}
+  .container{max-width:var(--maxw);margin:0 auto;padding:18px}
+  header.site-header{background:#fff;border-bottom:1px solid #eee;padding:12px 18px;position:sticky;top:0;z-index:99}
+  .brand{display:flex;gap:12px;align-items:center}
+  .brand img{height:52px;border-radius:8px}
+  .brand h1{margin:0;font-family:'Playfair Display',serif;color:var(--accent);font-size:1.1rem}
+  .tag{color:var(--muted);font-size:0.9rem}
+  main{padding:18px}
+  h2{margin:8px 0 6px;font-family:'Playfair Display',serif;color:var(--accent)}
+  p.lead{color:var(--muted);margin:0 0 18px}
+  .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 26px rgba(0,0,0,0.05);max-width:980px;margin:0 auto}
+  form .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  label{display:block;font-size:0.9rem;color:#333;margin-bottom:6px}
+  input[type="text"],input[type="tel"],input[type="email"],input[type="date"],input[type="time"],select,textarea{
+    width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6;font-size:0.95rem;background:#fff;
+  }
+  .col{flex:1 1 220px;min-width:180px}.full{flex:1 1 100%}.small{flex:0 0 120px;min-width:110px}
+  .note{font-size:0.9rem;color:var(--muted);margin-bottom:12px}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 16px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
+  .btn.secondary{background:#fff;border:1px solid #e6e6e6;color:#333}
+  .status{margin-top:12px;padding:10px;border-radius:8px;display:none}
+  .status.ok{background:#e9f7ef;color:#116530;border:1px solid #bfe9c9;display:block}
+  .status.err{background:#fff0f0;color:#8c1d1d;border:1px solid #f2c6c6;display:block}
+  .availability{margin:12px 0;padding:12px;border-radius:8px;background:#fff7ef;border:1px solid #f5d8cf;color:#7a3b2f}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+  .small-note{font-size:0.9rem;color:var(--muted)}
+  footer{margin-top:18px;padding:18px 0;text-align:center;color:#666;background:#fff;border-top:1px solid #eee}
+  @media(max-width:640px){.col{min-width:120px}.small{flex:1 1 48%}.actions{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between">
+    <div class="brand">
+      <img src="images/logo.png" alt="logo">
+      <div>
+        <h1>Bansal Food Studio</h1>
+        <div class="tag">Dil Aur Pet Dono Khush</div>
+      </div>
+    </div>
+    <nav aria-label="top links" style="display:flex;gap:8px;align-items:center">
+      <a href="index.html" style="padding:8px 12px;border-radius:8px;background:#fff1ea;color:#6a2a25;text-decoration:none">Home</a>
+      <a href="menu.html" style="padding:8px 12px;border-radius:8px;background:#fff1ea;color:#6a2a25;text-decoration:none">Menu</a>
+      <a href="contact.html" style="padding:8px 12px;border-radius:8px;background:#fff1ea;color:#6a2a25;text-decoration:none">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="card" role="region" aria-labelledby="bookHead">
+    <h2 id="bookHead">Book a Table</h2>
+    <p class="lead">Reserve a table quickly — choose date, time and seating area. We'll confirm via email / phone.</p>
+
+    <div class="note">Seating layout: <strong>Ground floor</strong> — 3 tables (6 seats each). <strong>Basement</strong> — 3 tables (4 seats each) + 1 private cabin (15 seats).</div>
+
+    <div class="availability" id="availHelper" aria-live="polite">Select party size / date / time and we will suggest a suitable area.</div>
+
+    <!-- FORM: action points to your new Formspree -->
+    <form id="bookingForm" class="booking-form" method="POST" action="https://formspree.io/f/xvgdyvrd" novalidate>
+      <input type="hidden" name="_subject" value="New table booking from website">
+
+      <div class="row">
+        <div class="col">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+        </div>
+
+        <div class="col">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" placeholder="7599032032" pattern="[0-9+ -]{7,20}" required>
+        </div>
+
+        <div class="col">
+          <label for="email">Email (optional)</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" required>
+        </div>
+
+        <div class="col">
+          <label for="time">Time</label>
+          <input id="time" name="time" type="time" required>
+        </div>
+
+        <div class="small">
+          <label for="party">Party size</label>
+          <input id="party" name="party" type="number" min="1" max="30" value="2" required>
+        </div>
+
+        <div class="col">
+          <label for="area">Preferred area (optional)</label>
+          <select id="area" name="area">
+            <option value="">Let us suggest</option>
+            <option value="ground">Ground floor (6-seat tables)</option>
+            <option value="basement-table">Basement tables (4-seat)</option>
+            <option value="basement-cabin">Basement cabin (15-seat private)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="full">
+          <label for="notes">Special requests (allergies, celebration, seating note)</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Any requests..."></textarea>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button type="submit" class="btn" id="submitBtn">Request Booking</button>
+        <button type="button" class="btn secondary" id="suggestBtn">Suggest area</button>
+        <div style="margin-left:auto" class="small-note">Or message on WhatsApp after submit.</div>
+      </div>
+
+      <div id="statusOk" class="status ok" role="status" style="display:none"></div>
+      <div id="statusErr" class="status err" role="alert" style="display:none"></div>
+    </form>
+
+    <div style="margin-top:16px">
+      <strong>Owner (WhatsApp):</strong>
+      <a id="ownerWhats" href="https://wa.me/917599032032" target="_blank" rel="noopener" style="color:var(--accent)">+91 75990 32032</a>
+      <div class="small-note">We will email/call to confirm. This form collects booking requests only.</div>
+    </div>
+
+    <div style="margin-top:14px;font-size:0.95rem;color:var(--muted)">
+      <strong>How availability works:</strong>
+      <ul>
+        <li>Form submits your request to the restaurant. Staff will confirm by phone/WhatsApp.</li>
+        <li>This page gives a suggestion for which area fits your party size.</li>
+        <li>To avoid double-booking, staff should confirm in real-time — consider it a reservation request.</li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta • Phone: <a href="tel:+917599032032">7599032032</a>
+</footer>
+
+<script>
+  const FORMSPREE_URL = 'https://formspree.io/f/xvgdyvrd';
+  const OWNER_WHATSAPP = '917599032032';
+  const LAYOUT = { ground:{tables:3,seatsPerTable:6}, basement_tables:{tables:3,seatsPerTable:4}, basement_cabin:{tables:1,seatsPerTable:15} };
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const partyInput = document.getElementById('party');
+  const areaSelect = document.getElementById('area');
+  const availHelper = document.getElementById('availHelper');
+  const suggestBtn = document.getElementById('suggestBtn');
+  const form = document.getElementById('bookingForm');
+  const statusOk = document.getElementById('statusOk');
+  const statusErr = document.getElementById('statusErr');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function suggestArea(){
+    const party = parseInt(partyInput.value) || 1;
+    if(party <= LAYOUT.basement_tables.seatsPerTable){
+      availHelper.innerHTML = Suggestion: A <strong>Basement table</strong> (4 seats) fits party of ${party}.;
+      areaSelect.value = 'basement-table';
+    } else if(party <= LAYOUT.ground.seatsPerTable){
+      availHelper.innerHTML = Suggestion: A <strong>Ground floor table</strong> (6 seats) fits party of ${party}.;
+      areaSelect.value = 'ground';
+    } else if(party <= LAYOUT.basement_cabin.seatsPerTable){
+      availHelper.innerHTML = Suggestion: <strong>Basement cabin</strong> (private cabin up to 15 seats) is best for party of ${party}.;
+      areaSelect.value = 'basement-cabin';
+    } else {
+      availHelper.innerHTML = For party size <strong>${party}</strong> please call us on <a href="tel:+91${OWNER_WHATSAPP}">+91 ${OWNER_WHATSAPP}</a>.;
+      areaSelect.value = '';
+    }
+  }
+  suggestBtn.addEventListener('click', suggestArea);
+  partyInput.addEventListener('input', () => { if(partyInput.value) suggestArea(); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    statusOk.style.display = 'none'; statusErr.style.display = 'none';
+
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    const date = form.date.value;
+    const time = form.time.value;
+    const party = parseInt(form.party.value) || 0;
+
+    if(!name || !phone || !date || !time || party < 1){
+      statusErr.textContent = 'Please fill name, phone, date, time and party size.';
+      statusErr.style.display = 'block';
+      return;
+    }
+
+    submitBtn.disabled = true; submitBtn.textContent = 'Sending...';
+
+    const fd = new FormData(form);
+    fd.append('submission_time', new Date().toISOString());
+    fd.append('site', window.location.hostname);
+
+    fetch(FORMSPREE_URL, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+      .then(r => r.json ? r.json() : r.text())
+      .then(data => {
+        const ok = (data && (data.ok || data.accepted)) || (data && !data.errors && data._id);
+        if(ok){
+          statusOk.innerHTML = 'Thanks! Your booking request was sent. We will contact you to confirm. <br><strong>Quick:</strong> Notify us now on WhatsApp:';
+          statusOk.style.display = 'block';
+          const waBtn = document.createElement('a');
+          waBtn.href = https://wa.me/${OWNER_WHATSAPP}?text= + encodeURIComponent(
+            New booking request:\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nTime: ${time}\nParty: ${party}\nArea: ${form.area.value || 'no preference'}
+          );
+          waBtn.target = '_blank'; waBtn.rel = 'noopener'; waBtn.className = 'btn'; waBtn.style.marginTop = '8px'; waBtn.textContent = 'Send WhatsApp to Restaurant';
+          const old = document.getElementById('waQuick'); if(old) old.remove();
+          waBtn.id = 'waQuick';
+          statusOk.appendChild(document.createElement('div')).appendChild(waBtn);
+          form.reset(); areaSelect.value = ''; availHelper.innerHTML = 'Select party size / date / time and we will suggest a suitable area.';
+        } else {
+          statusErr.textContent = 'Submission failed. Please try again or call +91 ' + OWNER_WHATSAPP;
+          statusErr.style.display = 'block';
+          console.error('Formspree error:', data);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        statusErr.textContent = 'There was an error sending your request. Please try again or call +91 ' + OWNER_WHATSAPP;
+        statusErr.style.display = 'block';
+      })
+      .finally(()=> { submitBtn.disabled = false; submitBtn.textContent = 'Request Booking'; });
+  });
+
+  (function prefillToday(){
+    const today = new Date();
+    const yyyy = today.getFullYear(); const mm = String(today.getMonth()+1).padStart(2,'0'); const dd = String(today.getDate()).padStart(2,'0');
+    const dateStr = ${yyyy}-${mm}-${dd}; const hh = String(Math.max(today.getHours()+1,10)).padStart(2,'0'); const mm2 = String(today.getMinutes()).padStart(2,'0');
+    document.getElementById('date').value = dateStr; document.getElementById('time').value = ${hh}:${mm2};
+  })();
+</script>
+
+</body>
+</html>
