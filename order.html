@@ -1,423 +1,372 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Order Food — Bansal Food Studio</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Order Food — Bansal Food Studio</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
 
-  <style>
-    :root{
-      --accent:#b2322a;
-      --muted:#666;
-      --bg:#faf8f6;
-      --card:#fff;
-      --maxw:1100px;
-      --radius:10px;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222}
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+<style>
+:root{
+  --accent:#b2322a;
+  --muted:#666;
+  --bg:#faf8f6;
+  --card:#fff;
+  --maxw:1100px;
+}
 
-    /* Header */
-    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
-    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:56px;width:56px;border-radius:8px;object-fit:cover}
-    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent)}
-    .tagline{font-size:0.9rem;color:var(--muted);margin-top:2px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+}
 
-    .nav{display:flex;gap:10px;align-items:center}
-    .nav a{background:#fff1ea;color:#6a2a25;padding:8px 12px;border-radius:8px;font-weight:600}
-    .nav .cta{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;font-weight:700}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
 
-    .hamburger{display:none;border:0;background:transparent;padding:8px}
-    @media(max-width:900px){ .nav{display:none} .hamburger{display:block} }
+header.site-header{
+  background:#fff;
+  border-bottom:1px solid #eee;
+  position:sticky;top:0;z-index:50;
+}
+header .inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:60px;border-radius:8px}
+.brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent)}
 
-    /* Layout */
-    main{padding:26px 0}
-    .page-head{max-width:var(--maxw);margin:0 auto;padding:0 16px 16px}
-    .page-head h2{margin:0;font-family:'Playfair Display',serif;color:var(--accent)}
-    .page-head p{color:var(--muted);margin:8px 0 0}
+.nav-desktop{display:flex;gap:12px}
+.nav-btn{
+  background:#fff1ea;
+  color:#6a2a25;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
+}
+.nav-cta{
+  background:var(--accent);
+  color:#fff;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:700;
+}
 
-    .layout{max-width:var(--maxw);margin:18px auto;display:grid;grid-template-columns:1fr 320px;gap:18px;padding:0 16px}
-    @media(max-width:980px){ .layout{grid-template-columns:1fr} }
+.hamburger{display:none;border:0;background:transparent;padding:8px}
+@media(max-width:900px){
+  .nav-desktop{display:none}
+  .hamburger{display:block}
+}
+.mobile-menu{
+  display:none;flex-direction:column;gap:10px;
+  padding:12px;background:#fff;border-top:1px solid #eee;
+}
 
-    /* Menu list */
-    .menu-card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
-    .section-title{font-weight:700;margin:8px 0 12px;color:var(--accent)}
-    .menu-list{display:flex;flex-direction:column;gap:8px}
-    .item-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px dashed #eee}
-    .item-row:last-child{border-bottom:0}
-    .item-left{display:flex;flex-direction:column}
-    .item-name{font-weight:600}
-    .item-price{color:var(--accent);font-weight:700;min-width:68px;text-align:right}
-    .add-btn{background:#e8f0ff;border:0;color:#2b4ea1;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;margin-left:12px}
-    .add-btn.small{padding:6px 8px;font-size:0.95rem}
+h2.title{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;margin:18px 0 6px;color:var(--accent);
+}
+.sub{color:var(--muted);margin-bottom:20px}
 
-    /* Cart */
-    .cart-card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
-    .cart-title{font-weight:700;margin-bottom:10px}
-    .cart-empty{color:var(--muted)}
-    .cart-items{display:flex;flex-direction:column;gap:10px;max-height:420px;overflow:auto;padding-right:6px}
-    .cart-item{display:flex;justify-content:space-between;gap:8px;align-items:center}
-    .qty-controls{display:flex;gap:6px;align-items:center}
-    .small-btn{background:#f1f1f1;border:0;padding:6px 8px;border-radius:6px;cursor:pointer}
-    .total-row{display:flex;justify-content:space-between;margin-top:12px;font-weight:700;color:var(--accent)}
-    .checkout-btn{background:var(--accent);color:#fff;border:0;padding:10px 12px;border-radius:8px;width:100%;font-weight:700;margin-top:10px;cursor:pointer}
+.menu-box{
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+  margin-bottom:20px;
+}
 
-    /* Checkout area hidden until needed */
-    .checkout-box{margin-top:12px;border-top:1px dashed #eee;padding-top:12px}
-    .qr{display:block;margin:10px auto 6px;width:180px;height:180px;object-fit:contain;background:#fff;padding:6px;border-radius:8px;border:1px solid #eee}
-    .form-field{display:flex;flex-direction:column;margin-bottom:8px}
-    input[type="text"], input[type="tel"], textarea{padding:8px;border-radius:6px;border:1px solid #ddd;font-size:0.95rem}
-    label.small{font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+.item-row{
+  display:flex;justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px dashed #eee;
+}
+.item-row:last-child{border-bottom:0}
 
-    /* notes, footer */
-    .notes{color:var(--muted);margin-top:12px;font-size:0.95rem}
-    footer{padding:18px 16px;text-align:center;color:#666;margin-top:28px;background:#fff;border-top:1px solid #eee}
-  </style>
+.add-btn{
+  background:var(--accent);
+  color:#fff;
+  padding:4px 8px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:0.85rem;
+  margin-left:8px;
+}
+
+.cart-box{
+  background:#fff;padding:16px;border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+  margin-bottom:20px;
+}
+
+.checkout-btn{
+  background:var(--accent);color:#fff;
+  width:100%;padding:10px;border-radius:6px;
+  font-size:1rem;font-weight:700;
+  cursor:pointer;border:none;
+}
+
+.checkout-box{
+  background:#fff;padding:16px;margin-top:18px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+#qrImg{
+  width:240px;
+  display:block;
+  margin:10px auto 14px;
+  border-radius:12px;
+  border:1px solid #eee;
+}
+
+.form-field{margin-bottom:14px}
+label{display:block;margin-bottom:4px;font-weight:600;color:#444}
+input, textarea{
+  width:100%;padding:8px;
+  border:1px solid #ccc;border-radius:6px;
+  font-size:0.98rem;
+}
+
+footer{
+  text-align:center;color:#666;background:#fff;
+  padding:18px;margin-top:36px;
+  border-top:1px solid #eee;
+}
+</style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="inner container">
     <div class="brand">
-      <img src="images/logo.png" alt="logo">
+      <img src="images/logo.png" alt="">
       <div>
         <h1>Bansal Food Studio</h1>
-        <div class="tagline">Dil Aur Pet Dono Khush</div>
       </div>
     </div>
 
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a class="cta" href="contact.html#reserve">Book a Table</a>
-      <a class="cta" href="order.html">Order Food</a>
+    <nav class="nav-desktop">
+      <a class="nav-btn" href="index.html">Home</a>
+      <a class="nav-btn" href="menu.html">Menu</a>
+      <a class="nav-btn" href="about.html">About Us</a>
+      <a class="nav-btn" href="contact.html">Contact</a>
+      <a class="nav-cta" href="book.html">Book a Table</a>
+      <a class="nav-cta" href="order.html">Order Food</a>
     </nav>
 
-    <button class="hamburger" id="hambtn" aria-label="menu">☰</button>
+    <button class="hamburger" id="hambtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+      stroke="#6a2a25" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu container">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="menu.html">Menu</a>
+    <a class="nav-btn" href="about.html">About Us</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+    <a class="nav-btn" href="book.html">Book a Table</a>
+    <a class="nav-cta" href="order.html">Order Food</a>
   </div>
 </header>
 
-<main>
-  <div class="page-head container">
-    <h2>Order Food Online</h2>
-    <p>Choose items, add to cart and submit your order. <strong>50% advance required</strong> — scan the QR shown at checkout.</p>
-  </div>
+<div class="container">
 
-  <div class="layout">
+  <h2 class="title">Order Food Online</h2>
+  <p class="sub">Choose items, add to cart and submit your order. <b>50% advance required</b>.</p>
 
-    <!-- Left: Menu -->
-    <div class="menu-card">
-      <div class="section-title">Menu — Add to cart</div>
+  <!-- MENU LEFT + CART RIGHT -->
+  <div style="display:flex;flex-wrap:wrap;gap:20px;">
+    
+    <!-- MENU AREA -->
+    <div style="flex:1;min-width:280px;">
+      <div class="menu-box">
+        <h3 style="margin-bottom:10px;">Menu — Add to cart</h3>
 
-      <div id="menuContainer" class="menu-list" aria-live="polite">
-        <!-- JS will inject full menu here -->
-      </div>
+        <!-- SAMPLE MENU ITEMS (आप चाहें तो बढ़ा सकते हैं) -->
+        <div class="item-row">
+          <div>Paneer Punjabi — ₹199</div>
+          <button class="add-btn" onclick="addItem('Paneer Punjabi',199)">Add</button>
+        </div>
 
-      <div class="notes">
-        <ul>
-          <li>After submitting order, you will receive order summary on the phone / email you provide.</li>
-          <li>Please make <strong>50% advance payment</strong> using the QR below (or UPI app) and add TXN reference in the form while submitting.</li>
-        </ul>
+        <div class="item-row">
+          <div>Kadhai Paneer — ₹209</div>
+          <button class="add-btn" onclick="addItem('Kadhai Paneer',209)">Add</button>
+        </div>
+
+        <div class="item-row">
+          <div>Dal Tadka — ₹149</div>
+          <button class="add-btn" onclick="addItem('Dal Tadka',149)">Add</button>
+        </div>
+
+        <div class="item-row">
+          <div>Veg Noodles — ₹90</div>
+          <button class="add-btn" onclick="addItem('Veg Noodles',90)">Add</button>
+        </div>
+
+        <div class="item-row">
+          <div>Masala Dosa — ₹149</div>
+          <button class="add-btn" onclick="addItem('Masala Dosa',149)">Add</button>
+        </div>
+
+        <div class="item-row">
+          <div>Margherita Pizza — ₹149</div>
+          <button class="add-btn" onclick="addItem('Margherita Pizza',149)">Add</button>
+        </div>
+
+        <div class="item-row">
+          <div>Cold Coffee — ₹100</div>
+          <button class="add-btn" onclick="addItem('Cold Coffee',100)">Add</button>
+        </div>
+
       </div>
     </div>
 
-    <!-- Right: Cart -->
-    <aside class="cart-card">
-      <div class="cart-title">Your Cart</div>
-      <div id="cartItems" class="cart-items">
-        <div class="cart-empty">Cart is empty</div>
-      </div>
 
-      <div id="cartTotals" class="total-row" style="display:none">
-        <div>Subtotal</div><div id="subtotalAmt">₹0</div>
-      </div>
-      <div id="advanceRow" style="display:none" class="total-row">
-        <div>50% Advance</div><div id="advanceAmt">₹0</div>
-      </div>
+    <!-- CART AREA -->
+    <div style="width:300px;flex-shrink:0;">
+      <div class="cart-box">
+        <h3 style="margin-bottom:10px;">Your Cart</h3>
+        <div id="cartItems">Cart is empty</div>
 
-      <button id="openCheckout" class="checkout-btn" disabled>Checkout →</button>
-
-      <div id="checkoutBox" class="checkout-box" style="display:none">
-        <div style="font-weight:700;margin-bottom:6px">Confirm & Pay (50% advance)</div>
-
-        <!-- QR -->
-        <img src="images/qr.png" alt="Pay QR" class="qr" id="qrImg" onerror="this.style.display='none'">
-
-        <div style="text-align:center;color:var(--muted);font-size:0.95rem;margin-bottom:8px">
-          Scan QR to pay 50% advance OR use UPI &amp; paste TXN reference below.
+        <hr style="margin:12px 0">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+          <strong>Total</strong>
+          <strong id="subtotalAmt">₹0</strong>
         </div>
 
-        <!-- Checkout form (posts to Formspree) -->
-        <form id="orderForm" method="POST" action="https://formspree.io/f/meonqnaw">
-          <div class="form-field">
-            <label class="small">Full name *</label>
-            <input type="text" name="name" id="custName" required>
-          </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+          <span>50% Advance</span>
+          <strong id="advanceAmt">₹0</strong>
+        </div>
 
-          <div class="form-field">
-            <label class="small">Phone number *</label>
-            <input type="tel" name="phone" id="custPhone" placeholder="e.g. 7599032032" required>
-          </div>
-
-          <div class="form-field">
-            <label class="small">Delivery address</label>
-            <textarea name="address" id="custAddress" rows="2"></textarea>
-          </div>
-
-          <div class="form-field">
-            <label class="small">UPI TXN reference (after paying 50%)</label>
-            <input type="text" name="txn" id="txnRef" placeholder="e.g. TXN12345">
-          </div>
-
-          <!-- Hidden fields: items JSON, subtotal, advance -->
-          <input type="hidden" name="order_items" id="formItems">
-          <input type="hidden" name="subtotal" id="formSubtotal">
-          <input type="hidden" name="advance_amount" id="formAdvance">
-
-          <button type="submit" id="submitOrder" class="checkout-btn" style="background:#2b4ea1">Submit Order</button>
-        </form>
+        <button id="openCheckout" class="checkout-btn" disabled>Checkout →</button>
       </div>
-    </aside>
-  </div>
+    </div>
 
-</main>
+  </div> <!-- flex end -->
 
-<footer>
-  © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta
-</footer>
+  <!-- CHECKOUT BOX START -->
+  <div id="checkoutBox" class="checkout-box" style="display:none;">
+    <div style="font-weight:700;margin-bottom:10px;font-size:1.05rem;">
+      Confirm & Pay (50% advance)
+    </div>
 
+    <img src="images/qr.png" id="qrImg" alt="QR Code for UPI Payment">
+
+    <div style="text-align:center;color:var(--muted);font-size:0.92rem;margin-bottom:10px;">
+      Scan QR to pay 50% advance and enter TXN ID below.
+    </div>
+<!-- CHECKOUT FORM (POSTS TO FORMSPREE) -->
+    <form id="orderForm" method="POST" action="https://formspree.io/f/meonqnaw">
+
+      <div class="form-field">
+        <label class="small">Full name</label>
+        <input type="text" name="name" id="custName" required>
+      </div>
+
+      <div class="form-field">
+        <label class="small">Phone number</label>
+        <input type="tel" name="phone" id="custPhone" required>
+      </div>
+
+      <div class="form-field">
+        <label class="small">Address</label>
+        <textarea name="address" id="custAddress" required></textarea>
+      </div>
+
+      <div class="form-field">
+        <label class="small">Transaction ID (50% advance)</label>
+        <input type="text" name="txn" id="txnId" required />
+      </div>
+
+      <!-- CART DATA WILL AUTO-FILL HERE -->
+      <input type="hidden" name="order" id="orderData">
+      <input type="hidden" name="total" id="totalAmount">
+      <input type="hidden" name="advance" id="advanceAmount">
+
+      <button type="submit" class="checkout-submit">Submit Order</button>
+
+    </form>
+
+  </div> <!-- checkoutBox end -->
+
+</div> <!-- container end -->
 <script>
-/* ========= data: menu items =========
-   Keep these in JS so the page uses the same prices you maintain here.
-   (You can modify prices in this array later.)
-*/
-const MENU = [
-  {id:'ind-paneer-punjabi', name:'Paneer Punjabi', price:199, section:'Indian'},
-  {id:'ind-matar-paneer', name:'Matar Paneer', price:199, section:'Indian'},
-  {id:'ind-paneer-dopyaza', name:'Paneer Do Pyaza', price:200, section:'Indian'},
-  {id:'ind-kadhai-paneer', name:'Kadhai Paneer', price:209, section:'Indian'},
-  {id:'ind-paneer-lababdar', name:'Paneer Lababdar', price:209, section:'Indian'},
-  {id:'ind-shahi-paneer', name:'Shahi Paneer', price:219, section:'Indian'},
-  {id:'ind-paneer-pasanda', name:'Paneer Pasanda', price:229, section:'Indian'},
-  {id:'ind-malai-kofta', name:'Malai Kofta', price:229, section:'Indian'},
-  {id:'dal-handi', name:'Dal Handi (Bansal Spl.)', price:149, section:'Indian'},
-  {id:'dal-tadka', name:'Dal Tadka', price:149, section:'Indian'},
-  {id:'jeera-aloo', name:'Jeera Aloo', price:119, section:'Indian'},
-  {id:'tawa-roti', name:'Tawa Roti', price:10, section:'Indian'},
+// ---------------------------
+// CART DATA
+// ---------------------------
+let cart = [];
 
-  {id:'rice-steam', name:'Steam Rice', price:40, section:'Rice'},
-  {id:'rice-jeera', name:'Jeera Rice', price:45, section:'Rice'},
-  {id:'rice-pulao', name:'Veg. Pulao', price:80, section:'Rice'},
-
-  {id:'south-plain-dosa', name:'Plain Dosa', price:120, section:'South Indian'},
-  {id:'south-masala-dosa', name:'Masala Dosa', price:149, section:'South Indian'},
-  {id:'south-paneer-dosa', name:'Paneer Dosa', price:169, section:'South Indian'},
-
-  {id:'cont-burger', name:'Burger', price:49, section:'Continental'},
-  {id:'cont-cheese-burger', name:'Cheese Burger', price:59, section:'Continental'},
-  {id:'cont-margherita', name:'Margherita Pizza (M)', price:149, section:'Continental'},
-  {id:'cont-pasta-white', name:'White Sauce Pasta', price:159, section:'Continental'},
-
-  {id:'china-veg-noodles', name:'Veg. Noodles', price:90, section:'Chinese'},
-  {id:'china-hakka', name:'Hakka Noodles', price:110, section:'Chinese'},
-  {id:'china-momos-steam', name:'Veg. Steamed Momos', price:90, section:'Chinese'},
-  {id:'china-cheese-chili', name:'Cheese Chili (Dry/Gravy)', price:170, section:'Chinese'},
-
-  {id:'snacks-chilli-potato', name:'Chilli Potato', price:130, section:'Snacks'},
-  {id:'drinks-sweet-lassi', name:'Sweet Lassi', price:40, section:'Drinks'},
-  {id:'chai-masala', name:'Masala Tea', price:20, section:'Chai & Coffee'},
-
-  {id:'shakes-kkt', name:'Kitkat Shake', price:130, section:'Shakes'},
-  {id:'thali-normal', name:'Normal Thali', price:89, section:'Thali'},
-  {id:'thali-special', name:'Special Thali', price:149, section:'Thali'},
-];
-
-/* ========= utilities & render ========= */
-const MENU_CONTAINER = document.getElementById('menuContainer');
-const CART_ITEMS_EL = document.getElementById('cartItems');
-const SUBTOTAL_EL = document.getElementById('subtotalAmt');
-const ADVANCE_EL = document.getElementById('advanceAmt');
-const CART_TOTAL_ROW = document.getElementById('cartTotals');
-const ADVANCE_ROW = document.getElementById('advanceRow');
-const OPEN_CHECKOUT_BTN = document.getElementById('openCheckout');
-const CHECKOUT_BOX = document.getElementById('checkoutBox');
-const ORDER_FORM = document.getElementById('orderForm');
-
-const FORM_ITEMS = document.getElementById('formItems');
-const FORM_SUBTOTAL = document.getElementById('formSubtotal');
-const FORM_ADVANCE = document.getElementById('formAdvance');
-
-const MOBILE_BREAK = 980;
-const ADVANCE_PERCENT = 50; // percent required
-
-// load/save cart from localStorage
-function loadCart(){ try{ return JSON.parse(localStorage.getItem('bfs_cart')||'{}'); }catch(e){return {} } }
-function saveCart(cart){ localStorage.setItem('bfs_cart', JSON.stringify(cart)); }
-
-let cart = loadCart(); // { itemId: qty }
-
-function groupBySection(list){
-  const out = {};
-  list.forEach(item => {
-    if(!out[item.section]) out[item.section]=[];
-    out[item.section].push(item);
-  });
-  return out;
+// Add to Cart Function
+function addToCart(name, price) {
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  updateCart();
+  showCheckout();
 }
 
-function renderMenu(){
-  const bySection = groupBySection(MENU);
-  MENU_CONTAINER.innerHTML = '';
-  for(const section of Object.keys(bySection)){
-    const secTitle = document.createElement('div'); secTitle.className='section-title'; secTitle.textContent = section + ' — Tap "Add" to include item';
-    MENU_CONTAINER.appendChild(secTitle);
-    const arr = bySection[section];
-    arr.forEach(it=>{
-      const row = document.createElement('div'); row.className='item-row';
-      const left = document.createElement('div'); left.className='item-left';
-      const name = document.createElement('div'); name.className='item-name'; name.textContent = it.name;
-      left.appendChild(name);
-      const right = document.createElement('div'); right.style.display='flex'; right.style.alignItems='center';
-      const price = document.createElement('div'); price.className='item-price'; price.textContent = '₹' + it.price;
-      const btn = document.createElement('button'); btn.className='add-btn small'; btn.textContent='Add';
-      btn.addEventListener('click', ()=>{ addToCart(it.id); });
-      right.appendChild(price); right.appendChild(btn);
-      row.appendChild(left); row.appendChild(right);
-      MENU_CONTAINER.appendChild(row);
-    });
+// Remove from Cart
+function removeItem(i) {
+  cart.splice(i, 1);
+  updateCart();
+  if(cart.length === 0){
+    document.getElementById("checkoutBox").style.display = "none";
   }
 }
 
-function addToCart(itemId){
-  cart[itemId] = (cart[itemId]||0)+1;
-  saveCart(cart);
-  renderCart();
-}
+// ---------------------------
+// UPDATE CART UI + TOTALS
+// ---------------------------
+function updateCart() {
+  const list = document.getElementById("cartList");
+  const totalEl = document.getElementById("cartTotal");
+  const advanceEl = document.getElementById("advanceTotal");
 
-function removeFromCart(itemId){
-  delete cart[itemId];
-  saveCart(cart);
-  renderCart();
-}
+  list.innerHTML = "";
+  let total = 0;
 
-function changeQty(itemId, delta){
-  cart[itemId] = (cart[itemId]||0)+delta;
-  if(cart[itemId] <= 0) delete cart[itemId];
-  saveCart(cart);
-  renderCart();
-}
+  cart.forEach((item, i) => {
+    const line = item.price * item.qty;
+    total += line;
 
-function findMenuItem(id){ return MENU.find(x=>x.id===id); }
-
-function renderCart(){
-  // clear
-  CART_ITEMS_EL.innerHTML = '';
-  const keys = Object.keys(cart);
-  if(keys.length===0){
-    CART_ITEMS_EL.innerHTML = '<div class="cart-empty">Cart is empty</div>';
-    OPEN_CHECKOUT_BTN.disabled = true;
-    CART_TOTAL_ROW.style.display='none';
-    ADVANCE_ROW.style.display='none';
-    return;
-  }
-
-  // build list
-  let subtotal = 0;
-  keys.forEach(k=>{
-    const qty = cart[k];
-    const it = findMenuItem(k);
-    if(!it) return;
-    subtotal += it.price * qty;
-
-    const div = document.createElement('div'); div.className='cart-item';
-    const left = document.createElement('div'); left.style.flex='1';
-    left.innerHTML = <div style="font-weight:700">${it.name}</div><div style="font-size:0.9rem;color:var(--muted)">₹${it.price} x ${qty} = ₹${it.price*qty}</div>;
-
-    const controls = document.createElement('div'); controls.className='qty-controls';
-    const minus = document.createElement('button'); minus.className='small-btn'; minus.textContent='−';
-    minus.onclick = ()=> changeQty(k,-1);
-    const plus = document.createElement('button'); plus.className='small-btn'; plus.textContent='+';
-    plus.onclick = ()=> changeQty(k,1);
-    const del = document.createElement('button'); del.className='small-btn'; del.textContent='Remove';
-    del.onclick = ()=> removeFromCart(k);
-    controls.appendChild(minus); controls.appendChild(document.createTextNode(' ')); controls.appendChild(plus); controls.appendChild(document.createTextNode(' ')); controls.appendChild(del);
-
-    div.appendChild(left); div.appendChild(controls);
-    CART_ITEMS_EL.appendChild(div);
+    list.innerHTML += `
+      <li class="cart-item">
+        ${item.name} (x${item.qty})
+        <strong>₹${line}</strong>
+        <button onclick="removeItem(${i})">x</button>
+      </li>
+    `;
   });
 
-  SUBTOTAL_EL.textContent = '₹' + subtotal;
-  CART_TOTAL_ROW.style.display='flex';
-  const advance = Math.ceil(subtotal * (ADVANCE_PERCENT/100));
-  ADVANCE_EL.textContent = '₹' + advance;
-  ADVANCE_ROW.style.display='flex';
-  OPEN_CHECKOUT_BTN.disabled = false;
+  totalEl.textContent = total;
+  advanceEl.textContent = Math.round(total / 2);
 
-  // fill hidden inputs
-  FORM_SUBTOTAL.value = subtotal;
-  FORM_ADVANCE.value = advance;
-  FORM_ITEMS.value = JSON.stringify( keys.map(k=>{
-    const it = findMenuItem(k); return {id:k, name: it ? it.name : k, qty: cart[k], price: it ? it.price : 0};
-  }));
+  // Save for checkout submission
+  document.getElementById("orderData").value =
+    cart.map(i => ${i.name} x ${i.qty} = ₹${i.price * i.qty}).join(", ");
 
-  // CART items element accessible
-  return;
+  document.getElementById("totalAmount").value = total;
+  document.getElementById("advanceAmount").value = Math.round(total / 2);
 }
 
-// open checkout area
-OPEN_CHECKOUT_BTN.addEventListener('click', ()=>{
-  CHECKOUT_BOX.style.display = CHECKOUT_BOX.style.display==='none'?'block':'none';
-  if(CHECKOUT_BOX.style.display==='block'){
-    // scroll to checkout on mobile
-    setTimeout(()=> window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth'}), 120);
-  }
-});
-
-// form submit: add validation that cart not empty and phone present
-ORDER_FORM.addEventListener('submit', function(e){
-  const keys = Object.keys(cart);
-  if(keys.length===0){
-    e.preventDefault(); alert('Cart is empty. Please add items.');
-    return;
-  }
-  const phone = document.getElementById('custPhone').value.trim();
-  const name = document.getElementById('custName').value.trim();
-  if(!name || !phone){
-    e.preventDefault(); alert('Please enter name and phone number.');
-    return;
-  }
-  // allow submit (Formspree will process)
-  // optionally, you can append extra text to an email body input - but hidden inputs are already set.
-  // after submit, we can clear cart in onSuccess if you want (Formspree will redirect back unless configured)
-});
-
-// set year
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-// initial render
-renderMenu();
-renderCart();
-
-/* Accessibility: simple mobile menu toggle */
-(function(){
-  const hambtn = document.getElementById('hambtn');
-  if(!hambtn) return;
-  hambtn.addEventListener('click', ()=>{
-    alert('Use navigation links to move — mobile menu is intentionally simple.');
-  });
-})();
+// ---------------------------
+// SHOW CHECKOUT BOX
+// ---------------------------
+function showCheckout(){
+  document.getElementById("checkoutBox").style.display = "block";
+}
 </script>
-</body>
-</html>
