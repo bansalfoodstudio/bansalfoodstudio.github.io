@@ -1,189 +1,258 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Order Food — Bansal Food Studio</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    :root{--accent:#b2322a;--muted:#666;--bg:#faf8f6;--card:#fff;--radius:10px;--maxw:1100px}
-    *{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
-    .container{max-width:var(--maxw);margin:0 auto;padding:16px}
-    header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:9}
-    .inner{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
-    .brand h1{margin:0;color:var(--accent)}
-    nav a{margin-left:8px;padding:8px 10px;border-radius:8px;background:#fff1ea;color:#6a2a25;text-decoration:none;font-weight:600}
-    .layout{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:18px}
-    @media(max-width:900px){.layout{grid-template-columns:1fr} nav{display:none}}
-    .card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:0 8px 20px rgba(0,0,0,0.04)}
-    .item-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f1eaea}
-    .item-row:last-child{border-bottom:0}
-    .btn{background:var(--accent);color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
-    .cart{background:#fff;padding:12px;border-radius:10px}
-    .cart-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed #eee}
-    .muted{color:var(--muted);font-size:0.95rem}
-    input,textarea{width:100%;padding:8px;margin:6px 0;border-radius:6px;border:1px solid #ccc}
-    .checkout-btn{background:var(--accent);color:#fff;border:0;padding:10px;border-radius:8px;width:100%;cursor:pointer}
-    footer{text-align:center;padding:18px;color:var(--muted);margin-top:20px}
+    :root{
+      --accent:#b2322a;
+      --muted:#666;
+      --bg:#faf8f6;
+      --card:#fff;
+      --radius:12px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
+    header{background:#fff;border-bottom:1px solid #eee}
+    .inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand h1{margin:0;color:var(--accent);font-family:serif}
+    nav{display:flex;gap:10px}
+    .nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:600}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700}
+    .page-head{padding:26px 0 10px}
+    .page-head h2{margin:0;color:var(--accent);font-family:serif}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+    .item-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed #eee}
+    .add-btn{background:var(--accent);color:#fff;border:0;padding:6px 10px;border-radius:6px;cursor:pointer}
+    .cart-box{background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+    .cart-item{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px;align-items:center}
+    .cart-item button{background:#ddd;border:0;border-radius:6px;padding:6px;cursor:pointer}
+    .qr-box{background:#fff;padding:12px;border-radius:10px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,0.06);margin-top:12px}
+    form{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.06);margin-top:12px}
+    input,textarea{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #ccc}
+    button[type="submit"]{background:var(--accent);color:#fff;border:0;padding:10px 12px;border-radius:8px;cursor:pointer}
+    @media(max-width:880px){
+      .grid{grid-template-columns:1fr}
+      nav{gap:6px;flex-wrap:wrap}
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="inner container">
-      <div class="brand"><h1>Bansal Food Studio</h1></div>
-      <nav aria-label="site-nav">
-        <a href="index.html">Home</a>
-        <a href="menu.html">Menu</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="book.html">Book a Table</a>
-        <a href="order.html" style="background:var(--accent);color:#fff">Order Food</a>
+      <div class="brand">
+        <!-- logo optional: if you have images/logo.png you can keep an <img> here -->
+        <h1>Bansal Food Studio</h1>
+      </div>
+      <nav>
+        <a class="nav-btn" href="index.html">Home</a>
+        <a class="nav-btn" href="menu.html">Menu</a>
+        <a class="nav-btn" href="about.html">About</a>
+        <a class="nav-btn" href="contact.html">Contact</a>
+        <a class="nav-btn" href="book.html">Book a Table</a>
+        <a class="nav-cta" href="order.html">Order Food</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h2 style="color:var(--accent)">Order Food Online</h2>
-    <p class="muted">Choose items below → Add to cart → Pay 50% advance → Submit order</p>
+  <div class="container">
+    <div class="page-head">
+      <h2>Order Food Online</h2>
+      <p style="color:var(--muted);margin-top:6px">Choose items and add to cart. Please pay 50% advance using QR shown below and paste TXN ID in the form.</p>
+    </div>
 
-    <div class="layout">
-      <!-- LEFT: Menu list -->
+    <div class="grid">
+      <!-- LEFT: menu list (simple, text only) -->
       <div>
         <div class="card">
-          <h3>Menu (simple list)</h3>
-          <div id="menuList">
-            <!-- these are example items — edit names/prices as needed -->
-            <div class="item-row"><div>Paneer Punjabi — ₹199</div><button class="btn add-btn" data-name="Paneer Punjabi" data-price="199">Add</button></div>
-            <div class="item-row"><div>Kadhai Paneer — ₹209</div><button class="btn add-btn" data-name="Kadhai Paneer" data-price="209">Add</button></div>
-            <div class="item-row"><div>Dal Tadka — ₹149</div><button class="btn add-btn" data-name="Dal Tadka" data-price="149">Add</button></div>
-            <div class="item-row"><div>Veg Noodles — ₹90</div><button class="btn add-btn" data-name="Veg Noodles" data-price="90">Add</button></div>
-            <div class="item-row"><div>Masala Dosa — ₹149</div><button class="btn add-btn" data-name="Masala Dosa" data-price="149">Add</button></div>
-            <div class="item-row"><div>Margherita Pizza — ₹149</div><button class="btn add-btn" data-name="Margherita Pizza" data-price="149">Add</button></div>
-            <div class="item-row"><div>Sweet Lassi — ₹40</div><button class="btn add-btn" data-name="Sweet Lassi" data-price="40">Add</button></div>
-            <div class="item-row"><div>Special Thali — ₹149</div><button class="btn add-btn" data-name="Special Thali" data-price="149">Add</button></div>
+          <h3>Menu — Add to cart</h3>
+
+          <!-- Simple single item per section as requested -->
+          <div class="item-row">
+            <div>Paneer Punjabi — ₹199</div>
+            <button class="add-btn" data-name="Paneer Punjabi" data-price="199">Add</button>
           </div>
+
+          <div class="item-row">
+            <div>Kadhai Paneer — ₹209</div>
+            <button class="add-btn" data-name="Kadhai Paneer" data-price="209">Add</button>
+          </div>
+
+          <div class="item-row">
+            <div>Dal Tadka — ₹149</div>
+            <button class="add-btn" data-name="Dal Tadka" data-price="149">Add</button>
+          </div>
+
+          <div class="item-row">
+            <div>Veg Noodles — ₹90</div>
+            <button class="add-btn" data-name="Veg Noodles" data-price="90">Add</button>
+          </div>
+
+          <div class="item-row">
+            <div>Masala Dosa — ₹149</div>
+            <button class="add-btn" data-name="Masala Dosa" data-price="149">Add</button>
+          </div>
+
+          <div class="item-row">
+            <div>Margherita Pizza — ₹149</div>
+            <button class="add-btn" data-name="Margherita Pizza" data-price="149">Add</button>
+          </div>
+
+          <div class="item-row">
+            <div>Cold Coffee — ₹100</div>
+            <button class="add-btn" data-name="Cold Coffee" data-price="100">Add</button>
+          </div>
+
         </div>
       </div>
 
-      <!-- RIGHT: Cart and checkout -->
-      <aside>
-        <div id="checkoutBox" class="card cart" style="display:none">
+      <!-- RIGHT: cart and checkout -->
+      <div>
+        <div class="cart-box" id="checkoutBox" style="display:none;">
           <h3>Your Cart</h3>
-          <div id="cartList"><div class="muted">Cart is empty</div></div>
-
-          <div style="margin-top:10px;display:flex;justify-content:space-between"><div>Total</div><div>₹<span id="cartTotal">0</span></div></div>
-          <div style="display:flex;justify-content:space-between"><div>50% Advance</div><div>₹<span id="advanceTotal">0</span></div></div>
-
-          <div style="margin-top:12px"><button id="openCheckout" class="checkout-btn">Checkout →</button></div>
-
-          <div id="qrSection" style="display:none;margin-top:12px">
-            <div class="muted">Pay 50% advance via UPI/QR. (Show QR image or UPI)</div>
+          <div id="cartList" style="margin:8px 0 12px"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px">
+            <div><strong>Total</strong></div>
+            <div>₹<span id="cartTotal">0</span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <div><strong>50% Advance</strong></div>
+            <div>₹<span id="advanceTotal">0</span></div>
           </div>
 
-          <form id="orderForm" action="https://formspree.io/f/meonqnaw" method="POST" style="display:none;margin-top:12px">
-            <input type="hidden" id="orderData" name="order_list" value="">
-            <input type="hidden" id="totalAmount" name="amount_total" value="">
-            <input type="hidden" id="advanceAmount" name="amount_advance" value="">
-            <label>Full name *</label><input type="text" name="customer_name" required>
-            <label>Mobile *</label><input type="text" name="customer_mobile" required>
-            <label>Address</label><textarea name="address" rows="2"></textarea>
-            <label>Transaction ID (after payment) *</label><input type="text" name="txn_id" required>
-            <div style="margin-top:8px"><button type="submit" class="checkout-btn">Submit Order</button></div>
-          </form>
+          <button id="openCheckout" class="add-btn" style="width:100%;margin-top:12px;background:#b2322a">Checkout →</button>
         </div>
-      </aside>
-    </div>
 
-    <footer>© <span id="yr"></span> Bansal Food Studio — Chawla Complex, Gangoh Rd, Nanauta</footer>
-  </main>
+        <div class="qr-box" id="qrSection" style="display:none;">
+          <h4>Pay 50% Advance (scan QR)</h4>
+          <!-- QR image: ensure images/qr.png exists -->
+          <img src="images/qr.png" alt="Pay QR" style="max-width:220px;border-radius:8px;margin-top:8px">
+          <p style="color:var(--muted);font-size:0.95rem;margin-top:8px">Scan QR and paste TXN ID in the form below after payment.</p>
+        </div>
+
+        <form id="orderForm" action="https://formspree.io/f/meonqnaw" method="POST" style="display:none;">
+          <h4>Finalize Order</h4>
+          <input type="hidden" id="orderData" name="order_list" value="">
+          <input type="hidden" id="totalAmount" name="amount_total" value="0">
+          <input type="hidden" id="advanceAmount" name="amount_advance" value="0">
+
+          <label>Your Name *</label>
+          <input type="text" name="customer_name" required>
+
+          <label>Mobile Number *</label>
+          <input type="text" name="customer_mobile" required>
+
+          <label>Transaction ID (after payment) *</label>
+          <input type="text" name="txn_id" required>
+
+          <button type="submit">Submit Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer style="text-align:center;padding:14px;margin-top:20px;color:#666;background:#fff;border-top:1px solid #eee">
+    © <span id="yr"></span> Bansal Food Studio
+  </footer>
 
   <script>
-    // safe init after DOM loaded
-    document.addEventListener('DOMContentLoaded', function(){
-      document.getElementById('yr').textContent = new Date().getFullYear();
+    // small helpers
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
-      // state
-      var cart = [];
+    // cart
+    let cart = [];
 
-      // helpers
-      function $(id){ return document.getElementById(id); }
-      function renderCart(){
-        var list = $('cartList');
-        var totalEl = $('cartTotal');
-        var advEl = $('advanceTotal');
-        if(!list || !totalEl || !advEl) return;
-        list.innerHTML = '';
-        var total = 0;
-        if(cart.length === 0){
-          list.innerHTML = '<div class="muted">Cart is empty</div>';
-        } else {
-          cart.forEach(function(it, idx){
-            var amt = it.price * it.qty;
-            total += amt;
-            var row = document.createElement('div');
-            row.className = 'cart-item';
-            row.innerHTML = '<div>' + it.name + ' (x' + it.qty + ')</div>' +
-              '<div style="display:flex;gap:8px;align-items:center"><strong>₹' + amt + '</strong>' +
-              '<button style="margin-left:8px" data-idx="' + idx + '">Remove</button></div>';
-            list.appendChild(row);
-          });
-          // attach remove handlers
-          Array.prototype.slice.call(list.querySelectorAll('button[data-idx]')).forEach(function(b){
-            b.addEventListener('click', function(e){
-              var i = Number(this.getAttribute('data-idx'));
-              cart.splice(i,1);
-              updateHidden();
-              renderCart();
-              toggleCheckout();
-            });
-          });
-        }
-        totalEl.textContent = total;
-        advEl.textContent = Math.round(total/2);
+    // Add button handlers - use event delegation for safety
+    document.addEventListener('click', function(e){
+      // Add to cart buttons
+      if(e.target && e.target.classList && e.target.classList.contains('add-btn') && e.target.getAttribute('data-name')){
+        const name = e.target.getAttribute('data-name');
+        const price = parseInt(e.target.getAttribute('data-price') || '0', 10);
+        addToCart(name, price);
       }
-
-      function updateHidden(){
-        var orderDataEl = $('orderData');
-        var totalAmountEl = $('totalAmount');
-        var advanceAmountEl = $('advanceAmount');
-        if(orderDataEl) orderDataEl.value = cart.map(function(i){ return i.name + ' x ' + i.qty + ' = ₹' + (i.price*i.qty); }).join(', ');
-        if(totalAmountEl) totalAmountEl.value = cart.reduce(function(s,i){ return s + i.price*i.qty; },0);
-        if(advanceAmountEl) advanceAmountEl.value = Math.round(cart.reduce(function(s,i){ return s + i.price*i.qty; },0)/2);
+      // remove item from cart (x button)
+      if(e.target && e.target.dataset && e.target.dataset.removeIndex){
+        const idx = parseInt(e.target.dataset.removeIndex, 10);
+        removeItem(idx);
       }
+    });
 
-      function toggleCheckout(){
-        var box = $('checkoutBox');
-        if(box) box.style.display = (cart.length>0)?'block':'none';
+    function addToCart(name, price){
+      // find
+      let it = cart.find(i => i.name === name);
+      if(it){ it.qty += 1; }
+      else{ cart.push({name: name, price: price, qty: 1}); }
+      updateCart();
+      showCheckout();
+    }
+
+    function removeItem(index){
+      if(index >= 0 && index < cart.length){
+        cart.splice(index,1);
       }
+      updateCart();
+      if(cart.length === 0){
+        // hide sections if empty
+        document.getElementById('checkoutBox').style.display = 'none';
+        document.getElementById('qrSection').style.display = 'none';
+        document.getElementById('orderForm').style.display = 'none';
+      }
+    }
 
-      // attach add buttons
-      Array.prototype.slice.call(document.querySelectorAll('.add-btn')).forEach(function(btn){
-        btn.addEventListener('click', function(){
-          var name = this.getAttribute('data-name');
-          var price = Number(this.getAttribute('data-price')) || 0;
-          var found = cart.find(function(x){ return x.name === name; });
-          if(found) found.qty += 1; else cart.push({ name: name, price: price, qty: 1});
-          updateHidden();
-          renderCart();
-          toggleCheckout();
-        });
+    function updateCart(){
+      const list = document.getElementById('cartList');
+      const totalEl = document.getElementById('cartTotal');
+      const advEl = document.getElementById('advanceTotal');
+
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach((it, idx) => {
+        const amt = it.price * it.qty;
+        total += amt;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = '<div style="flex:1">'+it.name+' (x'+it.qty+')</div><div style="min-width:80px;text-align:right">₹'+amt+'</div>';
+        // remove button
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'x';
+        btn.dataset.removeIndex = String(idx);
+        btn.style.marginLeft = '8px';
+        div.appendChild(btn);
+        list.appendChild(div);
       });
 
-      // Checkout button
-      var openCheckout = $('openCheckout');
-      if(openCheckout){
-        openCheckout.addEventListener('click', function(){
-          if(cart.length === 0){ alert('Cart is empty — add items first.'); return; }
-          var qr = $('qrSection');
-          var form = $('orderForm');
-          if(qr) qr.style.display = 'block';
-          if(form) form.style.display = 'block';
-          if(form) form.scrollIntoView({behavior:'smooth'});
-        });
-      }
+      totalEl.textContent = String(total);
+      advEl.textContent = String(Math.round(total / 2));
 
-      // initial
-      renderCart();
-      toggleCheckout();
+      // form hidden fields
+      document.getElementById('orderData').value = cart.map(i => i.name + ' x ' + i.qty + ' = ₹' + (i.price * i.qty)).join(', ');
+      document.getElementById('totalAmount').value = String(total);
+      document.getElementById('advanceAmount').value = String(Math.round(total / 2));
+    }
+
+    function showCheckout(){
+      if(cart.length > 0){
+        document.getElementById('checkoutBox').style.display = 'block';
+        document.getElementById('qrSection').style.display = 'block';
+        document.getElementById('orderForm').style.display = 'block';
+      }
+    }
+
+    // Checkout button scrolls to form (friendly)
+    document.getElementById('openCheckout').addEventListener('click', function(){
+      const form = document.getElementById('orderForm');
+      if(cart.length === 0){
+        alert('Cart is empty. Add items first.');
+        return;
+      }
+      form.scrollIntoView({behavior:'smooth'});
     });
   </script>
 </body>
