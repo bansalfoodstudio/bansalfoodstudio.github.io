@@ -21,15 +21,26 @@ body{
   background:var(--bg);
   color:#222;
 }
-img{max-width:100%;display:block;}
-
-.container{max-width:1100px;margin:0 auto;padding:0 16px;}
-
-/* HEADER */
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+.add-btn{
+  background:var(--accent);color:#fff;
+  border:0;padding:6px 10px;border-radius:6px;
+  font-size:0.8rem;
+}
+.item-row{
+  display:flex;justify-content:space-between;
+  padding:6px 0;border-bottom:1px dashed #ddd;
+}
+.card{
+  background:#fff;padding:16px;margin:14px 0;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+.card h2{margin-top:0;color:var(--accent)}
+/* Header */
 .site-header{
-  background:#fff;
-  border-bottom:1px solid #eee;
-  position:sticky;top:0;z-index:9;
+  background:#fff;border-bottom:1px solid #eee;
+  position:sticky;top:0;z-index:20;
 }
 .site-header .inner{
   display:flex;justify-content:space-between;align-items:center;
@@ -37,113 +48,22 @@ img{max-width:100%;display:block;}
 }
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{height:58px;width:58px;border-radius:8px;}
-.brand h1{margin:0;color:var(--accent);font-family:'Playfair Display',serif;font-size:1.4rem;}
-.tagline{font-family:'Dancing Script',cursive;font-size:1rem;color:var(--gold);margin-top:-5px}
-
+.brand h1{margin:0;font-size:1.4rem;color:var(--accent);font-family:'Playfair Display',serif;}
+.tagline{font-family:'Dancing Script',cursive;font-size:1rem;color:var(--gold)}
 .nav-desktop{display:flex;gap:12px}
 .nav-btn{
-  background:#fff1ea;
-  color:#6a2a25;
-  padding:8px 11px;
-  border-radius:8px;
-  font-weight:600;
+  background:#fff1ea;padding:8px 10px;border-radius:8px;
+  color:#6a2a25;font-weight:600;
 }
 .nav-cta{
-  background:var(--accent);
-  color:#fff;padding:8px 11px;
-  border-radius:8px;font-weight:700;
-}
-
-.hamburger{display:none;background:none;border:0}
-@media(max-width:900px){
-  .nav-desktop{display:none}
-  .hamburger{display:block}
-}
-
-.mobile-menu{
-  display:none;
-  flex-direction:column;
-  padding:12px;
-  background:#fff;
-  border-top:1px solid #eee;
-}
-.mobile-menu a{margin-bottom:8px}
-
-/* TITLE */
-.page-head{text-align:center;padding:20px 0 10px}
-.page-head h2{
-  font-family:'Playfair Display',serif;
-  margin:0;color:var(--accent);
-}
-.page-head p{color:var(--muted);margin-top:4px}
-
-/* MENU CARD STYLE */
-.menu-list{display:grid;gap:14px;margin:20px 0}
-.card{
-  background:var(--card);
-  padding:14px;
-  border-radius:var(--radius);
-  box-shadow:0 8px 20px rgba(0,0,0,0.06);
-}
-.card h3{margin:0;color:var(--accent)}
-.item-row{
-  display:flex;justify-content:space-between;align-items:center;
-  margin:8px 0;
-  padding-bottom:6px;border-bottom:1px dashed #eee;
-}
-.add-btn{
-  background:var(--accent);color:#fff;
-  border:0;padding:6px 10px;
-  border-radius:6px;font-size:0.8rem;
-}
-
-/* CART */
-.cart-box{
-  background:#fff;border-radius:12px;padding:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  margin-top:20px;display:none;
-}
-.cart-item{
-  display:flex;justify-content:space-between;align-items:center;
-  margin:8px 0;
-}
-.cart-item button{
-  background:#ddd;border:0;padding:4px 7px;border-radius:4px;
-}
-
-/* FORM */
-form{
-  background:#fff;padding:16px;margin-top:16px;
-  border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.08);
-}
-form input,form textarea{
-  width:100%;padding:10px;margin:6px 0 14px;
-  border-radius:8px;border:1px solid #ccc;
-}
-form button{
-  background:var(--accent);color:#fff;
-  border:0;padding:10px 16px;border-radius:8px;
-  font-size:1rem;font-weight:600;
-}
-
-/* QR BOX */
-.qr-box{
-  text-align:center;margin-top:20px;
-  background:#fff;padding:16px;border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-}
-
-/* FOOTER */
-footer{
-  text-align:center;padding:20px;background:#fff;
-  border-top:1px solid #eee;margin-top:30px;color:#555;
+  background:var(--accent);color:#fff;font-weight:700;
+  padding:8px 10px;border-radius:8px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="inner container">
     <div class="brand">
@@ -161,172 +81,292 @@ footer{
       <a class="nav-btn" href="contact.html">Contact</a>
       <a class="nav-cta" href="order.html">Order Food</a>
     </nav>
-
-    <button class="hamburger" id="hambtn">
-      <svg width="26" height="26" stroke="#6a2a25" fill="none" stroke-width="2">
-        <path d="M3 6h20M3 13h20M3 20h20"/>
-      </svg>
-    </button>
-  </div>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a class="nav-btn" href="index.html">Home</a>
-    <a class="nav-btn" href="menu.html">Menu</a>
-    <a class="nav-btn" href="about.html">About</a>
-    <a class="nav-btn" href="contact.html">Contact</a>
-    <a class="nav-cta" href="order.html">Order Food</a>
   </div>
 </header>
 
 <div class="container">
+  <h1 style="text-align:center;margin:20px 0;color:#b2322a;font-family:'Playfair Display',serif;">
+    Order Food
+  </h1>
 
-  <div class="page-head">
-    <h2>Order Food</h2>
-    <p>Select Items → Add to Cart → Pay 50% Advance → Submit Order</p>
+  <!-- =======================
+       SECTION 1 — INDIAN
+  ========================== -->
+  <div class="card">
+    <h2>Indian</h2>
+
+    <div class="item-row"><span>Paneer Punjabi — ₹199</span><button class="add-btn" onclick="addToCart('Paneer Punjabi',199)">Add</button></div>
+    <div class="item-row"><span>Matar Paneer — ₹199</span><button class="add-btn" onclick="addToCart('Matar Paneer',199)">Add</button></div>
+    <div class="item-row"><span>Paneer Do Pyaza — ₹200</span><button class="add-btn" onclick="addToCart('Paneer Do Pyaza',200)">Add</button></div>
+    <div class="item-row"><span>Kadhai Paneer — ₹209</span><button class="add-btn" onclick="addToCart('Kadhai Paneer',209)">Add</button></div>
+    <div class="item-row"><span>Paneer Lababdar — ₹209</span><button class="add-btn" onclick="addToCart('Paneer Lababdar',209)">Add</button></div>
+    <div class="item-row"><span>Shahi Paneer — ₹219</span><button class="add-btn" onclick="addToCart('Shahi Paneer',219)">Add</button></div>
+    <div class="item-row"><span>Paneer Pasanda — ₹229</span><button class="add-btn" onclick="addToCart('Paneer Pasanda',229)">Add</button></div>
+    <div class="item-row"><span>Malai Kofta — ₹229</span><button class="add-btn" onclick="addToCart('Malai Kofta',229)">Add</button></div>
+
+    <div class="item-row"><span>Dal Handi (Bansal Spl.) — ₹149</span><button class="add-btn" onclick="addToCart('Dal Handi',149)">Add</button></div>
+    <div class="item-row"><span>Dal Tadka — ₹149</span><button class="add-btn" onclick="addToCart('Dal Tadka',149)">Add</button></div>
+    <div class="item-row"><span>Dal Maharani — ₹159</span><button class="add-btn" onclick="addToCart('Dal Maharani',159)">Add</button></div>
+    <div class="item-row"><span>Dal Bhukhara — ₹169</span><button class="add-btn" onclick="addToCart('Dal Bhukhara',169)">Add</button></div>
+    <div class="item-row"><span>Dal Makhni — ₹179</span><button class="add-btn" onclick="addToCart('Dal Makhni',179)">Add</button></div>
+
+    <div class="item-row"><span>Jeera Aloo — ₹119</span><button class="add-btn" onclick="addToCart('Jeera Aloo',119)">Add</button></div>
+    <div class="item-row"><span>Aloo Ghobhi Adarki — ₹139</span><button class="add-btn" onclick="addToCart('Aloo Ghobhi Adarki',139)">Add</button></div>
+    <div class="item-row"><span>Dam Aloo — ₹149</span><button class="add-btn" onclick="addToCart('Dam Aloo',149)">Add</button></div>
+    <div class="item-row"><span>Veg. Kofta — ₹149</span><button class="add-btn" onclick="addToCart('Veg Kofta',149)">Add</button></div>
+    <div class="item-row"><span>Chana Masala — ₹149</span><button class="add-btn" onclick="addToCart('Chana Masala',149)">Add</button></div>
+    <div class="item-row"><span>Mix Veg — ₹179</span><button class="add-btn" onclick="addToCart('Mix Veg',179)">Add</button></div>
+    <div class="item-row"><span>Mushroom Masala — ₹189</span><button class="add-btn" onclick="addToCart('Mushroom Masala',189)">Add</button></div>
+    <div class="item-row"><span>Mushroom Do Pyaza — ₹199</span><button class="add-btn" onclick="addToCart('Mushroom Do Pyaza',199)">Add</button></div>
+
+    <div class="item-row"><span>Tawa Roti — ₹10</span><button class="add-btn" onclick="addToCart('Tawa Roti',10)">Add</button></div>
+    <div class="item-row"><span>Tawa Roti Butter — ₹15</span><button class="add-btn" onclick="addToCart('Tawa Roti Butter',15)">Add</button></div>
+    <div class="item-row"><span>Aloo Pyaz Paratha — ₹60</span><button class="add-btn" onclick="addToCart('Aloo Pyaz Paratha',60)">Add</button></div>
+    <div class="item-row"><span>Onion Paratha — ₹60</span><button class="add-btn" onclick="addToCart('Onion Paratha',60)">Add</button></div>
+    <div class="item-row"><span>Mix Paratha — ₹60</span><button class="add-btn" onclick="addToCart('Mix Paratha',60)">Add</button></div>
+
+    <div class="item-row"><span>Aloo Pyaz Pakoda — ₹60</span><button class="add-btn" onclick="addToCart('Aloo Pyaz Pakoda',60)">Add</button></div>
+    <div class="item-row"><span>Mix Pakoda — ₹70</span><button class="add-btn" onclick="addToCart('Mix Pakoda',70)">Add</button></div>
+    <div class="item-row"><span>Paneer Pakoda — ₹80</span><button class="add-btn" onclick="addToCart('Paneer Pakoda',80)">Add</button></div>
+  </div>
+<!-- =======================
+       SECTION 2 — RICE
+  ========================== -->
+  <div class="card">
+    <h2>Rice</h2>
+
+    <div class="item-row"><span>Steam Rice — ₹40</span><button class="add-btn" onclick="addToCart('Steam Rice',40)">Add</button></div>
+    <div class="item-row"><span>Jeera Rice — ₹45</span><button class="add-btn" onclick="addToCart('Jeera Rice',45)">Add</button></div>
+    <div class="item-row"><span>Lemon Rice — ₹40</span><button class="add-btn" onclick="addToCart('Lemon Rice',40)">Add</button></div>
+    <div class="item-row"><span>Veg Pulao — ₹80</span><button class="add-btn" onclick="addToCart('Veg Pulao',80)">Add</button></div>
   </div>
 
-  <!-- MENU -->
-  <div class="menu-list">
 
-    <div class="card">
-      <h3>Paneer Punjabi — ₹199</h3>
-      <div class="item-row">
-        <span></span>
-        <button class="add-btn" onclick="addToCart('Paneer Punjabi',199)">Add</button>
-      </div>
+  <!-- =======================
+       SECTION 3 — DAHI & RAITA
+  ========================== -->
+  <div class="card">
+    <h2>Dahi & Raita</h2>
 
-      <h3>Dal Tadka — ₹149</h3>
-      <div class="item-row">
-        <span></span>
-        <button class="add-btn" onclick="addToCart('Dal Tadka',149)">Add</button>
-      </div>
+    <div class="item-row"><span>Plain Dahi — ₹30</span><button class="add-btn" onclick="addToCart('Plain Dahi',30)">Add</button></div>
+    <div class="item-row"><span>Pineapple Raita — ₹50</span><button class="add-btn" onclick="addToCart('Pineapple Raita',50)">Add</button></div>
+    <div class="item-row"><span>Mix Raita — ₹60</span><button class="add-btn" onclick="addToCart('Mix Raita',60)">Add</button></div>
+  </div>
 
-      <h3>Veg Noodles — ₹90</h3>
-      <div class="item-row">
-        <span></span>
-        <button class="add-btn" onclick="addToCart('Veg Noodles',90)">Add</button>
-      </div>
 
-      <h3>Masala Dosa — ₹149</h3>
-      <div class="item-row">
-        <span></span>
-        <button class="add-btn" onclick="addToCart('Masala Dosa',149)">Add</button>
-      </div>
+  <!-- =======================
+       SECTION 4 — SALAD
+  ========================== -->
+  <div class="card">
+    <h2>Salad</h2>
 
+    <div class="item-row"><span>Onion Salad — ₹40</span><button class="add-btn" onclick="addToCart('Onion Salad',40)">Add</button></div>
+    <div class="item-row"><span>Cucumber Salad — ₹30</span><button class="add-btn" onclick="addToCart('Cucumber Salad',30)">Add</button></div>
+    <div class="item-row"><span>Green Salad — ₹60</span><button class="add-btn" onclick="addToCart('Green Salad',60)">Add</button></div>
+  </div>
+
+
+  <!-- =======================
+       SECTION 5 — SOUTH INDIAN
+  ========================== -->
+  <div class="card">
+    <h2>South Indian</h2>
+
+    <div class="item-row"><span>Plain Dosa — ₹120</span><button class="add-btn" onclick="addToCart('Plain Dosa',120)">Add</button></div>
+    <div class="item-row"><span>Masala Dosa — ₹149</span><button class="add-btn" onclick="addToCart('Masala Dosa',149)">Add</button></div>
+    <div class="item-row"><span>Paneer Dosa — ₹169</span><button class="add-btn" onclick="addToCart('Paneer Dosa',169)">Add</button></div>
+    <div class="item-row"><span>Idli (2 pcs) — ₹60</span><button class="add-btn" onclick="addToCart('Idli',60)">Add</button></div>
+  </div>
+
+
+  <!-- =======================
+       SECTION 6 — CONTINENTAL
+  ========================== -->
+  <div class="card">
+    <h2>Continental</h2>
+
+    <div class="item-row"><span>Burger — ₹49</span><button class="add-btn" onclick="addToCart('Burger',49)">Add</button></div>
+    <div class="item-row"><span>Cheese Burger — ₹59</span><button class="add-btn" onclick="addToCart('Cheese Burger',59)">Add</button></div>
+
+    <div class="item-row"><span>Margherita Pizza (M) — ₹149</span><button class="add-btn" onclick="addToCart('Margherita Pizza M',149)">Add</button></div>
+    <div class="item-row"><span>Capsicum Pizza (M) — ₹179</span><button class="add-btn" onclick="addToCart('Capsicum Pizza M',179)">Add</button></div>
+    <div class="item-row"><span>Onion Pizza (M) — ₹179</span><button class="add-btn" onclick="addToCart('Onion Pizza M',179)">Add</button></div>
+    <div class="item-row"><span>Cheese Corn Pizza (M) — ₹179</span><button class="add-btn" onclick="addToCart('Cheese Corn Pizza M',179)">Add</button></div>
+    <div class="item-row"><span>Paneer Pizza (M) — ₹189</span><button class="add-btn" onclick="addToCart('Paneer Pizza M',189)">Add</button></div>
+
+    <div class="item-row"><span>White Sauce Pasta — ₹159</span><button class="add-btn" onclick="addToCart('White Sauce Pasta',159)">Add</button></div>
+    <div class="item-row"><span>Red Sauce Pasta — ₹149</span><button class="add-btn" onclick="addToCart('Red Sauce Pasta',149)">Add</button></div>
+    <div class="item-row"><span>Pink Sauce Pasta — ₹199</span><button class="add-btn" onclick="addToCart('Pink Sauce Pasta',199)">Add</button></div>
+  </div>
+<!-- =======================
+       SECTION 7 — CHINESE
+  ========================== -->
+  <div class="card">
+    <h2>Chinese</h2>
+
+    <div class="item-row"><span>Veg Noodles — ₹90</span><button class="add-btn" onclick="addToCart('Veg Noodles',90)">Add</button></div>
+    <div class="item-row"><span>Hakka Noodles — ₹110</span><button class="add-btn" onclick="addToCart('Hakka Noodles',110)">Add</button></div>
+    <div class="item-row"><span>Chili Garlic Noodles — ₹120</span><button class="add-btn" onclick="addToCart('Chili Garlic Noodles',120)">Add</button></div>
+    <div class="item-row"><span>Singapuri Noodles — ₹130</span><button class="add-btn" onclick="addToCart('Singapuri Noodles',130)">Add</button></div>
+    <div class="item-row"><span>Cheese Noodles — ₹150</span><button class="add-btn" onclick="addToCart('Cheese Noodles',150)">Add</button></div>
+
+    <div class="item-row"><span>Veg Steamed Momos — ₹90</span><button class="add-btn" onclick="addToCart('Veg Steamed Momos',90)">Add</button></div>
+    <div class="item-row"><span>Veg Fried Momos — ₹110</span><button class="add-btn" onclick="addToCart('Veg Fried Momos',110)">Add</button></div>
+    <div class="item-row"><span>Paneer Steamed Momos — ₹120</span><button class="add-btn" onclick="addToCart('Paneer Steamed Momos',120)">Add</button></div>
+    <div class="item-row"><span>Paneer Fried Momos — ₹140</span><button class="add-btn" onclick="addToCart('Paneer Fried Momos',140)">Add</button></div>
+    <div class="item-row"><span>Kurkure Veg Momos — ₹150</span><button class="add-btn" onclick="addToCart('Kurkure Veg Momos',150)">Add</button></div>
+
+    <div class="item-row"><span>Cheese Chili (Dry/Gravy) — ₹170</span><button class="add-btn" onclick="addToCart('Cheese Chili',170)">Add</button></div>
+    <div class="item-row"><span>Manchurian (Dry/Gravy) — ₹170</span><button class="add-btn" onclick="addToCart('Manchurian',170)">Add</button></div>
+    <div class="item-row"><span>Mushroom Chili (Dry/Gravy) — ₹170</span><button class="add-btn" onclick="addToCart('Mushroom Chili',170)">Add</button></div>
+
+    <div class="item-row"><span>Fried Rice — ₹120</span><button class="add-btn" onclick="addToCart('Fried Rice',120)">Add</button></div>
+
+    <div class="item-row"><span>Plain Maggi — ₹50</span><button class="add-btn" onclick="addToCart('Plain Maggi',50)">Add</button></div>
+    <div class="item-row"><span>Veg Maggi — ₹60</span><button class="add-btn" onclick="addToCart('Veg Maggi',60)">Add</button></div>
+    <div class="item-row"><span>Masala Maggi — ₹80</span><button class="add-btn" onclick="addToCart('Masala Maggi',80)">Add</button></div>
+
+    <div class="item-row"><span>Veg Manchow Soup — ₹50</span><button class="add-btn" onclick="addToCart('Veg Manchow Soup',50)">Add</button></div>
+    <div class="item-row"><span>Cream of Tomato — ₹60</span><button class="add-btn" onclick="addToCart('Cream of Tomato',60)">Add</button></div>
+    <div class="item-row"><span>Lung Fung — ₹80</span><button class="add-btn" onclick="addToCart('Lung Fung',80)">Add</button></div>
+    <div class="item-row"><span>Hot & Sour — ₹70</span><button class="add-btn" onclick="addToCart('Hot & Sour',70)">Add</button></div>
+    <div class="item-row"><span>Lemon Coriander — ₹40</span><button class="add-btn" onclick="addToCart('Lemon Coriander Soup',40)">Add</button></div>
+  </div>
+
+
+  <!-- =======================
+       SECTION 8 — CHATPATA SWAD
+  ========================== -->
+  <div class="card">
+    <h2>Chatpata Swad</h2>
+
+    <div class="item-row"><span>Peanut Masala — ₹79</span><button class="add-btn" onclick="addToCart('Peanut Masala',79)">Add</button></div>
+    <div class="item-row"><span>Chana Chaat — ₹99</span><button class="add-btn" onclick="addToCart('Chana Chaat',99)">Add</button></div>
+    <div class="item-row"><span>Chilli Paneer — ₹169</span><button class="add-btn" onclick="addToCart('Chilli Paneer',169)">Add</button></div>
+    <div class="item-row"><span>Mushroom Duplex — ₹299</span><button class="add-btn" onclick="addToCart('Mushroom Duplex',299)">Add</button></div>
+    <div class="item-row"><span>Crispy Corns — ₹249</span><button class="add-btn" onclick="addToCart('Crispy Corns',249)">Add</button></div>
+    <div class="item-row"><span>Veg Bullet — ₹199</span><button class="add-btn" onclick="addToCart('Veg Bullet',199)">Add</button></div>
+  </div>
+
+
+  <!-- =======================
+       SECTION 9 — SNACKS
+  ========================== -->
+  <div class="card">
+    <h2>Snacks</h2>
+
+    <div class="item-row"><span>Chilli Potato — ₹130</span><button class="add-btn" onclick="addToCart('Chilli Potato',130)">Add</button></div>
+    <div class="item-row"><span>Chilli Honey Potato — ₹150</span><button class="add-btn" onclick="addToCart('Chilli Honey Potato',150)">Add</button></div>
+    <div class="item-row"><span>French Fries — ₹80</span><button class="add-btn" onclick="addToCart('French Fries',80)">Add</button></div>
+    <div class="item-row"><span>Peri Peri Fries — ₹90</span><button class="add-btn" onclick="addToCart('Peri Peri Fries',90)">Add</button></div>
+    <div class="item-row"><span>Veg Spring Roll — ₹100</span><button class="add-btn" onclick="addToCart('Veg Spring Roll',100)">Add</button></div>
+    <div class="item-row"><span>Kurkure Spring Roll — ₹140</span><button class="add-btn" onclick="addToCart('Kurkure Spring Roll',140)">Add</button></div>
+  </div>
+<!-- =======================
+       SECTION 10 — DRINKS
+  ========================== -->
+  <div class="card">
+    <h2>Drinks</h2>
+
+    <div class="item-row"><span>Sweet Lassi — ₹40</span>
+      <button class="add-btn" onclick="addToCart('Sweet Lassi',40)">Add</button>
     </div>
 
+    <div class="item-row"><span>Namkeen Lassi — ₹40</span>
+      <button class="add-btn" onclick="addToCart('Namkeen Lassi',40)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Lemon Soda (Sweet) — ₹40</span>
+      <button class="add-btn" onclick="addToCart('Lemon Soda Sweet',40)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Lemon Soda (Salty) — ₹40</span>
+      <button class="add-btn" onclick="addToCart('Lemon Soda Salty',40)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Cold Drinks — MRP</span>
+      <button class="add-btn" onclick="addToCart('Cold Drinks (MRP)',30)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Water Bottle — MRP</span>
+      <button class="add-btn" onclick="addToCart('Water Bottle (MRP)',20)">Add</button>
+    </div>
   </div>
 
-  <!-- CART -->
-  <div class="cart-box" id="checkoutBox">
-    <h3>Your Cart</h3>
-    <ul id="cartList" style="padding-left:0;list-style:none;"></ul>
 
-    <p><strong>Total :</strong> ₹<span id="cartTotal">0</span></p>
-    <p><strong>Advance (50%):</strong> ₹<span id="advanceTotal">0</span></p>
+  <!-- =======================
+       SECTION 11 — CHAI & COFFEE
+  ========================== -->
+  <div class="card">
+    <h2>Chai & Coffee</h2>
+
+    <div class="item-row"><span>Masala Tea — ₹20</span>
+      <button class="add-btn" onclick="addToCart('Masala Tea',20)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Ginger Tea — ₹30</span>
+      <button class="add-btn" onclick="addToCart('Ginger Tea',30)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Green Tea — ₹50</span>
+      <button class="add-btn" onclick="addToCart('Green Tea',50)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Hot Coffee — ₹50</span>
+      <button class="add-btn" onclick="addToCart('Hot Coffee',50)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Cold Coffee — ₹100</span>
+      <button class="add-btn" onclick="addToCart('Cold Coffee',100)">Add</button>
+    </div>
   </div>
 
-  <!-- QR FOR PAYMENT -->
-  <div class="qr-box" id="qrSection" style="display:none;">
-    <h3>Pay 50% Advance</h3>
-    <img src="images/qr.png" style="max-width:240px;margin:auto;border-radius:10px;">
-    <p>After payment, enter Transaction ID below.</p>
+
+  <!-- =======================
+       SECTION 12 — SHAKES
+  ========================== -->
+  <div class="card">
+    <h2>Shakes</h2>
+
+    <div class="item-row"><span>Kitkat Shake — ₹130</span>
+      <button class="add-btn" onclick="addToCart('Kitkat Shake',130)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Oreo Shake — ₹130</span>
+      <button class="add-btn" onclick="addToCart('Oreo Shake',130)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Chocolate Shake — ₹130</span>
+      <button class="add-btn" onclick="addToCart('Chocolate Shake',130)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Vanilla Shake — ₹110</span>
+      <button class="add-btn" onclick="addToCart('Vanilla Shake',110)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Strawberry Shake — ₹110</span>
+      <button class="add-btn" onclick="addToCart('Strawberry Shake',110)">Add</button>
+    </div>
+
+    <div class="item-row"><span>Butterscotch Shake — ₹140</span>
+      <button class="add-btn" onclick="addToCart('Butterscotch Shake',140)">Add</button>
+    </div>
   </div>
 
-  <!-- ORDER FORM -->
-  <form id="orderForm" action="https://formspree.io/f/meonqnaw" method="POST" style="display:none;">
-    <h3>Finalize Order</h3>
 
-    <input type="hidden" id="orderData" name="order_list">
-    <input type="hidden" id="totalAmount" name="amount_total">
-    <input type="hidden" id="advanceAmount" name="amount_advance">
+  <!-- =======================
+       SECTION 13 — THALI
+  ========================== -->
+  <div class="card">
+    <h2>Thali</h2>
 
-    <label>Your Name</label>
-    <input type="text" name="customer_name" required>
+    <div class="item-row"><span>Normal Thali — ₹89</span>
+      <button class="add-btn" onclick="addToCart('Normal Thali',89)">Add</button>
+    </div>
 
-    <label>Mobile Number</label>
-    <input type="text" name="customer_mobile" required>
+    <div class="item-row"><span>Special Thali — ₹149</span>
+      <button class="add-btn" onclick="addToCart('Special Thali',149)">Add</button>
+    </div>
+  </div>
 
-    <label>Transaction ID (after QR payment)</label>
-    <input type="text" name="txn_id" required>
-
-    <button type="submit">Submit Order</button>
-  </form>
-
-</div>
-
-<footer>
-  © <span id="year"></span> Bansal Food Studio | Nanauta
-</footer>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const hambtn=document.getElementById("hambtn");
-const mobileMenu=document.getElementById("mobileMenu");
-
-hambtn.addEventListener("click",()=>{
-  mobileMenu.style.display = mobileMenu.style.display==="flex"?"none":"flex";
-});
-
-/* CART SYSTEM */
-let cart=[];
-
-function addToCart(name,price){
-  let f=cart.find(x=>x.name===name);
-  if(f){f.qty++}
-  else{cart.push({name,price,qty:1});}
-
-  updateCart();
-  showCheckout();
-}
-
-function removeItem(i){
-  cart.splice(i,1);
-  updateCart();
-  if(cart.length===0){
-    document.getElementById("checkoutBox").style.display="none";
-    document.getElementById("qrSection").style.display="none";
-    document.getElementById("orderForm").style.display="none";
-  }
-}
-
-function updateCart(){
-  const list=document.getElementById("cartList");
-  const totalEl=document.getElementById("cartTotal");
-  const advanceEl=document.getElementById("advanceTotal");
-
-  list.innerHTML="";
-  let total=0;
-
-  cart.forEach((item,i)=>{
-    let amt=item.price*item.qty;
-    total+=amt;
-
-    list.innerHTML+=`
-    <li class="cart-item">
-      ${item.name} (x${item.qty})
-      <strong>₹${amt}</strong>
-      <button onclick="removeItem(${i})">x</button>
-    </li>`;
-  });
-
-  totalEl.textContent=total;
-  advanceEl.textContent=Math.round(total/2);
-
-  document.getElementById("orderData").value =
-    cart.map(i => ${i.name} x ${i.qty} = ₹${i.price*i.qty}).join(", ");
-
-  document.getElementById("totalAmount").value = total;
-  document.getElementById("advanceAmount").value = Math.round(total / 2);
-}
-
-function showCheckout(){
-  document.getElementById("checkoutBox").style.display="block";
-  document.getElementById("qrSection").style.display="block";
-  document.getElementById("orderForm").style.display="block";
-}
-</script>
-
-</body>
-</html>
+</div> <!-- container end -->
