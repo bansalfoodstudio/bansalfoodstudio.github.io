@@ -23,6 +23,7 @@
       --maxw:1100px;
       --radius:12px;
       --gap:14px;
+      --cta:#b2322a;
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222;-webkit-font-smoothing:antialiased}
@@ -74,11 +75,35 @@
     .card p.desc{color:var(--muted);margin:0 0 10px;font-size:0.95rem}
 
     .list{display:flex;flex-direction:column;gap:8px}
-    .list-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px dashed #eee}
+    .list-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed #eee;gap:12px}
+    .list-row div:first-child{flex:1}
     .list-row:last-child{border-bottom:0}
     .dish-name{font-weight:600;font-size:0.98rem}
     .dish-desc{display:block;color:var(--muted);font-size:0.88rem;margin-top:4px}
     .dish-price{color:var(--accent);font-weight:700;white-space:nowrap;font-size:0.98rem}
+
+    /* Add button */
+    .add-btn{
+      background:var(--cta);
+      color:#fff;
+      border:0;
+      padding:8px 10px;
+      border-radius:8px;
+      font-weight:700;
+      cursor:pointer;
+      min-width:72px;
+    }
+    .add-btn.small{padding:6px 8px;min-width:56px;font-size:0.92rem}
+
+    /* floating cart (sticky) */
+    .cart-float{
+      position:fixed;right:12px;bottom:12px;z-index:9999;display:flex;flex-direction:column;gap:8px;align-items:flex-end;
+    }
+    .cart-summary{
+      display:flex;align-items:center;gap:10px;background:#fff;padding:10px 12px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    }
+    .cart-badge{background:var(--cta);color:#fff;padding:6px 10px;border-radius:999px;font-weight:700}
+    .place-btn{background:var(--cta);color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
 
     /* full width thali */
     .full-width{grid-column:1/2;padding:0}
@@ -111,6 +136,7 @@
       .dish-price{font-size:1rem}
       .nav-btn{padding:8px 9px;font-size:0.85rem}
       .nav-cta{padding:8px 9px;font-size:0.85rem}
+      .list-row{align-items:center}
     }
 
     /* small fix for very small screens */
@@ -144,7 +170,9 @@
       <a class="nav-btn nav-active" href="menu.html">Menu</a>
       <a class="nav-btn" href="about.html">About Us</a>
       <a class="nav-btn" href="contact.html">Contact</a>
-      <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
+      <!-- Order Food: behaves context-aware (if cart non-empty -> checkout, else -> menu) -->
+      <a id="orderFoodHeader" class="nav-cta" href="menu.html">Order Food</a>
+      <a class="nav-cta" href="book.html">Book a Table</a>
     </nav>
 
     <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
@@ -157,7 +185,8 @@
     <a class="nav-btn nav-active" href="menu.html">Menu</a>
     <a class="nav-btn" href="about.html">About Us</a>
     <a class="nav-btn" href="contact.html">Contact</a>
-    <a class="nav-cta" href="contact.html#reserve">Book a Table</a>
+    <a id="orderFoodMobile" class="nav-cta" href="menu.html">Order Food</a>
+    <a class="nav-cta" href="book.html">Book a Table</a>
   </div>
 </header>
 
@@ -342,7 +371,6 @@
 
           <div style="height:10px"></div>
 
-          <!-- soups: keep together so none get hidden on small screens -->
           <div class="list-row"><div>Veg. Manchow Soup</div><div class="dish-price">₹50</div></div>
           <div class="list-row"><div>Cream of Tomato</div><div class="dish-price">₹60</div></div>
           <div class="list-row"><div>Lung Fung</div><div class="dish-price">₹80</div></div>
@@ -501,10 +529,19 @@
   <div style="max-width:1100px;margin:0 auto;">
     <div style="font-weight:700;color:#222">Bansal Food Studio</div>
     <div style="color:#666;margin:6px 0">Chawla Complex, Gangoh Rd, Nanauta, Saharanpur</div>
-    <div style="color:#666;margin-bottom:8px">Phone: <a href="tel:+917599032032">7599032032</a> · Email: <a href="mailto:bansalfoodstudio@gmail.com">bansalfoodstudio@gmail.com</a></div>
+    <div style="color:#666;margin-bottom:8px">Phone: <a href="tel:+917599032032">7599032032</a> · Email: <a href="mailto:banslfoodstudio@gmail.com">banslfoodstudio@gmail.com</a></div>
     <div style="color:#777">© <span id="yr"></span> Bansal Food Studio</div>
   </div>
 </footer>
+
+<!-- Floating cart widget + injector script -->
+<div class="cart-float" id="cartFloat" aria-hidden="true" style="display:none;">
+  <div class="cart-summary" id="cartSummary">
+    <div class="cart-badge" id="cartCount">0</div>
+    <div style="font-weight:700">items</div>
+  </div>
+  <button class="place-btn" id="placeOrderBtn">Place Order →</button>
+</div>
 
 <script>
   // set year in footer
@@ -525,6 +562,120 @@
       hambtn.setAttribute('aria-expanded', String(mobileMenu.style.display === 'flex'));
     });
   })();
+
+  /***************
+   * CART LOGIC (URL-based cart - Option B)
+   * - Adds +Add button to each .list-row
+   * - Keeps session cart in window._menuCart (transient)
+   * - On Place Order: builds array, encodes JSON, redirects to order.html?cart=ENCODED
+   ***************/
+  (function(){
+    // helper: parse price text like "₹199" or "MRP"
+    function parsePrice(node){
+      if(!node) return 0;
+      const txt = node.textContent || '';
+      const digits = txt.replace(/[^\d.]/g,'').trim();
+      return digits ? Number(digits) : 0;
+    }
+
+    // create Add button element
+    function makeAddBtn(name, price, id){
+      const btn = document.createElement('button');
+      btn.className = 'add-btn';
+      btn.type = 'button';
+      btn.textContent = '+ Add';
+      btn.dataset.itemId = id;
+      btn.dataset.itemName = name;
+      btn.dataset.itemPrice = price;
+      return btn;
+    }
+
+    // build id from name
+    function slugify(name){
+      return name.toLowerCase().replace(/\s+/g,'').replace(/[^\w]/g,'');
+    }
+
+    // init cart object in window (transient)
+    window._menuCart = window._menuCart || {};
+
+    // attach buttons to all existing .list-row elements
+    const rows = document.querySelectorAll('.list-row');
+    rows.forEach(row=>{
+      // skip if already has an add button (safety)
+      if(row.querySelector('.add-btn')) return;
+      // name in first child div, price in child .dish-price
+      const children = row.querySelectorAll('div');
+      if(children.length === 0) return;
+      const nameNode = children[0];
+      const priceNode = row.querySelector('.dish-price') || children[1];
+      const name = (nameNode.textContent || '').trim();
+      const price = parsePrice(priceNode);
+      const id = slugify(name || 'item');
+      // create button and append at end
+      const btn = makeAddBtn(name, price, id);
+      row.appendChild(btn);
+
+      // click handler
+      btn.addEventListener('click', ()=>{
+        // add to transient cart
+        if(!window._menuCart[id]) window._menuCart[id] = { item: name, qty: 0, price: price };
+        window._menuCart[id].qty += 1;
+        // small feedback
+        btn.textContent = 'Added ✓';
+        setTimeout(()=> btn.textContent = '+ Add', 800);
+        // show floating cart
+        updateCartUI();
+      });
+    });
+
+    // update floating cart ui
+    function updateCartUI(){
+      const cntEl = document.getElementById('cartCount');
+      const cartFloat = document.getElementById('cartFloat');
+      const totalCount = Object.values(window._menuCart).reduce((s,i)=>s + (i.qty||0), 0);
+      if(totalCount > 0){
+        cntEl.textContent = totalCount;
+        cartFloat.style.display = 'flex';
+        cartFloat.setAttribute('aria-hidden','false');
+      } else {
+        cartFloat.style.display = 'none';
+        cartFloat.setAttribute('aria-hidden','true');
+      }
+      // update header Order Food behavior: if cart non-empty, header Order goes to checkout
+      const headerLink = document.getElementById('orderFoodHeader');
+      const mobileLink = document.getElementById('orderFoodMobile');
+      if(headerLink) headerLink.href = totalCount>0 ? buildOrderURL() : 'menu.html';
+      if(mobileLink) mobileLink.href = totalCount>0 ? buildOrderURL() : 'menu.html';
+    }
+
+    // build order URL with encoded cart
+    function buildOrderURL(){
+      const arr = Object.values(window._menuCart).filter(i=>i.qty>0).map(i=>({ item:i.item, qty:i.qty, price:i.price }));
+      const qs = encodeURIComponent(JSON.stringify(arr));
+      return order.html?cart=${qs};
+    }
+
+    // Place Order button click -> redirect to order.html with encoded cart
+    const placeBtn = document.getElementById('placeOrderBtn');
+    if(placeBtn){
+      placeBtn.addEventListener('click', ()=>{
+        const arr = Object.values(window._menuCart).filter(i=>i.qty>0);
+        if(arr.length === 0){
+          // nothing in cart -> go to menu
+          window.location.href = 'menu.html';
+          return;
+        }
+        window.location.href = buildOrderURL();
+      });
+    }
+
+    // init UI on load (in case window._menuCart already has items)
+    updateCartUI();
+
+    // expose a small helper for debugging in console (optional)
+    window.__getMenuCart = ()=> JSON.parse(JSON.stringify(window._menuCart || {}));
+  })();
+
 </script>
 
 </body>
