@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Order Food — Bansal Food Studio</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root{
+      --accent:#b2322a;
+      --muted:#666;
+      --bg:#faf8f6;
+      --card:#fff;
+      --radius:12px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
+    header{background:#fff;border-bottom:1px solid #eee}
+    .inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand h1{margin:0;color:var(--accent);font-family:serif}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:600}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700}
+    .page-head{padding:26px 0 10px}
+    .page-head h2{margin:0;color:var(--accent);font-family:serif}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+    .section-title{font-weight:700;color:var(--accent);margin:8px 0 6px;font-size:1.05rem}
+    .item-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed #eee}
+    .item-left{display:flex;flex-direction:column}
+    .item-name{font-weight:600}
+    .item-desc{color:var(--muted);font-size:0.9rem}
+    .add-btn{background:var(--accent);color:#fff;border:0;padding:6px 10px;border-radius:6px;cursor:pointer}
+    .cart-box{background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+    .cart-item{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px;align-items:center}
+    .cart-item button{background:#ddd;border:0;border-radius:6px;padding:6px;cursor:pointer}
+    .qr-box{background:#fff;padding:12px;border-radius:10px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,0.06);margin-top:12px}
+    form{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.06);margin-top:12px}
+    input,textarea{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #ccc}
+    button[type="submit"]{background:var(--accent);color:#fff;border:0;padding:10px 12px;border-radius:8px;cursor:pointer}
+    @media(max-width:920px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner container">
+      <div class="brand">
+        <h1>Bansal Food Studio</h1>
+      </div>
+      <nav>
+        <a class="nav-btn" href="index.html">Home</a>
+        <a class="nav-btn" href="menu.html">Menu</a>
+        <a class="nav-btn" href="about.html">About</a>
+        <a class="nav-btn" href="contact.html">Contact</a>
+        <a class="nav-btn" href="book.html">Book a Table</a>
+        <a class="nav-cta" href="order.html">Order Food</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-head">
+      <h2>Order Food Online</h2>
+      <p style="color:var(--muted);margin-top:6px">Choose items (section-wise), add to cart and submit order. 50% advance required — scan the QR shown at checkout.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- LEFT: full menu sections (text only, each item Add button + price) -->
+      <div>
+        <div class="card">
+          <h3>Menu — Add to cart</h3>
+
+          <!-- SECTION: Indian -->
+          <div class="section-title">Indian</div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Paneer Punjabi</div><div class="item-desc">—</div></div>
+            <div>
+              <span style="margin-right:8px">₹199</span>
+              <button class="add-btn" data-name="Paneer Punjabi" data-price="199">Add</button>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Matar Paneer</div></div>
+            <div><span style="margin-right:8px">₹199</span><button class="add-btn" data-name="Matar Paneer" data-price="199">Add</button></div>
+          </div>
+
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Paneer Do Pyaza</div></div>
+            <div><span style="margin-right:8px">₹200</span><button class="add-btn" data-name="Paneer Do Pyaza" data-price="200">Add</button></div>
+          </div>
+
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Kadhai Paneer</div></div>
+            <div><span style="margin-right:8px">₹209</span><button class="add-btn" data-name="Kadhai Paneer" data-price="209">Add</button></div>
+          </div>
+
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Paneer Lababdar</div></div>
+            <div><span style="margin-right:8px">₹209</span><button class="add-btn" data-name="Paneer Lababdar" data-price="209">Add</button></div>
+          </div>
+
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Shahi Paneer</div></div>
+            <div><span style="margin-right:8px">₹219</span><button class="add-btn" data-name="Shahi Paneer" data-price="219">Add</button></div>
+          </div>
+
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Paneer Pasanda</div></div>
+            <div><span style="margin-right:8px">₹229</span><button class="add-btn" data-name="Paneer Pasanda" data-price="229">Add</button></div>
+          </div>
+
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Malai Kofta</div></div>
+            <div><span style="margin-right:8px">₹229</span><button class="add-btn" data-name="Malai Kofta" data-price="229">Add</button></div>
+          </div>
+
+          <div style="height:8px"></div>
+
+          <!-- dals -->
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Dal Handi (Bansal Spl.)</div></div>
+            <div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Dal Handi (Bansal Spl.)" data-price="149">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Dal Tadka</div></div>
+            <div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Dal Tadka" data-price="149">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Dal Maharani</div></div>
+            <div><span style="margin-right:8px">₹159</span><button class="add-btn" data-name="Dal Maharani" data-price="159">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Dal Bhukhara</div></div>
+            <div><span style="margin-right:8px">₹169</span><button class="add-btn" data-name="Dal Bhukhara" data-price="169">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Dal Makhni</div></div>
+            <div><span style="margin-right:8px">₹179</span><button class="add-btn" data-name="Dal Makhni" data-price="179">Add</button></div>
+          </div>
+
+          <div style="height:8px"></div>
+
+          <!-- veg sides -->
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Jeera Aloo</div></div>
+            <div><span style="margin-right:8px">₹119</span><button class="add-btn" data-name="Jeera Aloo" data-price="119">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Aloo Ghobhi Adarki</div></div>
+            <div><span style="margin-right:8px">₹139</span><button class="add-btn" data-name="Aloo Ghobhi Adarki" data-price="139">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Dam Aloo</div></div>
+            <div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Dam Aloo" data-price="149">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Veg. Kofta</div></div>
+            <div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Veg. Kofta" data-price="149">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Chana Masala</div></div>
+            <div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Chana Masala" data-price="149">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Mix Veg</div></div>
+            <div><span style="margin-right:8px">₹179</span><button class="add-btn" data-name="Mix Veg" data-price="179">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Mushroom Masala</div></div>
+            <div><span style="margin-right:8px">₹189</span><button class="add-btn" data-name="Mushroom Masala" data-price="189">Add</button></div>
+          </div>
+          <div class="item-row">
+            <div class="item-left"><div class="item-name">Mushroom Do Pyaza</div></div>
+            <div><span style="margin-right:8px">₹199</span><button class="add-btn" data-name="Mushroom Do Pyaza" data-price="199">Add</button></div>
+          </div>
+
+          <div style="height:10px"></div>
+
+          <!-- rotis/parathas -->
+          <div class="item-row"><div class="item-left"><div class="item-name">Tawa Roti</div></div><div><span style="margin-right:8px">₹10</span><button class="add-btn" data-name="Tawa Roti" data-price="10">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Tawa Roti Butter</div></div><div><span style="margin-right:8px">₹15</span><button class="add-btn" data-name="Tawa Roti Butter" data-price="15">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Aloo Pyaz Paratha</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Aloo Pyaz Paratha" data-price="60">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Onion Paratha</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Onion Paratha" data-price="60">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Mix Paratha</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Mix Paratha" data-price="60">Add</button></div></div>
+
+          <div style="height:10px"></div>
+
+          <!-- pakodas -->
+          <div class="item-row"><div class="item-left"><div class="item-name">Aloo Pyaz Pakoda</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Aloo Pyaz Pakoda" data-price="60">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Mix Pakoda</div></div><div><span style="margin-right:8px">₹70</span><button class="add-btn" data-name="Mix Pakoda" data-price="70">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Paneer Pakoda</div></div><div><span style="margin-right:8px">₹80</span><button class="add-btn" data-name="Paneer Pakoda" data-price="80">Add</button></div></div>
+
+          <!-- ================= Rice -->
+          <div class="section-title" style="margin-top:12px">Rice</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Steam Rice</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Steam Rice" data-price="40">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Jeera Rice</div></div><div><span style="margin-right:8px">₹45</span><button class="add-btn" data-name="Jeera Rice" data-price="45">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Lemon Rice</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Lemon Rice" data-price="40">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg. Pulao</div></div><div><span style="margin-right:8px">₹80</span><button class="add-btn" data-name="Veg. Pulao" data-price="80">Add</button></div></div>
+
+          <!-- Dahi & Raita -->
+          <div class="section-title" style="margin-top:12px">Dahi & Raita</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Plain Dahi</div></div><div><span style="margin-right:8px">₹30</span><button class="add-btn" data-name="Plain Dahi" data-price="30">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Pineapple Raita</div></div><div><span style="margin-right:8px">₹50</span><button class="add-btn" data-name="Pineapple Raita" data-price="50">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Mix Raita</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Mix Raita" data-price="60">Add</button></div></div>
+
+          <!-- Salad -->
+          <div class="section-title" style="margin-top:12px">Salad</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Onion Salad</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Onion Salad" data-price="40">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Cucumber Salad</div></div><div><span style="margin-right:8px">₹30</span><button class="add-btn" data-name="Cucumber Salad" data-price="30">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Green Salad</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Green Salad" data-price="60">Add</button></div></div>
+
+          <!-- South Indian -->
+          <div class="section-title" style="margin-top:12px">South Indian</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Plain Dosa</div></div><div><span style="margin-right:8px">₹120</span><button class="add-btn" data-name="Plain Dosa" data-price="120">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Masala Dosa</div></div><div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Masala Dosa" data-price="149">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Paneer Dosa</div></div><div><span style="margin-right:8px">₹169</span><button class="add-btn" data-name="Paneer Dosa" data-price="169">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Idli (2 pcs)</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Idli (2 pcs)" data-price="60">Add</button></div></div>
+
+          <!-- Continental -->
+          <div class="section-title" style="margin-top:12px">Continental</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Burger</div></div><div><span style="margin-right:8px">₹49</span><button class="add-btn" data-name="Burger" data-price="49">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Cheese Burger</div></div><div><span style="margin-right:8px">₹59</span><button class="add-btn" data-name="Cheese Burger" data-price="59">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Margherita Pizza (M)</div></div><div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Margherita Pizza (M)" data-price="149">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Capsicum Pizza (M)</div></div><div><span style="margin-right:8px">₹179</span><button class="add-btn" data-name="Capsicum Pizza (M)" data-price="179">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Onion Pizza (M)</div></div><div><span style="margin-right:8px">₹179</span><button class="add-btn" data-name="Onion Pizza (M)" data-price="179">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Cheese Corn Pizza (M)</div></div><div><span style="margin-right:8px">₹179</span><button class="add-btn" data-name="Cheese Corn Pizza (M)" data-price="179">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Paneer Pizza (M)</div></div><div><span style="margin-right:8px">₹189</span><button class="add-btn" data-name="Paneer Pizza (M)" data-price="189">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">White Sauce Pasta</div></div><div><span style="margin-right:8px">₹159</span><button class="add-btn" data-name="White Sauce Pasta" data-price="159">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Red Sauce Pasta</div></div><div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Red Sauce Pasta" data-price="149">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Pink Sauce Pasta</div></div><div><span style="margin-right:8px">₹199</span><button class="add-btn" data-name="Pink Sauce Pasta" data-price="199">Add</button></div></div>
+
+          <!-- Chinese -->
+          <div class="section-title" style="margin-top:12px">Chinese</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg. Noodles</div></div><div><span style="margin-right:8px">₹90</span><button class="add-btn" data-name="Veg. Noodles" data-price="90">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Hakka Noodles</div></div><div><span style="margin-right:8px">₹110</span><button class="add-btn" data-name="Hakka Noodles" data-price="110">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Chili Garlic Noodles</div></div><div><span style="margin-right:8px">₹120</span><button class="add-btn" data-name="Chili Garlic Noodles" data-price="120">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Singapuri Noodles</div></div><div><span style="margin-right:8px">₹130</span><button class="add-btn" data-name="Singapuri Noodles" data-price="130">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Cheese Noodles</div></div><div><span style="margin-right:8px">₹150</span><button class="add-btn" data-name="Cheese Noodles" data-price="150">Add</button></div></div>
+
+          <div style="height:6px"></div>
+
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg. Steamed Momos</div></div><div><span style="margin-right:8px">₹90</span><button class="add-btn" data-name="Veg. Steamed Momos" data-price="90">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg. Fried Momos</div></div><div><span style="margin-right:8px">₹110</span><button class="add-btn" data-name="Veg. Fried Momos" data-price="110">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Paneer Steamed Momos</div></div><div><span style="margin-right:8px">₹120</span><button class="add-btn" data-name="Paneer Steamed Momos" data-price="120">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Paneer Fried Momos</div></div><div><span style="margin-right:8px">₹140</span><button class="add-btn" data-name="Paneer Fried Momos" data-price="140">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Kurkure Veg. Momos</div></div><div><span style="margin-right:8px">₹150</span><button class="add-btn" data-name="Kurkure Veg. Momos" data-price="150">Add</button></div></div>
+
+          <div style="height:6px"></div>
+
+          <div class="item-row"><div class="item-left"><div class="item-name">Cheese Chili (Dry/Gravy)</div></div><div><span style="margin-right:8px">₹170</span><button class="add-btn" data-name="Cheese Chili (Dry/Gravy)" data-price="170">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Manchurian (Dry/Gravy)</div></div><div><span style="margin-right:8px">₹170</span><button class="add-btn" data-name="Manchurian (Dry/Gravy)" data-price="170">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Mushroom Chili (Dry/Gravy)</div></div><div><span style="margin-right:8px">₹170</span><button class="add-btn" data-name="Mushroom Chili (Dry/Gravy)" data-price="170">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Fried Rice</div></div><div><span style="margin-right:8px">₹120</span><button class="add-btn" data-name="Fried Rice" data-price="120">Add</button></div></div>
+
+          <div style="height:6px"></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Plain Maggi</div></div><div><span style="margin-right:8px">₹50</span><button class="add-btn" data-name="Plain Maggi" data-price="50">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg. Maggi</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Veg. Maggi" data-price="60">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Masala Maggi</div></div><div><span style="margin-right:8px">₹80</span><button class="add-btn" data-name="Masala Maggi" data-price="80">Add</button></div></div>
+
+          <div style="height:6px"></div>
+
+          <!-- soups -->
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg. Manchow Soup</div></div><div><span style="margin-right:8px">₹50</span><button class="add-btn" data-name="Veg. Manchow Soup" data-price="50">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Cream of Tomato</div></div><div><span style="margin-right:8px">₹60</span><button class="add-btn" data-name="Cream of Tomato" data-price="60">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Lung Fung</div></div><div><span style="margin-right:8px">₹80</span><button class="add-btn" data-name="Lung Fung" data-price="80">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Hot & Sour</div></div><div><span style="margin-right:8px">₹70</span><button class="add-btn" data-name="Hot & Sour" data-price="70">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Lemon Coriander</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Lemon Coriander" data-price="40">Add</button></div></div>
+
+          <!-- Chatpata Swad -->
+          <div class="section-title" style="margin-top:12px">Chatpata Swad</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Peanut Masala</div></div><div><span style="margin-right:8px">₹79</span><button class="add-btn" data-name="Peanut Masala" data-price="79">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Chana Chaat</div></div><div><span style="margin-right:8px">₹99</span><button class="add-btn" data-name="Chana Chaat" data-price="99">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Chilli Paneer</div></div><div><span style="margin-right:8px">₹169</span><button class="add-btn" data-name="Chilli Paneer" data-price="169">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Mushroom Duplex</div></div><div><span style="margin-right:8px">₹299</span><button class="add-btn" data-name="Mushroom Duplex" data-price="299">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Crispy Corns</div></div><div><span style="margin-right:8px">₹249</span><button class="add-btn" data-name="Crispy Corns" data-price="249">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg. Bullet</div></div><div><span style="margin-right:8px">₹199</span><button class="add-btn" data-name="Veg. Bullet" data-price="199">Add</button></div></div>
+
+          <!-- Snacks -->
+          <div class="section-title" style="margin-top:12px">Snacks</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Chilli Potato</div></div><div><span style="margin-right:8px">₹130</span><button class="add-btn" data-name="Chilli Potato" data-price="130">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Chilli Honey Potato</div></div><div><span style="margin-right:8px">₹150</span><button class="add-btn" data-name="Chilli Honey Potato" data-price="150">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">French Fries</div></div><div><span style="margin-right:8px">₹80</span><button class="add-btn" data-name="French Fries" data-price="80">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Peri Peri Fries</div></div><div><span style="margin-right:8px">₹90</span><button class="add-btn" data-name="Peri Peri Fries" data-price="90">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Veg Spring Roll</div></div><div><span style="margin-right:8px">₹100</span><button class="add-btn" data-name="Veg Spring Roll" data-price="100">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Kurkure Spring Roll</div></div><div><span style="margin-right:8px">₹140</span><button class="add-btn" data-name="Kurkure Spring Roll" data-price="140">Add</button></div></div>
+
+          <!-- Drinks -->
+          <div class="section-title" style="margin-top:12px">Drinks</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Sweet Lassi</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Sweet Lassi" data-price="40">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Namkeen Lassi</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Namkeen Lassi" data-price="40">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Lemon Soda (Sweet)</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Lemon Soda (Sweet)" data-price="40">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Lemon Soda (Salty)</div></div><div><span style="margin-right:8px">₹40</span><button class="add-btn" data-name="Lemon Soda (Salty)" data-price="40">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Cold Drinks</div></div><div><span style="margin-right:8px">MRP</span><button class="add-btn" data-name="Cold Drinks" data-price="0">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Water</div></div><div><span style="margin-right:8px">MRP</span><button class="add-btn" data-name="Water" data-price="0">Add</button></div></div>
+
+          <!-- Chai & Coffee -->
+          <div class="section-title" style="margin-top:12px">Chai & Coffee</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Masala Tea</div></div><div><span style="margin-right:8px">₹20</span><button class="add-btn" data-name="Masala Tea" data-price="20">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Ginger Tea</div></div><div><span style="margin-right:8px">₹30</span><button class="add-btn" data-name="Ginger Tea" data-price="30">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Green Tea</div></div><div><span style="margin-right:8px">₹50</span><button class="add-btn" data-name="Green Tea" data-price="50">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Hot Coffee</div></div><div><span style="margin-right:8px">₹50</span><button class="add-btn" data-name="Hot Coffee" data-price="50">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Cold Coffee</div></div><div><span style="margin-right:8px">₹100</span><button class="add-btn" data-name="Cold Coffee" data-price="100">Add</button></div></div>
+
+          <!-- Shakes -->
+          <div class="section-title" style="margin-top:12px">Shakes</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Kitkat Shake</div></div><div><span style="margin-right:8px">₹130</span><button class="add-btn" data-name="Kitkat Shake" data-price="130">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Oreo Shake</div></div><div><span style="margin-right:8px">₹130</span><button class="add-btn" data-name="Oreo Shake" data-price="130">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Chocolate Shake</div></div><div><span style="margin-right:8px">₹130</span><button class="add-btn" data-name="Chocolate Shake" data-price="130">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Vanilla Shake</div></div><div><span style="margin-right:8px">₹110</span><button class="add-btn" data-name="Vanilla Shake" data-price="110">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Strawberry Shake</div></div><div><span style="margin-right:8px">₹110</span><button class="add-btn" data-name="Strawberry Shake" data-price="110">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Butterscotch Shake</div></div><div><span style="margin-right:8px">₹140</span><button class="add-btn" data-name="Butterscotch Shake" data-price="140">Add</button></div></div>
+
+          <!-- Thali -->
+          <div class="section-title" style="margin-top:12px">Thali</div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Normal Thali</div><div class="item-desc">4 Roti, Dal, Sabji, Rice, Salad</div></div><div><span style="margin-right:8px">₹89</span><button class="add-btn" data-name="Normal Thali" data-price="89">Add</button></div></div>
+          <div class="item-row"><div class="item-left"><div class="item-name">Special Thali</div><div class="item-desc">4 Butter Roti, Raita, Dal Makhni/Paneer, Rice, Mix Veg, Salad, Papad, Sweet</div></div><div><span style="margin-right:8px">₹149</span><button class="add-btn" data-name="Special Thali" data-price="149">Add</button></div></div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: cart + QR + form -->
+      <div>
+        <div class="cart-box" id="checkoutBox" style="display:none;">
+          <h3>Your Cart</h3>
+          <div id="cartList" style="margin:8px 0 12px"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px">
+            <div><strong>Total</strong></div>
+            <div>₹<span id="cartTotal">0</span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <div><strong>50% Advance</strong></div>
+            <div>₹<span id="advanceTotal">0</span></div>
+          </div>
+
+          <button id="openCheckout" class="add-btn" style="width:100%;margin-top:12px;background:#b2322a">Checkout →</button>
+        </div>
+
+        <div class="qr-box" id="qrSection" style="display:none;">
+          <h4>Pay 50% Advance (scan QR)</h4>
+          <img src="images/qr.png" alt="Pay QR" style="max-width:220px;border-radius:8px;margin-top:8px">
+          <p style="color:var(--muted);font-size:0.95rem;margin-top:8px">Scan the QR or use UPI and paste TXN reference in the form below.</p>
+        </div>
+
+        <form id="orderForm" action="https://formspree.io/f/meonqnaw" method="POST" style="display:none;">
+          <h4>Finalize Order</h4>
+          <input type="hidden" id="orderData" name="order_list" value="">
+          <input type="hidden" id="totalAmount" name="amount_total" value="0">
+          <input type="hidden" id="advanceAmount" name="amount_advance" value="0">
+
+          <label>Your Name *</label>
+          <input type="text" name="customer_name" required>
+
+          <label>Mobile Number *</label>
+          <input type="text" name="customer_mobile" required>
+
+          <label>Transaction ID (after payment) *</label>
+          <input type="text" name="txn_id" required>
+
+          <button type="submit">Submit Order</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <footer style="text-align:center;padding:14px;margin-top:20px;color:#666;background:#fff;border-top:1px solid #eee">
+    © <span id="yr"></span> Bansal Food Studio
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // cart data
+    let cart = [];
+
+    // Event delegation for add buttons and remove
+    document.addEventListener('click', function(e){
+      // add buttons: have data-name attribute
+      const t = e.target;
+      if(t && t.matches && t.matches('.add-btn') && t.dataset && t.dataset.name){
+        const name = t.dataset.name;
+        const price = parseInt(t.dataset.price || '0', 10) || 0;
+        addToCart(name, price);
+      }
+
+      // remove button inside cart (dataset.removeIndex)
+      if(t && t.dataset && t.dataset.removeIndex !== undefined){
+        const idx = parseInt(t.dataset.removeIndex, 10);
+        removeItem(idx);
+      }
+    });
+
+    function addToCart(name, price){
+      const it = cart.find(i=>i.name===name);
+      if(it){ it.qty += 1; } else { cart.push({name, price, qty:1}); }
+      updateCart();
+      showCheckout();
+    }
+
+    function removeItem(index){
+      if(index>=0 && index < cart.length) cart.splice(index,1);
+      updateCart();
+      if(cart.length === 0){
+        document.getElementById('checkoutBox').style.display = 'none';
+        document.getElementById('qrSection').style.display = 'none';
+        document.getElementById('orderForm').style.display = 'none';
+      }
+    }
+
+    function updateCart(){
+      const list = document.getElementById('cartList');
+      const totalEl = document.getElementById('cartTotal');
+      const advEl = document.getElementById('advanceTotal');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach((it, idx) => {
+        const amt = it.price * it.qty;
+        total += amt;
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML = '<div style="flex:1">'+it.name+' (x'+it.qty+')</div><div style="min-width:80px;text-align:right">₹'+amt+'</div>';
+        const btn = document.createElement('button');
+        btn.type='button';
+        btn.textContent='x';
+        btn.dataset.removeIndex = String(idx);
+        btn.style.marginLeft='8px';
+        row.appendChild(btn);
+        list.appendChild(row);
+      });
+
+      totalEl.textContent = String(total);
+      advEl.textContent = String(Math.round(total/2));
+
+      document.getElementById('orderData').value = cart.map(i=> i.name + ' x ' + i.qty + ' = ₹' + (i.price * i.qty)).join(', ');
+      document.getElementById('totalAmount').value = String(total);
+      document.getElementById('advanceAmount').value = String(Math.round(total/2));
+    }
+
+    function showCheckout(){
+      if(cart.length > 0){
+        document.getElementById('checkoutBox').style.display = 'block';
+        document.getElementById('qrSection').style.display = 'block';
+        document.getElementById('orderForm').style.display = 'block';
+      }
+    }
+
+    // Checkout button scroll to form
+    document.getElementById('openCheckout').addEventListener('click', function(){
+      if(cart.length === 0){ alert('Cart is empty. Add items first.'); return; }
+      document.getElementById('orderForm').scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
