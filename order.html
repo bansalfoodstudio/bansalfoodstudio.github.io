@@ -371,42 +371,51 @@ body{
   </div> <!-- container end -->
 <script>
 // MOBILE MENU
-document.getElementById("hambtn").addEventListener("click",()=>{
-  const m=document.getElementById("mobileMenu");
-  m.style.display = (m.style.display==="flex" ? "none" : "flex");
-});
+const hambtn = document.getElementById("hambtn");
+if (hambtn) {
+  hambtn.addEventListener("click", () => {
+    const m = document.getElementById("mobileMenu");
+    if (!m) return;
+    m.style.display = (m.style.display === "flex" ? "none" : "flex");
+  });
+}
 
 // CART SYSTEM
-let cart=[];
+let cart = [];
 
-function addToCart(name,price){
-  let item = cart.find(x=>x.name===name);
-  if(item){ item.qty++; }
-  else{ cart.push({name,price,qty:1}); }
+function addToCart(name, price) {
+  let item = cart.find(x => x.name === name);
+  if (item) { item.qty++; }
+  else { cart.push({ name, price, qty: 1 }); }
 
   updateCart();
   showCheckout();
 }
 
-function removeItem(i){
-  cart.splice(i,1);
+function removeItem(i) {
+  cart.splice(i, 1);
   updateCart();
-  if(cart.length===0){
-    document.getElementById("checkoutBox").style.display="none";
-    document.getElementById("qrSection").style.display="none";
-    document.getElementById("orderForm").style.display="none";
+  if (cart.length === 0) {
+    const cb = document.getElementById("checkoutBox");
+    const qr = document.getElementById("qrSection");
+    const of = document.getElementById("orderForm");
+    if (cb) cb.style.display = "none";
+    if (qr) qr.style.display = "none";
+    if (of) of.style.display = "none";
   }
 }
 
-function updateCart(){
-  const list=document.getElementById("cartList");
-  const totalEl=document.getElementById("cartTotal");
-  const advanceEl=document.getElementById("advanceTotal");
+function updateCart() {
+  const list = document.getElementById("cartList");
+  const totalEl = document.getElementById("cartTotal");
+  const advanceEl = document.getElementById("advanceTotal");
 
-  list.innerHTML="";
-  let total=0;
+  if (!list || !totalEl || !advanceEl) return;
 
-  cart.forEach((item,i)=>{
+  list.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, i) => {
     let amt = item.price * item.qty;
     total += amt;
 
@@ -419,21 +428,26 @@ function updateCart(){
   });
 
   totalEl.textContent = total;
-  advanceEl.textContent = Math.round(total/2);
+  advanceEl.textContent = Math.round(total / 2);
 
-  document.getElementById("orderData").value =
-    cart.map(i => ${i.name} x ${i.qty} = ₹${i.price*i.qty}).join(", ");
+  // <-- FIXED: use backtick template string here
+  const orderDataEl = document.getElementById("orderData");
+  if (orderDataEl) {
+    orderDataEl.value = cart.map(i => ${i.name} x ${i.qty} = ₹${i.price * i.qty}).join(", ");
+  }
 
-  document.getElementById("totalAmount").value = total;
-  document.getElementById("advanceAmount").value = Math.round(total/2);
+  const totalAmountEl = document.getElementById("totalAmount");
+  const advanceAmountEl = document.getElementById("advanceAmount");
+  if (totalAmountEl) totalAmountEl.value = total;
+  if (advanceAmountEl) advanceAmountEl.value = Math.round(total / 2);
 }
 
-function showCheckout(){
-  document.getElementById("checkoutBox").style.display="block";
-  document.getElementById("qrSection").style.display="block";
-  document.getElementById("orderForm").style.display="block";
+function showCheckout() {
+  const cb = document.getElementById("checkoutBox");
+  const qr = document.getElementById("qrSection");
+  const of = document.getElementById("orderForm");
+  if (cb) cb.style.display = "block";
+  if (qr) qr.style.display = "block";
+  if (of) of.style.display = "block";
 }
 </script>
-
-</body>
-</html>
