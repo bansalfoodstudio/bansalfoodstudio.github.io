@@ -1,10 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Order Food — Bansal Food Studio</title>
   <link rel="icon" type="image/png" href="/favicon.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -13,373 +16,408 @@
       --bg:#faf8f6;
       --card:#fff;
       --maxw:1100px;
-      --radius:12px;
+      --radius:10px;
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222}
     a{text-decoration:none;color:inherit}
-    .container{max-width:var(--maxw);margin:0 auto;padding:18px}
+    img{max-width:100%;display:block}
 
-    /* header */
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+
+    /* Header */
     .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
-    .site-header .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:56px;border-radius:8px}
-    .brand h1{margin:0;font-size:1.15rem;color:var(--accent)}
-    .nav{display:flex;gap:8px;flex-wrap:wrap}
-    .nav a{background:#fff1ea;color:#6a2a25;padding:8px 10px;border-radius:8px;font-weight:600}
+    .brand img{height:56px;width:56px;border-radius:8px;object-fit:cover}
+    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--accent)}
+    .tagline{font-size:0.9rem;color:var(--muted);margin-top:2px}
 
-    /* layout */
-    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:18px}
-    @media(max-width:920px){ .grid{grid-template-columns:1fr} }
+    .nav{display:flex;gap:10px;align-items:center}
+    .nav a{background:#fff1ea;color:#6a2a25;padding:8px 12px;border-radius:8px;font-weight:600}
+    .nav .cta{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;font-weight:700}
 
-    /* items list */
-    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
-    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-    .items{display:grid;gap:10px}
-    .item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;border:1px solid #f1ecea}
-    .item .left{max-width:68%}
-    .item .name{font-weight:700}
-    .item .price{color:var(--accent);font-weight:700}
-    .item button{background:var(--accent);color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+    .hamburger{display:none;border:0;background:transparent;padding:8px}
+    @media(max-width:900px){ .nav{display:none} .hamburger{display:block} }
 
-    /* cart */
-    .cart-header{font-weight:700;margin-bottom:10px}
-    .cart-list{display:flex;flex-direction:column;gap:8px;max-height:420px;overflow:auto;padding-right:6px}
-    .cart-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fff9f7;border:1px solid #f3e7e3}
-    .qty-controls{display:inline-flex;gap:6px;align-items:center}
-    .qty-controls button{width:28px;height:28px;border-radius:6px;border:1px solid #ddd;background:#fff}
-    .summary{margin-top:12px;padding-top:12px;border-top:1px dashed #eee}
+    /* Layout */
+    main{padding:26px 0}
+    .page-head{max-width:var(--maxw);margin:0 auto;padding:0 16px 16px}
+    .page-head h2{margin:0;font-family:'Playfair Display',serif;color:var(--accent)}
+    .page-head p{color:var(--muted);margin:8px 0 0}
 
-    /* payment box */
-    .qr{display:block;margin:10px auto;max-width:200px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.08)}
-    .pay-note{font-size:0.95rem;color:var(--muted);margin-top:8px}
+    .layout{max-width:var(--maxw);margin:18px auto;display:grid;grid-template-columns:1fr 320px;gap:18px;padding:0 16px}
+    @media(max-width:980px){ .layout{grid-template-columns:1fr} }
 
-    /* form */
-    .order-form label{display:block;font-weight:600;margin:8px 0 4px}
-    .order-form input, .order-form textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #ddd}
-    .submit-btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;margin-top:10px}
+    /* Menu list */
+    .menu-card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+    .section-title{font-weight:700;margin:8px 0 12px;color:var(--accent)}
+    .menu-list{display:flex;flex-direction:column;gap:8px}
+    .item-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px dashed #eee}
+    .item-row:last-child{border-bottom:0}
+    .item-left{display:flex;flex-direction:column}
+    .item-name{font-weight:600}
+    .item-price{color:var(--accent);font-weight:700;min-width:68px;text-align:right}
+    .add-btn{background:#e8f0ff;border:0;color:#2b4ea1;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;margin-left:12px}
+    .add-btn.small{padding:6px 8px;font-size:0.95rem}
 
-    footer{padding:20px;text-align:center;color:#666;margin-top:20px;background:#fff;border-top:1px solid #eee}
+    /* Cart */
+    .cart-card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+    .cart-title{font-weight:700;margin-bottom:10px}
+    .cart-empty{color:var(--muted)}
+    .cart-items{display:flex;flex-direction:column;gap:10px;max-height:420px;overflow:auto;padding-right:6px}
+    .cart-item{display:flex;justify-content:space-between;gap:8px;align-items:center}
+    .qty-controls{display:flex;gap:6px;align-items:center}
+    .small-btn{background:#f1f1f1;border:0;padding:6px 8px;border-radius:6px;cursor:pointer}
+    .total-row{display:flex;justify-content:space-between;margin-top:12px;font-weight:700;color:var(--accent)}
+    .checkout-btn{background:var(--accent);color:#fff;border:0;padding:10px 12px;border-radius:8px;width:100%;font-weight:700;margin-top:10px;cursor:pointer}
+
+    /* Checkout area hidden until needed */
+    .checkout-box{margin-top:12px;border-top:1px dashed #eee;padding-top:12px}
+    .qr{display:block;margin:10px auto 6px;width:180px;height:180px;object-fit:contain;background:#fff;padding:6px;border-radius:8px;border:1px solid #eee}
+    .form-field{display:flex;flex-direction:column;margin-bottom:8px}
+    input[type="text"], input[type="tel"], textarea{padding:8px;border-radius:6px;border:1px solid #ddd;font-size:0.95rem}
+    label.small{font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+
+    /* notes, footer */
+    .notes{color:var(--muted);margin-top:12px;font-size:0.95rem}
+    footer{padding:18px 16px;text-align:center;color:#666;margin-top:28px;background:#fff;border-top:1px solid #eee}
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="inner container">
-      <div class="brand">
-        <img src="images/logo.png" alt="logo">
-        <div>
-          <h1>Bansal Food Studio</h1>
-        </div>
-      </div>
-
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="menu.html">Menu</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="book.html">Book a Table</a>
-        <a href="order.html" style="background:var(--accent);color:#fff">Order Food</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <h2 style="margin:12px 0 6px">Order Food Online</h2>
-    <p style="color:var(--muted);margin:0 0 14px">Choose items, add to cart and submit your order. 50% advance is required — scan the QR shown at checkout.</p>
-
-    <div class="grid">
-      <!-- left: items -->
+<header class="site-header">
+  <div class="inner container">
+    <div class="brand">
+      <img src="images/logo.png" alt="logo">
       <div>
-        <div class="card">
-          <div class="section-title">
-            <div><strong>Menu — Add to cart</strong></div>
-            <div style="color:var(--muted);font-size:0.95rem">Tap "Add" to include item</div>
-          </div>
+        <h1>Bansal Food Studio</h1>
+        <div class="tagline">Dil Aur Pet Dono Khush</div>
+      </div>
+    </div>
 
-          <div class="items" id="itemsList">
-            <!-- JS will render items here -->
-          </div>
-        </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a class="cta" href="contact.html#reserve">Book a Table</a>
+      <a class="cta" href="order.html">Order Food</a>
+    </nav>
 
-        <div style="height:12px"></div>
+    <button class="hamburger" id="hambtn" aria-label="menu">☰</button>
+  </div>
+</header>
 
-        <div class="card">
-          <div style="font-weight:700;margin-bottom:8px">Notes</div>
-          <div style="color:var(--muted);font-size:0.95rem">
-            • After submitting order, you will receive order summary on the phone/email you provide.<br>
-            • Please make 50% advance payment using the QR below (or UPI app) and add TXN reference in the form.
-          </div>
-        </div>
+<main>
+  <div class="page-head container">
+    <h2>Order Food Online</h2>
+    <p>Choose items, add to cart and submit your order. <strong>50% advance required</strong> — scan the QR shown at checkout.</p>
+  </div>
+
+  <div class="layout">
+
+    <!-- Left: Menu -->
+    <div class="menu-card">
+      <div class="section-title">Menu — Add to cart</div>
+
+      <div id="menuContainer" class="menu-list" aria-live="polite">
+        <!-- JS will inject full menu here -->
       </div>
 
-      <!-- right: cart & checkout -->
-      <aside>
-        <div class="card">
-          <div class="cart-header">Your Cart</div>
-          <div class="cart-list" id="cartList">
-            <div style="color:var(--muted)">Cart is empty</div>
-          </div>
-
-          <div class="summary" id="summaryBox" style="display:none">
-            <div style="display:flex;justify-content:space-between"><div>Subtotal</div><div id="subtotal">₹0</div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:6px"><div>Advance (50%)</div><div id="advance">₹0</div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:6px;font-weight:700"><div>Total</div><div id="total">₹0</div></div>
-
-            <div style="margin-top:12px">
-              <div style="font-weight:700">Pay 50% Advance</div>
-              <img src="images/upi-qr.png" alt="UPI QR" class="qr" onerror="this.style.display='none'">
-              <div class="pay-note">Scan the QR to pay. After payment, enter transaction reference below and submit your order.</div>
-            </div>
-
-            <form id="orderForm" class="order-form" method="POST" action="">
-              <!-- form fields -->
-              <label for="name">Name *</label>
-              <input id="name" name="name" required>
-
-              <label for="phone">Phone * (WhatsApp)</label>
-              <input id="phone" name="phone" required pattern="[0-9+ -]{7,20}">
-
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email">
-
-              <label for="address">Delivery / Pickup Address</label>
-              <textarea id="address" name="address" rows="2"></textarea>
-
-              <label for="txnid">UPI Txn Ref (after paying advance)</label>
-              <input id="txnid" name="txnid" placeholder="e.g. UPI12345">
-
-              <!-- hidden: order data -->
-              <input type="hidden" id="order_summary" name="order_summary">
-              <input type="hidden" id="order_subtotal" name="order_subtotal">
-              <input type="hidden" id="order_advance" name="order_advance">
-              <input type="hidden" id="order_total" name="order_total">
-
-              <button type="submit" class="submit-btn">Submit Order</button>
-            </form>
-
-            <div id="formStatus" style="margin-top:10px;color:var(--muted)"></div>
-          </div>
-        </div>
-      </aside>
+      <div class="notes">
+        <ul>
+          <li>After submitting order, you will receive order summary on the phone / email you provide.</li>
+          <li>Please make <strong>50% advance payment</strong> using the QR below (or UPI app) and add TXN reference in the form while submitting.</li>
+        </ul>
+      </div>
     </div>
-  </main>
 
-  <footer>
-    © <span id="yr"></span> Bansal Food Studio · Chawla Complex, Gangoh Rd, Nanauta
-  </footer>
+    <!-- Right: Cart -->
+    <aside class="cart-card">
+      <div class="cart-title">Your Cart</div>
+      <div id="cartItems" class="cart-items">
+        <div class="cart-empty">Cart is empty</div>
+      </div>
+
+      <div id="cartTotals" class="total-row" style="display:none">
+        <div>Subtotal</div><div id="subtotalAmt">₹0</div>
+      </div>
+      <div id="advanceRow" style="display:none" class="total-row">
+        <div>50% Advance</div><div id="advanceAmt">₹0</div>
+      </div>
+
+      <button id="openCheckout" class="checkout-btn" disabled>Checkout →</button>
+
+      <div id="checkoutBox" class="checkout-box" style="display:none">
+        <div style="font-weight:700;margin-bottom:6px">Confirm & Pay (50% advance)</div>
+
+        <!-- QR -->
+        <img src="images/qr.png" alt="Pay QR" class="qr" id="qrImg" onerror="this.style.display='none'">
+
+        <div style="text-align:center;color:var(--muted);font-size:0.95rem;margin-bottom:8px">
+          Scan QR to pay 50% advance OR use UPI &amp; paste TXN reference below.
+        </div>
+
+        <!-- Checkout form (posts to Formspree) -->
+        <form id="orderForm" method="POST" action="https://formspree.io/f/meonqnaw">
+          <div class="form-field">
+            <label class="small">Full name *</label>
+            <input type="text" name="name" id="custName" required>
+          </div>
+
+          <div class="form-field">
+            <label class="small">Phone number *</label>
+            <input type="tel" name="phone" id="custPhone" placeholder="e.g. 7599032032" required>
+          </div>
+
+          <div class="form-field">
+            <label class="small">Delivery address</label>
+            <textarea name="address" id="custAddress" rows="2"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label class="small">UPI TXN reference (after paying 50%)</label>
+            <input type="text" name="txn" id="txnRef" placeholder="e.g. TXN12345">
+          </div>
+
+          <!-- Hidden fields: items JSON, subtotal, advance -->
+          <input type="hidden" name="order_items" id="formItems">
+          <input type="hidden" name="subtotal" id="formSubtotal">
+          <input type="hidden" name="advance_amount" id="formAdvance">
+
+          <button type="submit" id="submitOrder" class="checkout-btn" style="background:#2b4ea1">Submit Order</button>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+</main>
+
+<footer>
+  © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta
+</footer>
 
 <script>
-/* ---------- CONFIG ---------- */
-const formspreeEndpoint = "https://formspree.io/f/meonqnaw"; // UPDATED per your message
-const upiQrPath = "images/upi-qr.png"; // ensure this exists
-
-/* ---------- MENU ITEMS ----------
-   Edit this list if you want to add/remove items.
-   Keep id unique.
+/* ========= data: menu items =========
+   Keep these in JS so the page uses the same prices you maintain here.
+   (You can modify prices in this array later.)
 */
 const MENU = [
-  {id:'i1', name:'Paneer Punjabi', price:199},
-  {id:'i2', name:'Matar Paneer', price:199},
-  {id:'i3', name:'Paneer Do Pyaza', price:200},
-  {id:'i4', name:'Kadhai Paneer', price:209},
-  {id:'i5', name:'Paneer Lababdar', price:209},
-  {id:'i6', name:'Shahi Paneer', price:219},
-  {id:'i7', name:'Margherita Pizza (M)', price:149},
-  {id:'i8', name:'Capsicum Pizza (M)', price:179},
-  {id:'i9', name:'Onion Pizza (M)', price:179},
-  {id:'i10', name:'Paneer Pizza (M)', price:189},
-  {id:'i11', name:'White Sauce Pasta', price:159},
-  {id:'i12', name:'Red Sauce Pasta', price:149},
-  {id:'i13', name:'Pink Sauce Pasta', price:199},
-  {id:'i14', name:'Veg. Noodles', price:90},
-  {id:'i15', name:'Hakka Noodles', price:110},
-  {id:'i16', name:'Chili Garlic Noodles', price:120},
-  {id:'i17', name:'Veg. Steamed Momos', price:90},
-  {id:'i18', name:'Veg. Fried Momos', price:110},
-  {id:'i19', name:'Chilli Potato', price:130},
-  {id:'i20', name:'French Fries', price:80},
-  {id:'i21', name:'Sweet Lassi', price:40},
-  {id:'i22', name:'Masala Tea', price:20},
-  {id:'i23', name:'Normal Thali', price:89},
-  {id:'i24', name:'Special Thali', price:149}
+  {id:'ind-paneer-punjabi', name:'Paneer Punjabi', price:199, section:'Indian'},
+  {id:'ind-matar-paneer', name:'Matar Paneer', price:199, section:'Indian'},
+  {id:'ind-paneer-dopyaza', name:'Paneer Do Pyaza', price:200, section:'Indian'},
+  {id:'ind-kadhai-paneer', name:'Kadhai Paneer', price:209, section:'Indian'},
+  {id:'ind-paneer-lababdar', name:'Paneer Lababdar', price:209, section:'Indian'},
+  {id:'ind-shahi-paneer', name:'Shahi Paneer', price:219, section:'Indian'},
+  {id:'ind-paneer-pasanda', name:'Paneer Pasanda', price:229, section:'Indian'},
+  {id:'ind-malai-kofta', name:'Malai Kofta', price:229, section:'Indian'},
+  {id:'dal-handi', name:'Dal Handi (Bansal Spl.)', price:149, section:'Indian'},
+  {id:'dal-tadka', name:'Dal Tadka', price:149, section:'Indian'},
+  {id:'jeera-aloo', name:'Jeera Aloo', price:119, section:'Indian'},
+  {id:'tawa-roti', name:'Tawa Roti', price:10, section:'Indian'},
+
+  {id:'rice-steam', name:'Steam Rice', price:40, section:'Rice'},
+  {id:'rice-jeera', name:'Jeera Rice', price:45, section:'Rice'},
+  {id:'rice-pulao', name:'Veg. Pulao', price:80, section:'Rice'},
+
+  {id:'south-plain-dosa', name:'Plain Dosa', price:120, section:'South Indian'},
+  {id:'south-masala-dosa', name:'Masala Dosa', price:149, section:'South Indian'},
+  {id:'south-paneer-dosa', name:'Paneer Dosa', price:169, section:'South Indian'},
+
+  {id:'cont-burger', name:'Burger', price:49, section:'Continental'},
+  {id:'cont-cheese-burger', name:'Cheese Burger', price:59, section:'Continental'},
+  {id:'cont-margherita', name:'Margherita Pizza (M)', price:149, section:'Continental'},
+  {id:'cont-pasta-white', name:'White Sauce Pasta', price:159, section:'Continental'},
+
+  {id:'china-veg-noodles', name:'Veg. Noodles', price:90, section:'Chinese'},
+  {id:'china-hakka', name:'Hakka Noodles', price:110, section:'Chinese'},
+  {id:'china-momos-steam', name:'Veg. Steamed Momos', price:90, section:'Chinese'},
+  {id:'china-cheese-chili', name:'Cheese Chili (Dry/Gravy)', price:170, section:'Chinese'},
+
+  {id:'snacks-chilli-potato', name:'Chilli Potato', price:130, section:'Snacks'},
+  {id:'drinks-sweet-lassi', name:'Sweet Lassi', price:40, section:'Drinks'},
+  {id:'chai-masala', name:'Masala Tea', price:20, section:'Chai & Coffee'},
+
+  {id:'shakes-kkt', name:'Kitkat Shake', price:130, section:'Shakes'},
+  {id:'thali-normal', name:'Normal Thali', price:89, section:'Thali'},
+  {id:'thali-special', name:'Special Thali', price:149, section:'Thali'},
 ];
 
-/* ---------- state ---------- */
-let cart = {}; // {id: qty}
+/* ========= utilities & render ========= */
+const MENU_CONTAINER = document.getElementById('menuContainer');
+const CART_ITEMS_EL = document.getElementById('cartItems');
+const SUBTOTAL_EL = document.getElementById('subtotalAmt');
+const ADVANCE_EL = document.getElementById('advanceAmt');
+const CART_TOTAL_ROW = document.getElementById('cartTotals');
+const ADVANCE_ROW = document.getElementById('advanceRow');
+const OPEN_CHECKOUT_BTN = document.getElementById('openCheckout');
+const CHECKOUT_BOX = document.getElementById('checkoutBox');
+const ORDER_FORM = document.getElementById('orderForm');
 
-/* ---------- helpers ---------- */
-function money(n){ return '₹' + Number(n).toFixed(0); }
+const FORM_ITEMS = document.getElementById('formItems');
+const FORM_SUBTOTAL = document.getElementById('formSubtotal');
+const FORM_ADVANCE = document.getElementById('formAdvance');
 
-function renderItems(){
-  const wrap = document.getElementById('itemsList');
-  wrap.innerHTML = '';
-  MENU.forEach(it=>{
-    const el = document.createElement('div');
-    el.className='item';
-    el.innerHTML = `
-      <div class="left">
-        <div class="name">${it.name}</div>
-        <div style="color:var(--muted);font-size:0.92rem">${money(it.price)}</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-        <button data-id="${it.id}">Add</button>
-      </div>
-    `;
-    wrap.appendChild(el);
+const MOBILE_BREAK = 980;
+const ADVANCE_PERCENT = 50; // percent required
+
+// load/save cart from localStorage
+function loadCart(){ try{ return JSON.parse(localStorage.getItem('bfs_cart')||'{}'); }catch(e){return {} } }
+function saveCart(cart){ localStorage.setItem('bfs_cart', JSON.stringify(cart)); }
+
+let cart = loadCart(); // { itemId: qty }
+
+function groupBySection(list){
+  const out = {};
+  list.forEach(item => {
+    if(!out[item.section]) out[item.section]=[];
+    out[item.section].push(item);
   });
+  return out;
+}
 
-  // attach add buttons
-  wrap.querySelectorAll('button[data-id]').forEach(btn=>{
-    btn.addEventListener('click', e=>{
-      const id = e.currentTarget.dataset.id;
-      addToCart(id);
+function renderMenu(){
+  const bySection = groupBySection(MENU);
+  MENU_CONTAINER.innerHTML = '';
+  for(const section of Object.keys(bySection)){
+    const secTitle = document.createElement('div'); secTitle.className='section-title'; secTitle.textContent = section + ' — Tap "Add" to include item';
+    MENU_CONTAINER.appendChild(secTitle);
+    const arr = bySection[section];
+    arr.forEach(it=>{
+      const row = document.createElement('div'); row.className='item-row';
+      const left = document.createElement('div'); left.className='item-left';
+      const name = document.createElement('div'); name.className='item-name'; name.textContent = it.name;
+      left.appendChild(name);
+      const right = document.createElement('div'); right.style.display='flex'; right.style.alignItems='center';
+      const price = document.createElement('div'); price.className='item-price'; price.textContent = '₹' + it.price;
+      const btn = document.createElement('button'); btn.className='add-btn small'; btn.textContent='Add';
+      btn.addEventListener('click', ()=>{ addToCart(it.id); });
+      right.appendChild(price); right.appendChild(btn);
+      row.appendChild(left); row.appendChild(right);
+      MENU_CONTAINER.appendChild(row);
     });
-  });
+  }
 }
 
-function addToCart(id){
-  cart[id] = (cart[id]||0) + 1;
+function addToCart(itemId){
+  cart[itemId] = (cart[itemId]||0)+1;
+  saveCart(cart);
   renderCart();
 }
 
-function removeFromCart(id){
-  delete cart[id];
+function removeFromCart(itemId){
+  delete cart[itemId];
+  saveCart(cart);
   renderCart();
 }
 
-function changeQty(id, delta){
-  cart[id] = (cart[id]||0) + delta;
-  if(cart[id] <= 0) delete cart[id];
+function changeQty(itemId, delta){
+  cart[itemId] = (cart[itemId]||0)+delta;
+  if(cart[itemId] <= 0) delete cart[itemId];
+  saveCart(cart);
   renderCart();
 }
+
+function findMenuItem(id){ return MENU.find(x=>x.id===id); }
 
 function renderCart(){
-  const wrap = document.getElementById('cartList');
-  wrap.innerHTML = '';
+  // clear
+  CART_ITEMS_EL.innerHTML = '';
   const keys = Object.keys(cart);
-  if(keys.length === 0){
-    wrap.innerHTML = '<div style="color:var(--muted)">Cart is empty</div>';
-    document.getElementById('summaryBox').style.display = 'none';
+  if(keys.length===0){
+    CART_ITEMS_EL.innerHTML = '<div class="cart-empty">Cart is empty</div>';
+    OPEN_CHECKOUT_BTN.disabled = true;
+    CART_TOTAL_ROW.style.display='none';
+    ADVANCE_ROW.style.display='none';
     return;
   }
-  document.getElementById('summaryBox').style.display = 'block';
+
+  // build list
   let subtotal = 0;
+  keys.forEach(k=>{
+    const qty = cart[k];
+    const it = findMenuItem(k);
+    if(!it) return;
+    subtotal += it.price * qty;
 
-  keys.forEach(id=>{
-    const qty = cart[id];
-    const item = MENU.find(m=>m.id===id);
-    const row = document.createElement('div');
-    row.className = 'cart-row';
-    row.innerHTML = `
-      <div style="max-width:60%">
-        <div style="font-weight:700">${item.name}</div>
-        <div style="color:var(--muted);font-size:0.92rem">${money(item.price)} × ${qty} = ${money(item.price*qty)}</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-        <div class="qty-controls">
-          <button data-action="dec" data-id="${id}">−</button>
-          <div style="padding:6px 8px;border-radius:6px;background:#fff;border:1px solid #eee;margin:0 6px">${qty}</div>
-          <button data-action="inc" data-id="${id}">+</button>
-        </div>
-        <button data-action="del" data-id="${id}" style="background:#fff;border:1px solid #f1d8d6;padding:6px;border-radius:6px;color:var(--muted)">Remove</button>
-      </div>
-    `;
-    wrap.appendChild(row);
-    subtotal += item.price * qty;
+    const div = document.createElement('div'); div.className='cart-item';
+    const left = document.createElement('div'); left.style.flex='1';
+    left.innerHTML = <div style="font-weight:700">${it.name}</div><div style="font-size:0.9rem;color:var(--muted)">₹${it.price} x ${qty} = ₹${it.price*qty}</div>;
+
+    const controls = document.createElement('div'); controls.className='qty-controls';
+    const minus = document.createElement('button'); minus.className='small-btn'; minus.textContent='−';
+    minus.onclick = ()=> changeQty(k,-1);
+    const plus = document.createElement('button'); plus.className='small-btn'; plus.textContent='+';
+    plus.onclick = ()=> changeQty(k,1);
+    const del = document.createElement('button'); del.className='small-btn'; del.textContent='Remove';
+    del.onclick = ()=> removeFromCart(k);
+    controls.appendChild(minus); controls.appendChild(document.createTextNode(' ')); controls.appendChild(plus); controls.appendChild(document.createTextNode(' ')); controls.appendChild(del);
+
+    div.appendChild(left); div.appendChild(controls);
+    CART_ITEMS_EL.appendChild(div);
   });
 
-  // attach qty buttons
-  wrap.querySelectorAll('button[data-action]').forEach(b=>{
-    b.addEventListener('click', e=>{
-      const id = e.currentTarget.dataset.id;
-      const act = e.currentTarget.dataset.action;
-      if(act==='inc') changeQty(id, +1);
-      else if(act==='dec') changeQty(id, -1);
-      else if(act==='del') removeFromCart(id);
-    });
-  });
+  SUBTOTAL_EL.textContent = '₹' + subtotal;
+  CART_TOTAL_ROW.style.display='flex';
+  const advance = Math.ceil(subtotal * (ADVANCE_PERCENT/100));
+  ADVANCE_EL.textContent = '₹' + advance;
+  ADVANCE_ROW.style.display='flex';
+  OPEN_CHECKOUT_BTN.disabled = false;
 
-  const advance = Math.ceil(subtotal * 0.5);
-  const total = subtotal;
-  document.getElementById('subtotal').textContent = money(subtotal);
-  document.getElementById('advance').textContent = money(advance);
-  document.getElementById('total').textContent = money(total);
+  // fill hidden inputs
+  FORM_SUBTOTAL.value = subtotal;
+  FORM_ADVANCE.value = advance;
+  FORM_ITEMS.value = JSON.stringify( keys.map(k=>{
+    const it = findMenuItem(k); return {id:k, name: it ? it.name : k, qty: cart[k], price: it ? it.price : 0};
+  }));
 
-  // hidden form fields
-  document.getElementById('order_subtotal').value = subtotal;
-  document.getElementById('order_advance').value = advance;
-  document.getElementById('order_total').value = total;
-
-  // order summary text
-  const summaryLines = keys.map(id=>{
-    const item = MENU.find(m=>m.id===id);
-    return ${item.name} x ${cart[id]} = ${money(item.price*cart[id])};
-  });
-  document.getElementById('order_summary').value = summaryLines.join('\n') + '\n\nSubtotal: ' + subtotal + '\nAdvance(50%): ' + advance + '\nTotal: ' + total;
+  // CART items element accessible
+  return;
 }
 
-/* ---------- form submit: send to Formspree ---------- */
+// open checkout area
+OPEN_CHECKOUT_BTN.addEventListener('click', ()=>{
+  CHECKOUT_BOX.style.display = CHECKOUT_BOX.style.display==='none'?'block':'none';
+  if(CHECKOUT_BOX.style.display==='block'){
+    // scroll to checkout on mobile
+    setTimeout(()=> window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth'}), 120);
+  }
+});
+
+// form submit: add validation that cart not empty and phone present
+ORDER_FORM.addEventListener('submit', function(e){
+  const keys = Object.keys(cart);
+  if(keys.length===0){
+    e.preventDefault(); alert('Cart is empty. Please add items.');
+    return;
+  }
+  const phone = document.getElementById('custPhone').value.trim();
+  const name = document.getElementById('custName').value.trim();
+  if(!name || !phone){
+    e.preventDefault(); alert('Please enter name and phone number.');
+    return;
+  }
+  // allow submit (Formspree will process)
+  // optionally, you can append extra text to an email body input - but hidden inputs are already set.
+  // after submit, we can clear cart in onSuccess if you want (Formspree will redirect back unless configured)
+});
+
+// set year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// initial render
+renderMenu();
+renderCart();
+
+/* Accessibility: simple mobile menu toggle */
 (function(){
-  renderItems();
-  renderCart();
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  const form = document.getElementById('orderForm');
-  const status = document.getElementById('formStatus');
-
-  form.addEventListener('submit', function(ev){
-    ev.preventDefault();
-
-    // validation: cart not empty
-    if(Object.keys(cart).length === 0){
-      status.style.color = 'crimson';
-      status.textContent = 'Your cart is empty — please add items before submitting.';
-      return;
-    }
-
-    status.style.color = 'var(--muted)';
-    status.textContent = 'Submitting order...';
-
-    // prepare payload
-    const data = new FormData(form);
-    // ensure hidden fields updated
-    data.set('order_summary', document.getElementById('order_summary').value);
-    data.set('order_subtotal', document.getElementById('order_subtotal').value);
-    data.set('order_advance', document.getElementById('order_advance').value);
-    data.set('order_total', document.getElementById('order_total').value);
-
-    // POST to Formspree
-    fetch(formspreeEndpoint, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json'
-      },
-      body: data
-    }).then(r=>r.json()).then(res=>{
-      // Formspree returns various shapes; treat success if no errors
-      if(res.ok || res.success || (res._links && res._links.self) || (res.message && res.message.toLowerCase().includes('thank'))){
-        status.style.color = 'green';
-        status.innerHTML = 'Order submitted successfully. We will contact you soon. Please keep your payment reference ready.';
-        // clear cart and form
-        cart = {};
-        renderCart();
-        form.reset();
-      } else {
-        status.style.color = 'crimson';
-        if(res.errors && res.errors.length) status.textContent = res.errors.map(e=>e.message).join('; ');
-        else status.textContent = 'Submission failed — please try again or call 7599032032.';
-      }
-    }).catch(err=>{
-      status.style.color = 'crimson';
-      status.textContent = 'Network error. Try again or call 7599032032.';
-      console.error(err);
-    });
+  const hambtn = document.getElementById('hambtn');
+  if(!hambtn) return;
+  hambtn.addEventListener('click', ()=>{
+    alert('Use navigation links to move — mobile menu is intentionally simple.');
   });
 })();
 </script>
-
 </body>
 </html>
