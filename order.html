@@ -1,399 +1,309 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Order Food — Bansal Food Studio</title>
-<link rel="icon" type="image/png" href="favicon.png">
-
-<style>
-:root{
-  --accent:#b2322a;
-  --gold:#cfa76e;
-  --muted:#666;
-  --bg:#faf8f6;
-  --card:#fff;
-  --radius:12px;
-}
-body{
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:var(--bg);
-  color:#222;
-}
-.container{max-width:1100px;margin:0 auto;padding:0 16px;}
-
-.site-header{
-  background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:9;
-}
-.site-header .inner{
-  display:flex;justify-content:space-between;align-items:center;padding:10px 16px;
-}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:58px;width:58px;border-radius:8px;}
-.brand h1{margin:0;color:var(--accent);font-family:'Playfair Display',serif;font-size:1.4rem;}
-.tagline{font-family:'Dancing Script',cursive;font-size:1rem;color:var(--gold);margin-top:-5px}
-
-.nav-desktop{display:flex;gap:12px}
-.nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 11px;border-radius:8px;font-weight:600}
-.nav-cta{background:var(--accent);color:#fff;padding:8px 11px;border-radius:8px;font-weight:700}
-
-.hamburger{display:none;background:none;border:0}
-@media(max-width:900px){
-  .nav-desktop{display:none}
-  .hamburger{display:block}
-}
-.mobile-menu{
-  display:none;flex-direction:column;padding:12px;background:#fff;border-top:1px solid #eee
-}
-.mobile-menu a{margin-bottom:8px}
-
-.page-head{text-align:center;padding:20px 0 10px}
-.page-head h2{font-family:'Playfair Display',serif;margin:0;color:var(--accent)}
-.page-head p{color:var(--muted);margin-top:4px}
-
-.category{
-  background:#fff;padding:16px;margin-top:18px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)
-}
-.category h3{margin:0 0 12px;color:var(--accent);font-family:'Playfair Display',serif}
-
-.item-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:8px 0;border-bottom:1px dashed #eee
-}
-.item-row:last-child{border-bottom:0}
-
-.add-btn{
-  background:var(--accent);color:#fff;border:0;padding:6px 10px;
-  border-radius:6px;font-size:0.8rem;cursor:pointer
-}
-
-.cart-box{
-  background:#fff;border-radius:12px;padding:16px;margin-top:26px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  display:none;
-}
-.cart-item{
-  display:flex;justify-content:space-between;align-items:center;margin:8px 0;
-}
-.cart-item button{background:#ddd;border:0;padding:4px 7px;border-radius:4px}
-
-.qr-box{
-  text-align:center;margin-top:20px;background:#fff;padding:16px;border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);display:none;
-}
-
-form{
-  background:#fff;padding:16px;margin-top:16px;border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);display:none;
-}
-form input,form textarea{
-  width:100%;padding:10px;margin:6px 0 14px;border-radius:8px;border:1px solid #ccc
-}
-form button{
-  background:var(--accent);color:#fff;border:0;padding:10px 16px;
-  border-radius:8px;font-size:1rem;font-weight:600;
-}
-
-footer{text-align:center;padding:20px;background:#fff;border-top:1px solid #eee;margin-top:30px;color:#555}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Order Food — Bansal Food Studio</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root{
+      --accent:#b2322a;
+      --muted:#666;
+      --bg:#faf8f6;
+      --card:#fff;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    /* header */
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:9}
+    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;width:56px;border-radius:8px;object-fit:cover}
+    .brand h1{margin:0;color:var(--accent);font-family:serif;font-size:1.2rem}
+    .tagline{font-size:0.95rem;color:#cfa76e;margin-top:-4px}
+    .nav-desktop{display:flex;gap:12px;align-items:center}
+    .nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 10px;border-radius:8px;font-weight:600;text-decoration:none}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;font-weight:700;text-decoration:none}
+    .hamburger{display:none;border:0;background:transparent;padding:8px}
+    @media(max-width:900px){ .nav-desktop{display:none} .hamburger{display:block} .mobile-menu{display:none} }
+    .page-head{padding:18px 0 6px}
+    .page-head h2{margin:0;color:var(--accent);font-size:1.5rem}
+    .page-head p{color:var(--muted);margin:6px 0 0}
+    /* layout */
+    .layout{display:flex;gap:18px;margin-top:16px;align-items:flex-start}
+    .menu-col{flex:1}
+    .cart-col{width:320px}
+    .card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+    .menu-list{display:flex;flex-direction:column;gap:8px}
+    .section-title{font-weight:700;color:var(--accent);margin:6px 0}
+    .item-row{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px dashed #eee}
+    .add-btn{background:var(--accent);color:#fff;border:0;padding:6px 10px;border-radius:6px;cursor:pointer}
+    .cart-box{display:none}
+    .cart-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+    .cart-item button{background:#ddd;border:0;padding:4px 8px;border-radius:6px;cursor:pointer}
+    .totals{margin-top:12px}
+    .checkout-btn{background:var(--accent);color:#fff;padding:10px;border:0;border-radius:8px;width:100%;cursor:pointer}
+    .qr-box{display:none;text-align:center;padding:12px;margin-top:12px}
+    .form-box{display:none;margin-top:12px}
+    input,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #ccc;margin:6px 0}
+    footer{padding:18px;background:#fff;border-top:1px solid #eee;margin-top:24px;text-align:center;color:#666}
+    @media(max-width:900px){ .layout{flex-direction:column} .cart-col{width:100%} }
+  </style>
 </head>
-
 <body>
-
-<header class="site-header">
-  <div class="inner container">
-    <div class="brand">
-      <img src="images/logo.png">
-      <div>
-        <h1>Bansal Food Studio</h1>
-        <div class="tagline">Dil Aur Pet Dono Khush</div>
+  <header class="site-header">
+    <div class="inner container">
+      <div class="brand">
+        <img src="images/logo.png" alt="logo">
+        <div>
+          <h1>Bansal Food Studio</h1>
+          <div class="tagline">Dil Aur Pet Dono Khush</div>
+        </div>
       </div>
+
+      <nav class="nav-desktop" aria-label="Main navigation">
+        <a class="nav-btn" href="index.html">Home</a>
+        <a class="nav-btn" href="menu.html">Menu</a>
+        <a class="nav-btn" href="about.html">About Us</a>
+        <a class="nav-btn" href="contact.html">Contact</a>
+        <a class="nav-btn" href="book.html">Book a Table</a>
+        <a class="nav-cta" href="order.html">Order Food</a>
+      </nav>
+
+      <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6a2a25" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
 
-    <nav class="nav-desktop">
+    <div class="mobile-menu container" id="mobileMenu" style="display:none">
       <a class="nav-btn" href="index.html">Home</a>
       <a class="nav-btn" href="menu.html">Menu</a>
       <a class="nav-btn" href="about.html">About Us</a>
       <a class="nav-btn" href="contact.html">Contact</a>
+      <a class="nav-btn" href="book.html">Book a Table</a>
       <a class="nav-cta" href="order.html">Order Food</a>
-    </nav>
-
-    <button class="hamburger" id="hambtn">
-      <svg width="26" height="26" stroke="#6a2a25" fill="none" stroke-width="2">
-        <path d="M3 6h20M3 13h20M3 20h20"/>
-      </svg>
-    </button>
-  </div>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a class="nav-btn" href="index.html">Home</a>
-    <a class="nav-btn" href="menu.html">Menu</a>
-    <a class="nav-btn" href="about.html">About Us</a>
-    <a class="nav-btn" href="contact.html">Contact</a>
-    <a class="nav-cta" href="order.html">Order Food</a>
-  </div>
-</header>
-
-<div class="container">
-
-  <div class="page-head">
-    <h2>Order Food</h2>
-    <p>Select Items → Add to Cart → Pay 50% Advance → Submit Order</p>
-  </div>
-
-  <!-- START MENU CATEGORIES (ALL ITEMS) -->
-
-  <!-- INDIAN -->
-  <div class="category">
-    <h3>Indian</h3>
-
-    <div class="item-row"><span>Paneer Punjabi — ₹199</span><button class="add-btn" onclick="addToCart('Paneer Punjabi',199)">Add</button></div>
-    <div class="item-row"><span>Matar Paneer — ₹199</span><button class="add-btn" onclick="addToCart('Matar Paneer',199)">Add</button></div>
-    <div class="item-row"><span>Paneer Do Pyaza — ₹200</span><button class="add-btn" onclick="addToCart('Paneer Do Pyaza',200)">Add</button></div>
-    <div class="item-row"><span>Kadhai Paneer — ₹209</span><button class="add-btn" onclick="addToCart('Kadhai Paneer',209)">Add</button></div>
-    <div class="item-row"><span>Paneer Lababdar — ₹209</span><button class="add-btn" onclick="addToCart('Paneer Lababdar',209)">Add</button></div>
-    <div class="item-row"><span>Shahi Paneer — ₹219</span><button class="add-btn" onclick="addToCart('Shahi Paneer',219)">Add</button></div>
-    <div class="item-row"><span>Paneer Pasanda — ₹229</span><button class="add-btn" onclick="addToCart('Paneer Pasanda',229)">Add</button></div>
-    <div class="item-row"><span>Malai Kofta — ₹229</span><button class="add-btn" onclick="addToCart('Malai Kofta',229)">Add</button></div>
-
-    <div class="item-row"><span>Dal Handi — ₹149</span><button class="add-btn" onclick="addToCart('Dal Handi',149)">Add</button></div>
-    <div class="item-row"><span>Dal Tadka — ₹149</span><button class="add-btn" onclick="addToCart('Dal Tadka',149)">Add</button></div>
-    <div class="item-row"><span>Dal Maharani — ₹159</span><button class="add-btn" onclick="addToCart('Dal Maharani',159)">Add</button></div>
-    <div class="item-row"><span>Dal Bhukhara — ₹169</span><button class="add-btn" onclick="addToCart('Dal Bhukhara',169)">Add</button></div>
-    <div class="item-row"><span>Dal Makhni — ₹179</span><button class="add-btn" onclick="addToCart('Dal Makhni',179)">Add</button></div>
-
-    <div class="item-row"><span>Jeera Aloo — ₹119</span><button class="add-btn" onclick="addToCart('Jeera Aloo',119)">Add</button></div>
-    <div class="item-row"><span>Aloo Ghobhi Adarki — ₹139</span><button class="add-btn" onclick="addToCart('Aloo Ghobhi Adarki',139)">Add</button></div>
-    <div class="item-row"><span>Dum Aloo — ₹149</span><button class="add-btn" onclick="addToCart('Dum Aloo',149)">Add</button></div>
-    <div class="item-row"><span>Veg Kofta — ₹149</span><button class="add-btn" onclick="addToCart('Veg Kofta',149)">Add</button></div>
-    <div class="item-row"><span>Chana Masala — ₹149</span><button class="add-btn" onclick="addToCart('Chana Masala',149)">Add</button></div>
-    <div class="item-row"><span>Mix Veg — ₹179</span><button class="add-btn" onclick="addToCart('Mix Veg',179)">Add</button></div>
-
-    <div class="item-row"><span>Paneer Pakoda — ₹80</span><button class="add-btn" onclick="addToCart('Paneer Pakoda',80)">Add</button></div>
-    <div class="item-row"><span>Mix Pakoda — ₹70</span><button class="add-btn" onclick="addToCart('Mix Pakoda',70)">Add</button></div>
-    <div class="item-row"><span>Aloo Pyaz Pakoda — ₹60</span><button class="add-btn" onclick="addToCart('Aloo Pyaz Pakoda',60)">Add</button></div>
-
-  </div>
-
-
-  <!-- RICE -->
-  <div class="category">
-    <h3>Rice</h3>
-
-    <div class="item-row"><span>Steam Rice — ₹40</span><button class="add-btn" onclick="addToCart('Steam Rice',40)">Add</button></div>
-    <div class="item-row"><span>Jeera Rice — ₹45</span><button class="add-btn" onclick="addToCart('Jeera Rice',45)">Add</button></div>
-    <div class="item-row"><span>Lemon Rice — ₹40</span><button class="add-btn" onclick="addToCart('Lemon Rice',40)">Add</button></div>
-    <div class="item-row"><span>Veg Pulao — ₹80</span><button class="add-btn" onclick="addToCart('Veg Pulao',80)">Add</button></div>
-
-  </div>
-
-
-  <!-- SOUTH INDIAN -->
-  <div class="category">
-    <h3>South Indian</h3>
-
-    <div class="item-row"><span>Plain Dosa — ₹120</span><button class="add-btn" onclick="addToCart('Plain Dosa',120)">Add</button></div>
-    <div class="item-row"><span>Masala Dosa — ₹149</span><button class="add-btn" onclick="addToCart('Masala Dosa',149)">Add</button></div>
-    <div class="item-row"><span>Paneer Dosa — ₹169</span><button class="add-btn" onclick="addToCart('Paneer Dosa',169)">Add</button></div>
-    <div class="item-row"><span>Idli (2 pcs) — ₹60</span><button class="add-btn" onclick="addToCart('Idli',60)">Add</button></div>
-
-  </div>
-
-
-  <!-- CONTINENTAL -->
-  <div class="category">
-    <h3>Continental</h3>
-
-    <div class="item-row"><span>Burger — ₹49</span><button class="add-btn" onclick="addToCart('Burger',49)">Add</button></div>
-    <div class="item-row"><span>Cheese Burger — ₹59</span><button class="add-btn" onclick="addToCart('Cheese Burger',59)">Add</button></div>
-
-    <div class="item-row"><span>Margherita Pizza — ₹149</span><button class="add-btn" onclick="addToCart('Margherita Pizza',149)">Add</button></div>
-    <div class="item-row"><span>Onion Pizza — ₹179</span><button class="add-btn" onclick="addToCart('Onion Pizza',179)">Add</button></div>
-    <div class="item-row"><span>Cheese Corn Pizza — ₹179</span><button class="add-btn" onclick="addToCart('Cheese Corn Pizza',179)">Add</button></div>
-    <div class="item-row"><span>Paneer Pizza — ₹189</span><button class="add-btn" onclick="addToCart('Paneer Pizza',189)">Add</button></div>
-
-    <div class="item-row"><span>White Pasta — ₹159</span><button class="add-btn" onclick="addToCart('White Pasta',159)">Add</button></div>
-    <div class="item-row"><span>Red Pasta — ₹149</span><button class="add-btn" onclick="addToCart('Red Pasta',149)">Add</button></div>
-    <div class="item-row"><span>Pink Pasta — ₹199</span><button class="add-btn" onclick="addToCart('Pink Pasta',199)">Add</button></div>
-
-  </div>
-
-
-  <!-- CHINESE -->
-  <div class="category">
-    <h3>Chinese</h3>
-
-    <div class="item-row"><span>Veg Noodles — ₹90</span><button class="add-btn" onclick="addToCart('Veg Noodles',90)">Add</button></div>
-    <div class="item-row"><span>Hakka Noodles — ₹110</span><button class="add-btn" onclick="addToCart('Hakka Noodles',110)">Add</button></div>
-    <div class="item-row"><span>Singapuri Noodles — ₹130</span><button class="add-btn" onclick="addToCart('Singapuri Noodles',130)">Add</button></div>
-
-    <div class="item-row"><span>Steamed Momos — ₹90</span><button class="add-btn" onclick="addToCart('Steamed Momos',90)">Add</button></div>
-    <div class="item-row"><span>Fried Momos — ₹110</span><button class="add-btn" onclick="addToCart('Fried Momos',110)">Add</button></div>
-    <div class="item-row"><span>Kurkure Momos — ₹150</span><button class="add-btn" onclick="addToCart('Kurkure Momos',150)">Add</button></div>
-
-    <div class="item-row"><span>Manchurian (Dry/Gravy) — ₹170</span><button class="add-btn" onclick="addToCart('Manchurian',170)">Add</button></div>
-    <div class="item-row"><span>Cheese Chili — ₹170</span><button class="add-btn" onclick="addToCart('Cheese Chili',170)">Add</button></div>
-
-    <div class="item-row"><span>Fried Rice — ₹120</span><button class="add-btn" onclick="addToCart('Fried Rice',120)">Add</button></div>
-
-    <div class="item-row"><span>Veg Manchow Soup — ₹50</span><button class="add-btn" onclick="addToCart('Veg Manchow Soup',50)">Add</button></div>
-    <div class="item-row"><span>Hot & Sour Soup — ₹70</span><button class="add-btn" onclick="addToCart('Hot & Sour Soup',70)">Add</button></div>
-    <div class="item-row"><span>Cream Tomato Soup — ₹60</span><button class="add-btn" onclick="addToCart('Cream Tomato Soup',60)">Add</button></div>
-
-  </div>
-
-
-  <!-- SNACKS -->
-  <div class="category">
-    <h3>Snacks</h3>
-
-    <div class="item-row"><span>Chilli Potato — ₹130</span><button class="add-btn" onclick="addToCart('Chilli Potato',130)">Add</button></div>
-    <div class="item-row"><span>Honey Chilli Potato — ₹150</span><button class="add-btn" onclick="addToCart('Honey Chilli Potato',150)">Add</button></div>
-    <div class="item-row"><span>French Fries — ₹80</span><button class="add-btn" onclick="addToCart('French Fries',80)">Add</button></div>
-    <div class="item-row"><span>Peri Peri Fries — ₹90</span><button class="add-btn" onclick="addToCart('Peri Peri Fries',90)">Add</button></div>
-
-  </div>
-
-
-  <!-- CHATPATA -->
-  <div class="category">
-    <h3>Chatpata</h3>
-
-    <div class="item-row"><span>Peanut Masala — ₹79</span><button class="add-btn" onclick="addToCart('Peanut Masala',79)">Add</button></div>
-    <div class="item-row"><span>Chana Chaat — ₹99</span><button class="add-btn" onclick="addToCart('Chana Chaat',99)">Add</button></div>
-    <div class="item-row"><span>Crispy Corn — ₹249</span><button class="add-btn" onclick="addToCart('Crispy Corn',249)">Add</button></div>
-
-  </div>
-
-
-  <!-- DRINKS -->
-  <div class="category">
-    <h3>Drinks</h3>
-
-    <div class="item-row"><span>Sweet Lassi — ₹40</span><button class="add-btn" onclick="addToCart('Sweet Lassi',40)">Add</button></div>
-    <div class="item-row"><span>Lemon Soda — ₹40</span><button class="add-btn" onclick="addToCart('Lemon Soda',40)">Add</button></div>
-    <div class="item-row"><span>Water — MRP</span><button class="add-btn" onclick="addToCart('Water',20)">Add</button></div>
-
-  </div>
-
-
-  <!-- SHAKES -->
-  <div class="category">
-    <h3>Shakes</h3>
-
-    <div class="item-row"><span>Kitkat Shake — ₹130</span><button class="add-btn" onclick="addToCart('Kitkat Shake',130)">Add</button></div>
-    <div class="item-row"><span>Oreo Shake — ₹130</span><button class="add-btn" onclick="addToCart('Oreo Shake',130)">Add</button></div>
-    <div class="item-row"><span>Chocolate Shake — ₹130</span><button class="add-btn" onclick="addToCart('Chocolate Shake',130)">Add</button></div>
-
-  </div>
-
-
-  <!-- THALI -->
-  <div class="category">
-    <h3>Thali</h3>
-
-    <div class="item-row"><span>Normal Thali — ₹89</span><button class="add-btn" onclick="addToCart('Normal Thali',89)">Add</button></div>
-    <div class="item-row"><span>Special Thali — ₹149</span><button class="add-btn" onclick="addToCart('Special Thali',149)">Add</button></div>
-
-  </div>
-
-  <!-- CART SECTION -->
-  <div class="cart-box" id="checkoutBox">
-    <h3>Your Cart</h3>
-    <ul id="cartList" style="padding-left:0;list-style:none;"></ul>
-
-    <p><strong>Total:</strong> ₹<span id="cartTotal">0</span></p>
-    <p><strong>Advance (50%):</strong> ₹<span id="advanceTotal">0</span></p>
-  </div>
-
-  <!-- QR -->
-  <div class="qr-box" id="qrSection">
-    <h3>Pay 50% Advance</h3>
-    <img src="images/qr.png" style="width:230px;border-radius:10px;margin:auto;">
-    <p>After payment, enter Transaction ID below.</p>
-  </div>
-
-  <!-- FORM -->
-  <form id="orderForm" action="https://formspree.io/f/meonqnaw" method="POST">
-    <h3>Finalize Order</h3>
-
-    <input type="hidden" id="orderData" name="order_list">
-    <input type="hidden" id="totalAmount" name="amount_total">
-    <input type="hidden" id="advanceAmount" name="amount_advance">
-
-    <label>Your Name</label>
-    <input type="text" name="customer_name" required>
-
-    <label>Mobile Number</label>
-    <input type="text" name="customer_mobile" required>
-
-    <label>Transaction ID</label>
-    <input type="text" name="txn_id" required>
-
-    <button type="submit">Submit Order</button>
-  </form>
-
-</div>
-
-<footer>
-  © <span id="year"></span> Bansal Food Studio | Nanauta
-</footer>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <h2>Order Food Online</h2>
+      <p>Select items, add to cart and submit. 50% advance required (QR shown at checkout).</p>
+    </div>
+
+    <div class="layout">
+      <!-- menu column (small list: 1 item per section) -->
+      <div class="menu-col">
+        <div class="card">
+          <div class="menu-list">
+
+            <div>
+              <div class="section-title">Indian</div>
+              <div class="item-row">
+                <div>Paneer Punjabi — ₹199</div>
+                <button class="add-btn" onclick="addToCart('Paneer Punjabi',199)">Add</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">Rice</div>
+              <div class="item-row">
+                <div>Veg Pulao — ₹80</div>
+                <button class="add-btn" onclick="addToCart('Veg Pulao',80)">Add</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">South Indian</div>
+              <div class="item-row">
+                <div>Masala Dosa — ₹149</div>
+                <button class="add-btn" onclick="addToCart('Masala Dosa',149)">Add</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">Continental</div>
+              <div class="item-row">
+                <div>Margherita Pizza (M) — ₹149</div>
+                <button class="add-btn" onclick="addToCart('Margherita Pizza',149)">Add</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">Chinese</div>
+              <div class="item-row">
+                <div>Veg Noodles — ₹90</div>
+                <button class="add-btn" onclick="addToCart('Veg Noodles',90)">Add</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">Shakes</div>
+              <div class="item-row">
+                <div>Chocolate Shake — ₹130</div>
+                <button class="add-btn" onclick="addToCart('Chocolate Shake',130)">Add</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">Thali</div>
+              <div class="item-row">
+                <div>Special Thali — ₹149</div>
+                <button class="add-btn" onclick="addToCart('Special Thali',149)">Add</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- cart column -->
+      <div class="cart-col">
+        <div class="card cart-box" id="checkoutBox">
+          <h3>Your Cart</h3>
+          <div id="cartList" style="min-height:80px"></div>
+
+          <div class="totals">
+            <div><strong>Total:</strong> ₹<span id="cartTotal">0</span></div>
+            <div><strong>50% Advance:</strong> ₹<span id="advanceTotal">0</span></div>
+          </div>
+
+          <div style="margin-top:12px">
+            <button id="openCheckout" class="checkout-btn" onclick="openCheckout()">Checkout →</button>
+          </div>
+
+          <div class="qr-box" id="qrSection">
+            <h4 style="margin:8px 0 6px">Pay 50% Advance</h4>
+            <!-- QR image (make sure images/qr.png exists) -->
+            <img src="images/qr.png" alt="QR" style="max-width:220px;border-radius:8px;">
+            <p style="font-size:0.9rem;color:var(--muted)">Scan QR or use UPI and paste TXN reference in the form below.</p>
+          </div>
+
+          <!-- order form -->
+          <div class="form-box" id="orderForm">
+            <form id="finalForm" method="POST" action="https://formspree.io/f/meonqnaw">
+              <input type="hidden" id="orderData" name="order_list" value="">
+              <input type="hidden" id="totalAmount" name="amount_total" value="0">
+              <input type="hidden" id="advanceAmount" name="amount_advance" value="0">
+
+              <label>Your name *</label>
+              <input type="text" name="customer_name" required>
+
+              <label>Phone number *</label>
+              <input type="text" name="customer_mobile" required>
+
+              <label>TXN reference (UPI / payment ID) *</label>
+              <input type="text" name="txn_id" required>
+
+              <button type="submit" class="checkout-btn" style="margin-top:8px">Submit Order</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="yr"></span> Bansal Food Studio · Chawla Complex, Gangoh Rd, Nanauta
+  </footer>
+
+  <script>
+    // set year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // mobile menu toggle
+    (function(){
+      const hambtn = document.getElementById('hambtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if(!hambtn || !mobileMenu) return;
+      hambtn.addEventListener('click', ()=> {
+        mobileMenu.style.display = (mobileMenu.style.display === 'flex') ? 'none' : 'flex';
+        hambtn.setAttribute('aria-expanded', String(mobileMenu.style.display === 'flex'));
+      });
+    })();
+
+    // CART
+    let cart = [];
+
+    function addToCart(name, price){
+      // find existing
+      const existing = cart.find(i => i.name === name);
+      if(existing){ existing.qty += 1; }
+      else{ cart.push({ name, price, qty: 1 }); }
+
+      updateCart();
+    }
+
+    function removeItem(index){
+      cart.splice(index,1);
+      updateCart();
+    }
+
+    function updateCart(){
+      const listEl = document.getElementById('cartList');
+      const totalEl = document.getElementById('cartTotal');
+      const advEl = document.getElementById('advanceTotal');
+
+      listEl.innerHTML = '';
+      let total = 0;
+
+      if(cart.length === 0){
+        listEl.innerHTML = '<div style="color:var(--muted)">Cart is empty</div>';
+      } else {
+        cart.forEach((item, idx) => {
+          const amt = item.price * item.qty;
+          total += amt;
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <div>${item.name} (x${item.qty})</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <strong>₹${amt}</strong>
+              <button onclick="removeItem(${idx})" aria-label="Remove">x</button>
+            </div>
+          `;
+          listEl.appendChild(div);
+        });
+      }
+
+      totalEl.textContent = total;
+      advEl.textContent = Math.round(total / 2);
+
+      // set hidden form fields
+      document.getElementById('orderData').value =
+        cart.map(i => ${i.name} x ${i.qty} = ₹${i.price * i.qty}).join(', ');
+      document.getElementById('totalAmount').value = total;
+      document.getElementById('advanceAmount').value = Math.round(total / 2);
+
+      // show/hide checkout area
+      if(cart.length > 0){
+        document.getElementById('checkoutBox').style.display = 'block';
+        // keep QR and form hidden until user clicks checkout
+        document.getElementById('qrSection').style.display = 'none';
+        document.getElementById('orderForm').style.display = 'none';
+      } else {
+        document.getElementById('checkoutBox').style.display = 'none';
+        document.getElementById('qrSection').style.display = 'none';
+        document.getElementById('orderForm').style.display = 'none';
+      }
+    }
+
+    function openCheckout(){
+      if(cart.length === 0){
+        alert('Cart is empty — pehle kuch add karein.');
+        return;
+      }
+      document.getElementById('qrSection').style.display = 'block';
+      document.getElementById('orderForm').style.display = 'block';
+      // scroll to checkout (nice to have)
+      document.getElementById('qrSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // initial state
+    updateCart();
+  </script>
 </body>
 </html>
-<script>
-let cart = [];
-
-function addToCart(name, price) {
-  if (!cart.find(i => i.name === name)) {
-    cart.push({ name, price, qty: 1 });
-  } else {
-    cart.find(i => i.name === name).qty++;
-  }
-  updateCart();
-}
-
-function removeItem(i) {
-  cart.splice(i, 1);
-  updateCart();
-}
-
-function updateCart() {
-  const list = document.getElementById("cartList");
-  const totalEl = document.getElementById("cartTotal");
-  const advEl = document.getElementById("advanceTotal");
-
-  list.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, i) => {
-    let amt = item.price * item.qty;
-    total += amt;
-    list.innerHTML += `
-      <li class="cart-item">
-        ${item.name} (x${item.qty})
-        <strong>₹${amt}</strong>
-        <button onclick="removeItem(${i})">x</button>
-      </li>`;
-  });
-
-  totalEl.textContent = total;
-  advEl.textContent = Math.round(total / 2);
-
-  document.getElementById("orderData").value =
-    cart.map(i => ${i.name} x ${i.qty} = ₹${i.price * i.qty}).join(", ");
-
-  document.getElementById("totalAmount").value = total;
-  document.getElementById("advanceAmount").value = Math.round(total / 2);
-
-  if (cart.length > 0) {
-    document.getElementById("checkoutBox").style.display = "block";
-    document.getElementById("qrSection").style.display = "block";
-    document.getElementById("orderForm").style.display = "block";
-  } else {
-    document.getElementById("checkoutBox").style.display = "none";
-    document.getElementById("qrSection").style.display = "none";
-    document.getElementById("orderForm").style.display = "none";
-  }
-}
-</script>
