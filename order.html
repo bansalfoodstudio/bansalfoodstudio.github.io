@@ -370,3 +370,68 @@ body{
   </div>
 
 </div> <!-- container end -->
+  <script>
+// MOBILE MENU
+document.getElementById("hambtn").addEventListener("click",()=>{
+  const m=document.getElementById("mobileMenu");
+  m.style.display = (m.style.display==="flex" ? "none" : "flex");
+});
+
+// CART SYSTEM
+let cart=[];
+
+function addToCart(name,price){
+  let item = cart.find(x=>x.name===name);
+  if(item){ item.qty++; }
+  else{ cart.push({name,price,qty:1}); }
+
+  updateCart();
+  showCheckout();
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  updateCart();
+  if(cart.length===0){
+    document.getElementById("checkoutBox").style.display="none";
+    document.getElementById("qrSection").style.display="none";
+    document.getElementById("orderForm").style.display="none";
+  }
+}
+
+function updateCart(){
+  const list=document.getElementById("cartList");
+  const totalEl=document.getElementById("cartTotal");
+  const advanceEl=document.getElementById("advanceTotal");
+
+  list.innerHTML="";
+  let total=0;
+
+  cart.forEach((item,i)=>{
+    let amt = item.price * item.qty;
+    total += amt;
+
+    list.innerHTML += `
+      <li class="cart-item">
+        ${item.name} (x${item.qty})
+        <strong>₹${amt}</strong>
+        <button onclick="removeItem(${i})">x</button>
+      </li>`;
+  });
+
+  totalEl.textContent = total;
+  advanceEl.textContent = Math.round(total/2);
+
+  document.getElementById("orderData").value =
+    cart.map(i => ${i.name} x ${i.qty} = ₹${i.price*i.qty}).join(", ");
+
+  document.getElementById("totalAmount").value = total;
+  document.getElementById("advanceAmount").value = Math.round(total/2);
+}
+
+function showCheckout(){
+  document.getElementById("checkoutBox").style.display="block";
+  document.getElementById("qrSection").style.display="block";
+  document.getElementById("orderForm").style.display="block";
+}
+</script>
