@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Order Food — Bansal Food Studio</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <style>
+    :root{
+      --accent:#b2322a;
+      --muted:#666;
+      --bg:#faf8f6;
+      --card:#fff;
+      --maxw:1100px;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:var(--maxw);margin:0 auto;padding:18px}
+
+    /* header */
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
+    .site-header .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;border-radius:8px}
+    .brand h1{margin:0;font-size:1.15rem;color:var(--accent)}
+    .nav{display:flex;gap:8px;flex-wrap:wrap}
+    .nav a{background:#fff1ea;color:#6a2a25;padding:8px 10px;border-radius:8px;font-weight:600}
+
+    /* layout */
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:18px}
+    @media(max-width:920px){ .grid{grid-template-columns:1fr} }
+
+    /* items list */
+    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+    .items{display:grid;gap:10px}
+    .item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;border:1px solid #f1ecea}
+    .item .left{max-width:68%}
+    .item .name{font-weight:700}
+    .item .price{color:var(--accent);font-weight:700}
+    .item button{background:var(--accent);color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+
+    /* cart */
+    .cart-header{font-weight:700;margin-bottom:10px}
+    .cart-list{display:flex;flex-direction:column;gap:8px;max-height:420px;overflow:auto;padding-right:6px}
+    .cart-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:#fff9f7;border:1px solid #f3e7e3}
+    .qty-controls{display:inline-flex;gap:6px;align-items:center}
+    .qty-controls button{width:28px;height:28px;border-radius:6px;border:1px solid #ddd;background:#fff}
+    .summary{margin-top:12px;padding-top:12px;border-top:1px dashed #eee}
+
+    /* payment box */
+    .qr{display:block;margin:10px auto;max-width:200px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.08)}
+    .pay-note{font-size:0.95rem;color:var(--muted);margin-top:8px}
+
+    /* form */
+    .order-form label{display:block;font-weight:600;margin:8px 0 4px}
+    .order-form input, .order-form textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #ddd}
+    .submit-btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;margin-top:10px}
+
+    footer{padding:20px;text-align:center;color:#666;margin-top:20px;background:#fff;border-top:1px solid #eee}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="inner container">
+      <div class="brand">
+        <img src="images/logo.png" alt="logo">
+        <div>
+          <h1>Bansal Food Studio</h1>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="book.html">Book a Table</a>
+        <a href="order.html" style="background:var(--accent);color:#fff">Order Food</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 style="margin:12px 0 6px">Order Food Online</h2>
+    <p style="color:var(--muted);margin:0 0 14px">Choose items, add to cart and submit your order. 50% advance is required — scan the QR shown at checkout.</p>
+
+    <div class="grid">
+      <!-- left: items -->
+      <div>
+        <div class="card">
+          <div class="section-title">
+            <div><strong>Menu — Add to cart</strong></div>
+            <div style="color:var(--muted);font-size:0.95rem">Tap "Add" to include item</div>
+          </div>
+
+          <div class="items" id="itemsList">
+            <!-- JS will render items here -->
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <div style="font-weight:700;margin-bottom:8px">Notes</div>
+          <div style="color:var(--muted);font-size:0.95rem">
+            • After submitting order, you will receive order summary on the phone/email you provide.<br>
+            • Please make 50% advance payment using the QR below (or UPI app) and add TXN reference in the form.
+          </div>
+        </div>
+      </div>
+
+      <!-- right: cart & checkout -->
+      <aside>
+        <div class="card">
+          <div class="cart-header">Your Cart</div>
+          <div class="cart-list" id="cartList">
+            <div style="color:var(--muted)">Cart is empty</div>
+          </div>
+
+          <div class="summary" id="summaryBox" style="display:none">
+            <div style="display:flex;justify-content:space-between"><div>Subtotal</div><div id="subtotal">₹0</div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px"><div>Advance (50%)</div><div id="advance">₹0</div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-weight:700"><div>Total</div><div id="total">₹0</div></div>
+
+            <div style="margin-top:12px">
+              <div style="font-weight:700">Pay 50% Advance</div>
+              <img src="images/upi-qr.png" alt="UPI QR" class="qr" onerror="this.style.display='none'">
+              <div class="pay-note">Scan the QR to pay. After payment, enter transaction reference below and submit your order.</div>
+            </div>
+
+            <form id="orderForm" class="order-form" method="POST" action="">
+              <!-- form fields -->
+              <label for="name">Name *</label>
+              <input id="name" name="name" required>
+
+              <label for="phone">Phone * (WhatsApp)</label>
+              <input id="phone" name="phone" required pattern="[0-9+ -]{7,20}">
+
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email">
+
+              <label for="address">Delivery / Pickup Address</label>
+              <textarea id="address" name="address" rows="2"></textarea>
+
+              <label for="txnid">UPI Txn Ref (after paying advance)</label>
+              <input id="txnid" name="txnid" placeholder="e.g. UPI12345">
+
+              <!-- hidden: order data -->
+              <input type="hidden" id="order_summary" name="order_summary">
+              <input type="hidden" id="order_subtotal" name="order_subtotal">
+              <input type="hidden" id="order_advance" name="order_advance">
+              <input type="hidden" id="order_total" name="order_total">
+
+              <button type="submit" class="submit-btn">Submit Order</button>
+            </form>
+
+            <div id="formStatus" style="margin-top:10px;color:var(--muted)"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="yr"></span> Bansal Food Studio · Chawla Complex, Gangoh Rd, Nanauta
+  </footer>
+
+<script>
+/* ---------- CONFIG ---------- */
+const formspreeEndpoint = "https://formspree.io/f/meonqnaw"; // UPDATED per your message
+const upiQrPath = "images/upi-qr.png"; // ensure this exists
+
+/* ---------- MENU ITEMS ----------
+   Edit this list if you want to add/remove items.
+   Keep id unique.
+*/
+const MENU = [
+  {id:'i1', name:'Paneer Punjabi', price:199},
+  {id:'i2', name:'Matar Paneer', price:199},
+  {id:'i3', name:'Paneer Do Pyaza', price:200},
+  {id:'i4', name:'Kadhai Paneer', price:209},
+  {id:'i5', name:'Paneer Lababdar', price:209},
+  {id:'i6', name:'Shahi Paneer', price:219},
+  {id:'i7', name:'Margherita Pizza (M)', price:149},
+  {id:'i8', name:'Capsicum Pizza (M)', price:179},
+  {id:'i9', name:'Onion Pizza (M)', price:179},
+  {id:'i10', name:'Paneer Pizza (M)', price:189},
+  {id:'i11', name:'White Sauce Pasta', price:159},
+  {id:'i12', name:'Red Sauce Pasta', price:149},
+  {id:'i13', name:'Pink Sauce Pasta', price:199},
+  {id:'i14', name:'Veg. Noodles', price:90},
+  {id:'i15', name:'Hakka Noodles', price:110},
+  {id:'i16', name:'Chili Garlic Noodles', price:120},
+  {id:'i17', name:'Veg. Steamed Momos', price:90},
+  {id:'i18', name:'Veg. Fried Momos', price:110},
+  {id:'i19', name:'Chilli Potato', price:130},
+  {id:'i20', name:'French Fries', price:80},
+  {id:'i21', name:'Sweet Lassi', price:40},
+  {id:'i22', name:'Masala Tea', price:20},
+  {id:'i23', name:'Normal Thali', price:89},
+  {id:'i24', name:'Special Thali', price:149}
+];
+
+/* ---------- state ---------- */
+let cart = {}; // {id: qty}
+
+/* ---------- helpers ---------- */
+function money(n){ return '₹' + Number(n).toFixed(0); }
+
+function renderItems(){
+  const wrap = document.getElementById('itemsList');
+  wrap.innerHTML = '';
+  MENU.forEach(it=>{
+    const el = document.createElement('div');
+    el.className='item';
+    el.innerHTML = `
+      <div class="left">
+        <div class="name">${it.name}</div>
+        <div style="color:var(--muted);font-size:0.92rem">${money(it.price)}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+        <button data-id="${it.id}">Add</button>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+
+  // attach add buttons
+  wrap.querySelectorAll('button[data-id]').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      const id = e.currentTarget.dataset.id;
+      addToCart(id);
+    });
+  });
+}
+
+function addToCart(id){
+  cart[id] = (cart[id]||0) + 1;
+  renderCart();
+}
+
+function removeFromCart(id){
+  delete cart[id];
+  renderCart();
+}
+
+function changeQty(id, delta){
+  cart[id] = (cart[id]||0) + delta;
+  if(cart[id] <= 0) delete cart[id];
+  renderCart();
+}
+
+function renderCart(){
+  const wrap = document.getElementById('cartList');
+  wrap.innerHTML = '';
+  const keys = Object.keys(cart);
+  if(keys.length === 0){
+    wrap.innerHTML = '<div style="color:var(--muted)">Cart is empty</div>';
+    document.getElementById('summaryBox').style.display = 'none';
+    return;
+  }
+  document.getElementById('summaryBox').style.display = 'block';
+  let subtotal = 0;
+
+  keys.forEach(id=>{
+    const qty = cart[id];
+    const item = MENU.find(m=>m.id===id);
+    const row = document.createElement('div');
+    row.className = 'cart-row';
+    row.innerHTML = `
+      <div style="max-width:60%">
+        <div style="font-weight:700">${item.name}</div>
+        <div style="color:var(--muted);font-size:0.92rem">${money(item.price)} × ${qty} = ${money(item.price*qty)}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+        <div class="qty-controls">
+          <button data-action="dec" data-id="${id}">−</button>
+          <div style="padding:6px 8px;border-radius:6px;background:#fff;border:1px solid #eee;margin:0 6px">${qty}</div>
+          <button data-action="inc" data-id="${id}">+</button>
+        </div>
+        <button data-action="del" data-id="${id}" style="background:#fff;border:1px solid #f1d8d6;padding:6px;border-radius:6px;color:var(--muted)">Remove</button>
+      </div>
+    `;
+    wrap.appendChild(row);
+    subtotal += item.price * qty;
+  });
+
+  // attach qty buttons
+  wrap.querySelectorAll('button[data-action]').forEach(b=>{
+    b.addEventListener('click', e=>{
+      const id = e.currentTarget.dataset.id;
+      const act = e.currentTarget.dataset.action;
+      if(act==='inc') changeQty(id, +1);
+      else if(act==='dec') changeQty(id, -1);
+      else if(act==='del') removeFromCart(id);
+    });
+  });
+
+  const advance = Math.ceil(subtotal * 0.5);
+  const total = subtotal;
+  document.getElementById('subtotal').textContent = money(subtotal);
+  document.getElementById('advance').textContent = money(advance);
+  document.getElementById('total').textContent = money(total);
+
+  // hidden form fields
+  document.getElementById('order_subtotal').value = subtotal;
+  document.getElementById('order_advance').value = advance;
+  document.getElementById('order_total').value = total;
+
+  // order summary text
+  const summaryLines = keys.map(id=>{
+    const item = MENU.find(m=>m.id===id);
+    return ${item.name} x ${cart[id]} = ${money(item.price*cart[id])};
+  });
+  document.getElementById('order_summary').value = summaryLines.join('\n') + '\n\nSubtotal: ' + subtotal + '\nAdvance(50%): ' + advance + '\nTotal: ' + total;
+}
+
+/* ---------- form submit: send to Formspree ---------- */
+(function(){
+  renderItems();
+  renderCart();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('orderForm');
+  const status = document.getElementById('formStatus');
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+
+    // validation: cart not empty
+    if(Object.keys(cart).length === 0){
+      status.style.color = 'crimson';
+      status.textContent = 'Your cart is empty — please add items before submitting.';
+      return;
+    }
+
+    status.style.color = 'var(--muted)';
+    status.textContent = 'Submitting order...';
+
+    // prepare payload
+    const data = new FormData(form);
+    // ensure hidden fields updated
+    data.set('order_summary', document.getElementById('order_summary').value);
+    data.set('order_subtotal', document.getElementById('order_subtotal').value);
+    data.set('order_advance', document.getElementById('order_advance').value);
+    data.set('order_total', document.getElementById('order_total').value);
+
+    // POST to Formspree
+    fetch(formspreeEndpoint, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: data
+    }).then(r=>r.json()).then(res=>{
+      // Formspree returns various shapes; treat success if no errors
+      if(res.ok || res.success || (res._links && res._links.self) || (res.message && res.message.toLowerCase().includes('thank'))){
+        status.style.color = 'green';
+        status.innerHTML = 'Order submitted successfully. We will contact you soon. Please keep your payment reference ready.';
+        // clear cart and form
+        cart = {};
+        renderCart();
+        form.reset();
+      } else {
+        status.style.color = 'crimson';
+        if(res.errors && res.errors.length) status.textContent = res.errors.map(e=>e.message).join('; ');
+        else status.textContent = 'Submission failed — please try again or call 7599032032.';
+      }
+    }).catch(err=>{
+      status.style.color = 'crimson';
+      status.textContent = 'Network error. Try again or call 7599032032.';
+      console.error(err);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
