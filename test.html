@@ -1,328 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bansal Food Studio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bansal Food Studio</title>
 
-  <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #222;
+        }
 
-  <!-- GOOGLE FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+        /* HEADER */
+        header {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 42px;
+            font-weight: 700;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 18px;
+            color: #555;
+        }
 
-  <!-- FONT AWESOME -->
-  <script src="https://kit.fontawesome.com/9f3c4ce53a.js" crossorigin="anonymous"></script>
+        /* HERO BANNER */
+        .hero {
+            width: 100%;
+            height: 450px;
+            background-image: url('images/hero-interior.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid #ccc;
+        }
 
-  <style>
-    :root{
-      --accent:#b2322a;
-      --soft:#ffefe9;
-      --btn:#ff4d4d;
-      --btn2:#ff7a59;
-      --gold:#cfa76e;
-      --dark:#2b2b2b;
-      --muted:#555;
-      --card:#ffffff;
-      --bg:#faf7f3;
-    }
+        /* MENU SECTION */
+        .menu-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .menu-section h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .menu-section p {
+            margin-top: 0;
+            color: #666;
+        }
 
-    *{box-sizing:border-box;margin:0;padding:0}
+        /* CUISINE GRID */
+        .cuisine-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            padding: 20px 40px;
+        }
+        .cuisine-box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            transition: 0.3s;
+        }
+        .cuisine-box img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .cuisine-box h3 {
+            text-align: center;
+            padding: 12px 0;
+            margin: 0;
+            font-size: 20px;
+        }
+        .cuisine-box:hover {
+            transform: scale(1.03);
+            box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+        }
 
-    body{
-      font-family:Inter,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--dark);
-    }
+        /* SOCIAL FOOTER */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            background: #f8f8f8;
+        }
+        footer a {
+            margin: 0 10px;
+            font-size: 22px;
+            text-decoration: none;
+            color: #444;
+        }
+    </style>
 
-    img{max-width:100%;display:block;border-radius:10px}
-
-    a{text-decoration:none;color:inherit}
-
-    header{
-      background:#fff;
-      padding:12px 6%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      position:sticky;
-      top:0;
-      z-index:100;
-      border-bottom:1px solid #eee;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .brand img{
-      height:60px;
-      border-radius:8px;
-    }
-
-    .brand h1{
-      font-family:'Playfair Display',serif;
-      color:var(--accent);
-      font-size:24px;
-      margin:0;
-    }
-
-    nav a{
-      padding:8px 12px;
-      border-radius:6px;
-      background:#fff8f5;
-      margin-left:10px;
-      font-weight:600;
-      color:#6a2a25;
-    }
-
-    nav a:hover{background:#ffe0d6}
-
-    /* HERO SECTION */
-    .hero{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:60px 6%;
-      gap:40px;
-      flex-wrap:wrap;
-      background:#fff;
-    }
-
-    .hero h2{
-      font-size:38px;
-      font-weight:700;
-      color:var(--dark);
-      margin-bottom:10px;
-      font-family:'Playfair Display',serif;
-    }
-
-    .hero p{
-      font-size:18px;
-      color:var(--muted);
-      margin-bottom:25px;
-    }
-
-    .hero-buttons .btn{
-      padding:12px 22px;
-      border-radius:8px;
-      font-weight:700;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-right:10px;
-      transition:.3s;
-    }
-
-    .btn.explore{
-      background:var(--btn2);
-      color:#fff;
-    }
-
-    .btn.order{
-      background:var(--btn);
-      color:#fff;
-    }
-
-    .btn:hover{
-      transform:translateY(-3px);
-      opacity:.9;
-    }
-
-    .hero-image img{
-      width:450px;
-      border-radius:12px;
-      box-shadow:0 10px 35px rgba(0,0,0,0.20);
-    }
-
-    /* CATEGORY SECTION */
-    .category-section{
-      padding:50px 6%;
-      text-align:center;
-      background:#fff;
-      margin-top:30px;
-      border-radius:14px 14px 0 0;
-    }
-
-    .section-title{
-      font-size:28px;
-      font-weight:700;
-      margin-bottom:22px;
-      font-family:'Playfair Display',serif;
-    }
-
-    .scroll-wrapper{
-      position:relative;
-    }
-
-    .scroll-btn{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      padding:10px 14px;
-      border:none;
-      background:#fff;
-      border-radius:50%;
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
-      cursor:pointer;
-      z-index:10;
-      font-size:20px;
-      user-select:none;
-    }
-
-    .scroll-btn.left{left:-20px}
-    .scroll-btn.right{right:-20px}
-
-    .category-slider{
-      display:flex;
-      gap:18px;
-      overflow-x:auto;
-      scroll-behavior:smooth;
-      padding-bottom:10px;
-    }
-
-    .category-slider::-webkit-scrollbar{display:none}
-
-    .category-card{
-      min-width:240px;
-      background:#fff;
-      border-radius:12px;
-      text-align:left;
-      padding-bottom:14px;
-      box-shadow:0 8px 25px rgba(0,0,0,0.12);
-      transition:.3s;
-      color:#222;
-    }
-
-    .category-card img{
-      width:100%;
-      height:160px;
-      object-fit:cover;
-      border-radius:12px 12px 0 0;
-    }
-
-    .category-card h3{
-      padding:10px 14px 4px;
-      font-size:18px;
-      font-weight:700;
-    }
-
-    .category-card p{
-      padding:0 14px;
-      color:#555;
-      font-size:15px;
-    }
-
-    .category-card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 12px 30px rgba(0,0,0,0.18);
-    }
-
-    footer{
-      text-align:center;
-      padding:18px;
-      color:#777;
-      margin-top:40px;
-      background:#fff;
-      border-top:1px solid #eee;
-    }
-
-  </style>
 </head>
-
 <body>
 
-<header>
-  <div class="brand">
-    <img src="images/logo.png" alt="Logo">
-    <h1>Bansal Food Studio</h1>
-  </div>
+    <!-- HEADER -->
+    <header>
+        <h1>Bansal Food Studio</h1>
+        <p>Dil Aur Pet Dono Khush</p>
+    </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="book.html">Book Table</a>
-    <a href="order.html">Order Food</a>
-  </nav>
-</header>
+    <!-- HERO IMAGE -->
+    <div class="hero"></div>
 
-<!-- HERO SECTION -->
-<section class="hero">
-  <div class="hero-content">
-    <h2>Nanauta’s Favourite Family Restaurant</h2>
-    <p>Delicious Indian, South Indian, Chinese & Continental dishes prepared fresh every day.</p>
+    <!-- MENU / CUISINES SECTION -->
+    <section class="menu-section">
+        <h2>Our Cuisines</h2>
+        <p>Select from our wide range of delicious cuisines</p>
+    </section>
 
-    <div class="hero-buttons">
-      <a href="menu.html" class="btn explore">
-        <i class="fa-solid fa-utensils"></i> Explore Menu
-      </a>
-      <a href="order.html" class="btn order">
-        <i class="fa-solid fa-bag-shopping"></i> Order Food
-      </a>
-    </div>
-  </div>
+    <!-- CUISINE CARDS -->
+    <div class="cuisine-container">
 
-  <div class="hero-image">
-    <img src="image/hero-interior.jpg" alt="Restaurant Interior">
-  </div>
-</section>
+        <div class="cuisine-box">
+            <img src="images/indian.jpg" alt="Indian Cuisine">
+            <h3>Indian Food</h3>
+        </div>
 
-<!-- CATEGORY SLIDER -->
-<section class="category-section">
-  <h2 class="section-title">Explore Our Menu Categories</h2>
+        <div class="cuisine-box">
+            <img src="images/chinese.jpg" alt="Chinese Cuisine">
+            <h3>Chinese Food</h3>
+        </div>
 
-  <div class="scroll-wrapper">
-    <button class="scroll-btn left" onclick="scrollLeft()">❮</button>
+        <div class="cuisine-box">
+            <img src="images/continental.jpg" alt="Continental Cuisine">
+            <h3>Continental Food</h3>
+        </div>
 
-    <div class="category-slider" id="categorySlider">
-
-      <a class="category-card" href="menu.html#indian">
-        <img src="image/indian.jpg" alt="">
-        <h3>Indian</h3>
-        <p>Rich, authentic & full of flavour.</p>
-      </a>
-
-      <a class="category-card" href="menu.html#southindian">
-        <img src="image/SouthIndian.jpg" alt="">
-        <h3>South Indian</h3>
-        <p>Crisp dosas, soft idlis & more.</p>
-      </a>
-
-      <a class="category-card" href="menu.html#chinese">
-        <img src="image/chinese.jpg" alt="">
-        <h3>Chinese</h3>
-        <p>Perfect balance of spice & crunch.</p>
-      </a>
-
-      <a class="category-card" href="menu.html#continental">
-        <img src="image/continental.jpg" alt="">
-        <h3>Continental</h3>
-        <p>Comfort food with global flavours.</p>
-      </a>
+        <div class="cuisine-box">
+            <img src="images/SouthIndian.jpg" alt="South Indian Cuisine">
+            <h3>South Indian Food</h3>
+        </div>
 
     </div>
 
-    <button class="scroll-btn right" onclick="scrollRight()">❯</button>
-  </div>
-</section>
-
-<footer>
-  © <span id="yr"></span> Bansal Food Studio • Nanauta • +91-7599032032
-</footer>
-
-<script>
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-function scrollLeft(){
-  document.getElementById("categorySlider").scrollBy({left:-300,behavior:"smooth"});
-}
-function scrollRight(){
-  document.getElementById("categorySlider").scrollBy({left:300,behavior:"smooth"});
-}
-</script>
+    <!-- FOOTER SOCIAL LINKS -->
+    <footer>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+    </footer>
 
 </body>
 </html>
