@@ -1,245 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Bansal Food Studio</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bansal Food Studio</title>
 
-  <!-- GOOGLE FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<style>
 
-  <style>
-    :root{
-      --accent:#b2322a;
-      --muted:#6b6b6b;
-      --bg:#faf8f6;
-      --card:#ffffff;
-      --maxw:1100px;
-      --gold:#cfa76e;
-    }
+/* ------------------ ROOT COLORS ------------------ */
+:root {
+  --primary: #b2322a;
+  --accent: #d84339;
+  --text-dark: #222;
+  --text-light: #555;
+  --bg-light: #f7f7f7;
+  --max-width: 1200px;
+}
 
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#222}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
 
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
+.container {
+  width: 92%;
+  max-width: var(--max-width);
+  margin: auto;
+}
 
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+/* ------------------ NAVBAR ------------------ */
 
-    /* HEADER */
-    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:99}
-    .site-header .inner{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+header {
+  background: #fff;
+  padding: 14px 0;
+  border-bottom: 1px solid #ddd;
+}
 
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:64px;border-radius:8px}
-    .brand h1{margin:0;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent)}
-    .tagline{font-family:'Dancing Script',cursive;font-size:1.05rem;color:var(--gold);margin-top:-4px}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .nav-desktop{display:flex;gap:12px}
-    .nav-btn{background:#fff1ea;color:#6a2a25;padding:8px 12px;border-radius:8px;font-weight:600}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .hamburger{display:none;background:transparent;border:0;padding:8px;width:44px;height:44px}
-    .hamburger svg{width:22px;height:22px}
+.nav-left img {
+  height: 55px;
+}
 
-    .mobile-menu{display:none;flex-direction:column;gap:10px;padding:14px;background:#fff;border-top:1px solid #eee}
+.nav-left h1 {
+  font-size: 26px;
+  margin: 0;
+}
 
-    @media(max-width:900px){
-      .nav-desktop{display:none}
-      .hamburger{display:block}
-    }
+#tagline {
+  margin-top: -6px;
+  font-size: 13px;
+  color: #777;
+}
 
-    /* HERO */
-    .hero{text-align:center;padding:28px 12px}
-    .hero h2{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:10px;color:#222}
-    .hero p{color:var(--muted);margin-bottom:16px;font-size:1rem}
-    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;font-weight:700;display:inline-block}
+.nav-right a {
+  margin-left: 18px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text-dark);
+}
 
-    /* HERO BANNER */
-    .hero-banner{
-        width:100%;
-        height:450px;
-        overflow:hidden;
-        border-radius:12px;
-        margin-top:12px;
-    }
-    .hero-banner img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-    }
+.nav-right a:hover {
+  color: var(--primary);
+}
 
-    /* CARDS */
-    .cards{
-      max-width:var(--maxw);
-      margin:22px auto;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:18px;
-      padding:0 16px;
-    }
-    .card{
-      background:var(--card);
-      border-radius:10px;
-      box-shadow:0 10px 28px rgba(0,0,0,0.06);
-      overflow:hidden;
-      transition:0.2s;
-    }
-    .card:hover{transform:translateY(-3px)}
-    .card img{height:200px;object-fit:cover}
-    .card .bd{padding:12px}
-    .card h3{margin:0 0 6px;font-size:1.05rem}
-    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+/* ------------------ HERO SLIDER ------------------ */
 
-    .social-icon {
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px;
-      transition: 0.25s ease;
-      cursor: pointer;
-    }
-    .social-icon:hover {
-      transform: scale(1.12);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.20);
-    }
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 22px;
+}
 
-    footer{text-align:center;color:#666;padding:20px;margin-top:34px;background:#fff;border-top:1px solid #eee}
-  </style>
+.hero-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* Hero text */
+.hero-content {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 900px;
+  text-align: center;
+  color: white;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+}
+
+.hero-content h2 {
+  font-size: 1.6rem;
+  margin: 6px 0 8px;
+  font-weight: 700;
+}
+
+.hero-buttons {
+  margin-top: 12px;
+}
+
+.hero-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 11px 16px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  margin: 4px;
+  text-decoration: none;
+}
+
+.hero-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Order button different */
+.order-btn {
+  background: #b2322a;
+}
+
+/* ------------------ FOOTER ------------------ */
+
+footer {
+  text-align: center;
+  padding: 30px 0 40px;
+  margin-top: 40px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.social-icons svg {
+  width: 28px;
+  height: 28px;
+  fill: #444;
+}
+
+.social-icons svg:hover {
+  fill: var(--primary);
+}
+
+footer p {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+</style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="inner container">
-    <div class="brand">
-      <img src="images/logo.png" alt="logo">
-      <div>
-        <h1>Bansal Food Studio</h1>
-        <div class="tagline">Dil Aur Pet Dono Khush</div>
+<!-- ------------------ NAVBAR ------------------ -->
+<header>
+<div class="container navbar">
+  <div class="nav-left">
+    <img src="images/logo.png" alt="Logo">
+    <div>
+      <h1>Bansal Food Studio</h1>
+      <div id="tagline">Dil Aur Pet Dono Khush</div>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div>
+</header>
+
+
+<!-- ------------------ HERO SLIDER ------------------ -->
+<section class="container" style="position:relative;">
+
+  <div class="hero-slider">
+
+    <img src="images/hero-interior.jpg" class="hero-slide active">
+    <img src="images/hero-slide-2.jpg" class="hero-slide">
+    <img src="images/hero-slide-3.jpg" class="hero-slide">
+    <img src="images/hero-slide-4.jpg" class="hero-slide">
+    <img src="images/hero-slide-5.jpg" class="hero-slide">
+    <img src="images/hero-slide-6.jpg" class="hero-slide">
+    <img src="images/hero-slide-7.jpg" class="hero-slide">
+
+    <div class="hero-content">
+      <h2>Nanauta’s Most Loved Restaurant for Indian, South Indian, Chinese & Continental Cuisine</h2>
+
+      <div class="hero-buttons">
+
+        <!-- Explore Menu -->
+        <a href="menu.html" class="hero-btn">
+          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+          Explore Menu
+        </a>
+
+        <!-- Order Food -->
+        <a href="order.html" class="hero-btn order-btn">
+          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M4 12h2M18 12h2M12 4v2M12 18v2"/>
+          </svg>
+          Order Food
+        </a>
+
       </div>
     </div>
 
-    <nav class="nav-desktop">
-      <a class="nav-btn" href="index.html">Home</a>
-      <a class="nav-btn" href="menu.html">Menu</a>
-      <a class="nav-btn" href="about.html">About Us</a>
-      <a class="nav-btn" href="contact.html">Contact</a>
-      <a class="nav-btn" href="book.html">Book a Table</a>
-      <a class="nav-btn" href="order.html">Order Food</a>
-    </nav>
-
-    <button class="hamburger" id="hambtn">
-      <svg fill="none" stroke="#6a2a25" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M3 6h18M3 12h18M3 18h18"/>
-      </svg>
-    </button>
-  </div>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a class="nav-btn" href="index.html">Home</a>
-    <a class="nav-btn" href="menu.html">Menu</a>
-    <a class="nav-btn" href="about.html">About Us</a>
-    <a class="nav-btn" href="contact.html">Contact</a>
-    <a class="nav-btn" href="book.html">Book a Table</a>
-    <a class="nav-btn" href="order.html">Order Food</a>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero container">
-  <h2>Nanauta’s Most Loved Restaurant for Indian, South Indian, Chinese &amp; Continental Cuisine</h2>
-  <p>Enjoy freshly prepared dishes crafted with quality and care.</p>
-
-  <a href="menu.html" class="btn">Explore Menu</a>
-  <a href="order.html" class="btn" style="margin-left:10px;">Order Food</a>
-
-  <!-- ⭐ HERO BANNER ADDED HERE ⭐ -->
-  <div class="hero-banner">
-    <img src="images/hero-interior.jpg" alt="Restaurant Interior">
   </div>
 
 </section>
 
-<!-- CUISINE CARDS -->
-<section class="cards">
-  <article class="card">
-    <img src="images/Indian.jpg" alt="Indian">
-    <div class="bd">
-      <h3>Indian</h3>
-      <p>Rich, authentic, and full of traditional flavors.</p>
-    </div>
-  </article>
 
-  <article class="card">
-    <img src="images/SouthIndian.jpg" alt="South Indian">
-    <div class="bd">
-      <h3>South Indian</h3>
-      <p>Crisp dosas, soft idlis and light flavors.</p>
-    </div>
-  </article>
-
-  <article class="card">
-    <img src="images/Chinese.jpg" alt="Chinese">
-    <div class="bd">
-      <h3>Chinese</h3>
-      <p>Perfect balance of spice, crunch and sauces.</p>
-    </div>
-  </article>
-
-  <article class="card">
-    <img src="images/Continental.jpg" alt="Continental">
-    <div class="bd">
-      <h3>Continental</h3>
-      <p>Comfort food inspired by global flavors.</p>
-    </div>
-  </article>
-</section>
-
-<!-- SOCIAL ICONS (unchanged) -->
-<section style="text-align:center; margin:28px 0; padding:12px 0;">
-  <div style="display:flex;justify-content:center;gap:22px;flex-wrap:wrap;">
-
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/bansalfoodstudio?igsh=MTN2YWs2dWZ3a2xzbQ==" 
-       target="_blank" class="social-icon"
-       style="background:#fff1ea;border:1px solid #f1c7bd;">
-      [SVG same as before]
-    </a>
+<!-- ------------------ FOOTER ------------------ -->
+<footer>
+  <div class="social-icons">
 
     <!-- Facebook -->
-    <a href="https://www.facebook.com/share/1AQm2nmwZy/"
-       target="_blank" class="social-icon"
-       style="background:#e8f0ff;border:1px solid #cdd9ff;">
-      [SVG same as before]
+    <a href="#">
+      <svg viewBox="0 0 24 24">
+        <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4H15c-1.3 0-1.7.8-1.7 1.6V12H17l-.4 3h-2.3v7A10 10 0 0 0 22 12"/>
+      </svg>
     </a>
 
-    <!-- Google -->
-    <a href="https://g.page/r/CbRyIb77ajkrEBE/review"
-       target="_blank" class="social-icon"
-       style="background:#fff3cd;border:1px solid #f5d98b;">
-      [SVG same as before]
+    <!-- Instagram -->
+    <a href="#">
+      <svg viewBox="0 0 24 24">
+        <path d="M7 2C4 2 2 4 2 7v10c0 3 2 5 5 5h10c3 0 5-2 5-5V7c0-3-2-5-5-5H7zm10 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a href="#">
+      <svg viewBox="0 0 24 24">
+        <path d="M21.8 8s-.2-1.5-.8-2.2c-.8-.8-1.7-.8-2.1-.9C15.9 4.5 12 4.5 12 4.5h0s-3.9 0-6.9.4c-.4.1-1.3.1-2.1.9C2.4 6.5 2.2 8 2.2 8S2 9.7 2 11.3v1.4C2 14.3 2.2 16 2.2 16s.2 1.5.8 2.2c.8.8 1.9.7 2.4.8 1.7.2 7 .3 7 .3s3.9 0 6.9-.4c.4-.1 1.3-.1 2.1-.9.6-.7.8-2.2.8-2.2s.2-1.7.2-3.3v-1.4c0-1.6-.2-3.3-.2-3.3zM10 14.7V9.3L15.2 12 10 14.7z"/>
+      </svg>
     </a>
 
   </div>
-</section>
 
-<footer>
-  © <span id="yr"></span> Bansal Food Studio • Chawla Complex, Gangoh Rd, Nanauta • +91-7599032032
+  <p>© 2025 Bansal Food Studio — All Rights Reserved</p>
 </footer>
 
+
+<!-- ------------------ JAVASCRIPT ------------------ -->
 <script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
+let slides = document.querySelectorAll(".hero-slide");
+let index = 0;
 
-  const btn = document.getElementById('hambtn');
-  const menu = document.getElementById('mobileMenu');
-
-  btn.addEventListener('click', () => {
-    menu.style.display = (menu.style.display === 'flex' ? 'none' : 'flex');
-  });
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 5000);
 </script>
 
 </body>
